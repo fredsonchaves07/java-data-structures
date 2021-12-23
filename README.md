@@ -1,2 +1,2 @@
-# java-data-structures
-data structures and algorithms in Java
+# java-datastructures
+datastructures and algorithms in Java
