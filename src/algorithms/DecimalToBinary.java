@@ -4,7 +4,7 @@ import datastructures.Stack;
 
 public class DecimalToBinary {
 
-    public static int decimalToBinary(int number){
+    public static String decimalToBinary(int number){
         Stack<Integer> stack = new Stack<>();
         String binaryString = "";
 
@@ -18,7 +18,7 @@ public class DecimalToBinary {
             binaryString += stack.pop();
         }
 
-        return Integer.parseInt(binaryString);
+        return binaryString;
     }
 
     public static void main(String[] args) {
