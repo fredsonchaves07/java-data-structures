@@ -1,3 +1,4 @@
+import datastructures.Deque;
 import datastructures.Queue;
 import datastructures.Stack;
 
@@ -7,7 +8,10 @@ public class App {
         /*runStack();*/
 
         /*Testes com fila */
-        runQueue();
+        /* runQueue();*/
+
+        /*Testes com Deque */
+        runDeque();
 
     }
 
@@ -40,5 +44,22 @@ public class App {
         queue.dequeue();
         System.out.println(queue);
         System.out.println(queue.size());
+    }
+
+    public static void runDeque(){
+        Deque<String> deque = new Deque<>();
+        System.out.println(deque.isEmpty());
+        deque.addBack("Jhon");
+        deque.addBack("Jack");
+        System.out.println(deque);
+        deque.addBack("Camila");
+        System.out.println(deque);
+        System.out.println(deque.size());
+        deque.removeFront();
+        System.out.println(deque);
+        deque.removeBack();
+        System.out.println(deque);
+        deque.addFront("Jhon");
+        System.out.println(deque);
     }
 }
