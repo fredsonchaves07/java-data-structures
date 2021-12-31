@@ -1,9 +1,13 @@
+import datastructures.Queue;
 import datastructures.Stack;
 
 public class App {
     public static void main(String[] args){
         /* Testes com pilha */
-        runStack();
+        /*runStack();*/
+
+        /*Testes com fila */
+        runQueue();
 
     }
 
@@ -21,5 +25,20 @@ public class App {
         stack.pop();
         System.out.println(stack.peek());
         System.out.println(stack.toString());
+    }
+
+    public static void runQueue(){
+        Queue<String> queue = new Queue<>();
+        System.out.println(queue.isEmpty());
+        queue.enqueue("Jhon");
+        queue.enqueue("Jack");
+        System.out.println(queue);
+        queue.enqueue("Camila");
+        System.out.println(queue.size());
+        System.out.println(queue.isEmpty());
+        queue.dequeue();
+        queue.dequeue();
+        System.out.println(queue);
+        System.out.println(queue.size());
     }
 }
