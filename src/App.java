@@ -1,18 +1,21 @@
 import datastructures.Deque;
+import datastructures.LinkedList;
 import datastructures.Queue;
 import datastructures.Stack;
 
 public class App {
     public static void main(String[] args){
         /* Testes com pilha */
-        /*runStack();*/
+        /*runStack(); */
 
-        /*Testes com fila */
-        /* runQueue();*/
+        /* Testes com fila */
+        /* runQueue(); */
 
-        /*Testes com Deque */
-        runDeque();
+        /* Testes com Deque */
+        /* runDeque(); */
 
+        /*Testes com LikedList */
+        runLinkedList();
     }
 
     public static void runStack(){
@@ -61,5 +64,11 @@ public class App {
         System.out.println(deque);
         deque.addFront("Jhon");
         System.out.println(deque);
+    }
+
+    public static void runLinkedList(){
+        LinkedList<Integer> list = new LinkedList<>();
+        list.push(15);
+        list.push(10);
     }
 }
