@@ -97,4 +97,18 @@ public class LinkedList <T>{
     public Node<T> getHead(){
         return this.head;
     }
+
+    @Override
+    public String toString() {
+        if(this.head == null){
+            return "";
+        }
+        String objString = this.head.getElement().toString();
+        Node nodeCurrent = this.head.getNext();
+        for(int i = 0; i < this.size() && nodeCurrent != null; i ++){
+            objString = objString + "," + nodeCurrent.getElement();
+            nodeCurrent = nodeCurrent.getNext();
+        }
+        return objString;
+    }
 }
