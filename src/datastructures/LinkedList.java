@@ -4,8 +4,8 @@ import models.Node;
 
 public class LinkedList <T>{
 
-    private int count = 0;
-    private Node<T> head;
+    protected int count = 0;
+    protected Node<T> head;
     
     public LinkedList(){
         this.count = 0;
@@ -58,7 +58,7 @@ public class LinkedList <T>{
         }
     }
 
-    private Node<T> getElementAt(int index){
+    protected Node<T> getElementAt(int index){
         if(index >= 0 && index <= this.count){
             Node<T> node = this.head;
             for(int i = 0; i < index && node != null; i++){
