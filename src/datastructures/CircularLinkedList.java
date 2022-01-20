@@ -51,7 +51,7 @@ public class CircularLinkedList <T> extends LinkedList <T>{
                 nodeCurrent = previous.getNext();
                 previous.setNext(nodeCurrent.getNext());
             }
-            this.count --
+            this.count --;
         }
     }
 }
