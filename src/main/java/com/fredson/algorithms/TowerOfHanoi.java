@@ -1,8 +1,8 @@
-package algorithms;
+package fredson.algorithms;
 
 import java.util.Arrays;
 
-import datastructures.Stack;
+import fredson.datastructures.Stack;
 
 public class TowerOfHanoi {
 

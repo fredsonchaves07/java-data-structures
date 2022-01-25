@@ -1,6 +1,6 @@
-package algorithms;
+package fredson.algorithms;
 
-import datastructures.Stack;
+import fredson.datastructures.Stack;
 
 public class Palindrome {
     

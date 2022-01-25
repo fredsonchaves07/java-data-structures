@@ -1,4 +1,4 @@
-package models;
+package fredson.models;
 
 public class DoublyNode <T> extends  Node<T>{
 

@@ -1,6 +1,6 @@
-package datastructures;
+package fredson.datastructures;
 
-import models.Node;
+import fredson.models.Node;
 
 public class CircularLinkedList <T> extends LinkedList <T>{
 

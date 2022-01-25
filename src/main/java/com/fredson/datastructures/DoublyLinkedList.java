@@ -1,7 +1,7 @@
-package datastructures;
+package fredson.datastructures;
 
-import models.DoublyNode;
-import models.Node;
+import fredson.models.DoublyNode;
+import fredson.models.Node;
 
 public class DoublyLinkedList <T> extends  LinkedList<T>{
 

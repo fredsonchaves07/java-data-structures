@@ -1,4 +1,4 @@
-package datastructures;
+package fredson.datastructures;
 
 import java.util.ArrayList;
 import java.util.List;
