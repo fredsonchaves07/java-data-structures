@@ -1,4 +1,4 @@
-package fredson.models;
+package com.fredson.models;
 
 public class Node <T>{
     

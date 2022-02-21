@@ -1,6 +1,6 @@
-package fredson.datastructures;
+package com.fredson.datastructures;
 
-import fredson.models.Node;
+import com.fredson.models.Node;
 
 public class LinkedList <T>{
 

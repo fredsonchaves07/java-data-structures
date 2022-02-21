@@ -1,7 +1,7 @@
-import datastructures.Deque;
-import datastructures.LinkedList;
-import datastructures.Queue;
-import datastructures.Stack;
+import com.fredson.datastructures.Deque;
+import com.fredson.datastructures.LinkedList;
+import com.fredson.datastructures.Queue;
+import com.fredson.datastructures.Stack;
 
 public class App {
     public static void main(String[] args){

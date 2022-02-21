@@ -1,2 +1,2 @@
 # java-datastructures
-datastructures and algorithms in Java
+datastructures and com.fredson.algorithms in Java
