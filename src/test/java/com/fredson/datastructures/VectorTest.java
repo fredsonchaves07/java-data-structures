@@ -8,7 +8,15 @@ import static org.junit.Assert.*;
 public class VectorTest {
 
     @Test
-    public void ShouldCreateVector() {
+    public void shouldCreateVector() {
+        Vector<String> vector = new Vector<>();
+        assertTrue(vector.push("Java"));
+        assertTrue(vector.push("Python"));
+        assertTrue(vector.push("Javascript"));
+    }
+
+    @Test
+    public void ShouldCreateVectorWithCapacity() {
         Vector<String> vector = new Vector(5);
         assertTrue(vector.push("Java"));
         assertTrue(vector.push("Python"));
