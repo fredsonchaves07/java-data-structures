@@ -1,5 +1,8 @@
 package com.fredson.datastructures;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class StaticDatastructures <T>{
 
     protected T[] elements;
@@ -86,9 +89,9 @@ public class StaticDatastructures <T>{
         return length == 0;
     }
 
-    private boolean isFull() { return length >= elements.length; }
+    protected boolean isFull() { return length >= elements.length; }
 
-    private void increaseCapacity() {
+    protected void increaseCapacity() {
         if (length == elements.length) {
             T[] newElements = (T[]) new Object[this.elements.length * 2];
             for (int i = 0; i < length; i ++) {
@@ -96,5 +99,10 @@ public class StaticDatastructures <T>{
             }
             elements = newElements;
         }
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(elements).filter(Objects::nonNull).toList().toString();
     }
 }

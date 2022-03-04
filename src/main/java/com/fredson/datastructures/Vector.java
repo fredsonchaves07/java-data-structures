@@ -1,7 +1,5 @@
 package com.fredson.datastructures;
 
-import java.util.Arrays;
-
 public class Vector<T> extends StaticDatastructures<T>{
 
     public Vector() {
