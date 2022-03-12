@@ -11,11 +11,11 @@ public class DecimalToBinary {
         while(number > 0){
             int rem = number % 2;
             number = number / 2;
-            stack.push(rem);
+            //stack.push(rem);
         }
 
         while(!stack.isEmpty()){
-            binaryString += stack.pop();
+            //binaryString += stack.pop();
         }
 
         return binaryString;

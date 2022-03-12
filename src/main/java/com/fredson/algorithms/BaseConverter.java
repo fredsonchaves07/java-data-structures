@@ -12,11 +12,11 @@ public class BaseConverter {
         while(number > 0){
             int rem = number % base;
             number = number / base;
-            stack.push(rem);
+            //stack.push(rem);
         }
 
         while(!stack.isEmpty()){
-            baseConverterString += digits.charAt(stack.pop());
+            //baseConverterString += digits.charAt(stack.pop());
         }
 
         return baseConverterString;

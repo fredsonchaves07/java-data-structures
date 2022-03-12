@@ -8,10 +8,10 @@ public class TowerOfHanoi {
 
     public static void execute(int numberOfDiscs, Stack<Integer> pillarSource, Stack<Integer> pillarDest, Stack<Integer> pillarAux){
         if(numberOfDiscs == 1){
-            pillarDest.push(pillarSource.pop());
+            //pillarDest.push(pillarSource.pop());
         } else {
             execute(numberOfDiscs - 1, pillarSource, pillarAux, pillarDest);
-            pillarDest.push(pillarSource.pop());
+            //pillarDest.push(pillarSource.pop());
             execute(numberOfDiscs - 1, pillarAux, pillarDest, pillarSource);
         }
     }
@@ -28,7 +28,7 @@ public class TowerOfHanoi {
         numberOfDiscs = discs.length;
 
         for(int disc: discs){
-            pillar1.push(disc);
+            //pillar1.push(disc);
         }
 
         execute(numberOfDiscs, pillar1, pillar3, pillar2);

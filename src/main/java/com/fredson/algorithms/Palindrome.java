@@ -14,11 +14,11 @@ public class Palindrome {
         }
 
         for(int indexChar = 0; indexChar < charString.length; indexChar ++){
-            stack.push(charString[indexChar]);
+            //stack.push(charString[indexChar]);
         }
 
         while(!stack.isEmpty()){
-            stringReverse += stack.pop();
+            //stringReverse += stack.pop();
         }
 
         if(!stringReverse.equals(string.replaceAll(" ", "").toLowerCase())){
