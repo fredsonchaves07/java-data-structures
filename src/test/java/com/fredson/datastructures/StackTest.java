@@ -2,6 +2,7 @@ package com.fredson.datastructures;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class StackTest {
@@ -35,5 +36,22 @@ public class StackTest {
         stack.push("Python");
         stack.push("Javascript");
         System.out.println(stack);
+    }
+
+    @Test
+    public void ShouldPeekStack() {
+        Stack<String> stack = new Stack<>();
+        stack.push("Java");
+        assertEquals("Java", stack.peek());
+    }
+
+    @Test
+    public void ShouldPopStack() {
+        Stack<String> stack = new Stack<>();
+        stack.push("Java");
+        stack.push("Python");
+        stack.push("Javascript");
+        assertEquals("Javascript", stack.pop());
+        assertEquals(2, stack.length());
     }
 }
