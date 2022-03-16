@@ -54,7 +54,7 @@ public class VectorTest {
         vector.push("Java");
         vector.push("Python");
         vector.push("Javascript");
-        assertEquals(null, vector.getElement(15));
+        assertNull(vector.getElement(15));
     }
 
     @Test

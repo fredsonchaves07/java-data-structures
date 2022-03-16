@@ -18,23 +18,44 @@ public class Vector<T> extends StaticDatastructures<T>{
         return super.push(element, position);
     }
 
-    public T getElement(int position) {
-        return super.getElement(position);
-    }
-
     public int lastIndexOf(T element) {
         return super.lastIndexOf(element);
     }
 
-    public boolean contain(T element) {
-        return super.contain(element);
-    }
-
-    public boolean remove(int position) {
-        return super.remove(position);
+    public T getElement(int position) {
+        try {
+            return elements[position];
+        } catch (ArrayIndexOutOfBoundsException error) {
+            return null;
+        }
     }
 
     public boolean remove(T element) {
-        return super.remove(element);
+        for (int i = 0; i <= length; i ++) {
+            if (element.equals(getElement(i))) {
+                remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean remove(int position) {
+        try {
+            for (int i = position; i <= length - 1; i ++) {
+                elements[i] = elements[i + 1];
+            }
+            length --;
+        } catch (ArrayIndexOutOfBoundsException error) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean contain(T element) {
+        for (Object elementVector : elements) {
+            if (elementVector != null && elementVector.equals(element)) return true;
+        }
+        return false;
     }
 }
