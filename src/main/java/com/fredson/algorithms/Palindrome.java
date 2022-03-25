@@ -7,25 +7,17 @@ public class Palindrome {
     public static boolean isPalindrome(String string){
         Stack<String> stack = new Stack<>();
         String[] charString = string.replaceAll(" ", "").toLowerCase().split("");
-        String stringReverse = "";
-
-        if(string == ""){
+        StringBuilder stringReverse = new StringBuilder();
+        if(string.equals("")){
             return false;
         }
-
-        for(int indexChar = 0; indexChar < charString.length; indexChar ++){
-            //stack.push(charString[indexChar]);
+        for (String s : charString) {
+            stack.push(s);
         }
-
         while(!stack.isEmpty()){
-            //stringReverse += stack.pop();
+            stringReverse.append(stack.pop());
         }
-
-        if(!stringReverse.equals(string.replaceAll(" ", "").toLowerCase())){
-            return false;
-        }
-
-        return true;
+        return stringReverse.toString().equals(string.replaceAll(" ", "").toLowerCase());
     }
 
     public static void main(String[] args) {

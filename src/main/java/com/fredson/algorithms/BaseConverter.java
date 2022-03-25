@@ -6,20 +6,17 @@ public class BaseConverter {
 
     public static String baseConverter(int number, int base){
         Stack<Integer> stack = new Stack<>();
-        String baseConverterString = "";
+        StringBuilder baseConverterString = new StringBuilder();
         String digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
         while(number > 0){
             int rem = number % base;
             number = number / base;
-            //stack.push(rem);
+            stack.push(rem);
         }
-
         while(!stack.isEmpty()){
-            //baseConverterString += digits.charAt(stack.pop());
+            baseConverterString.append(digits.charAt(stack.pop()));
         }
-
-        return baseConverterString;
+        return baseConverterString.toString();
     }
     public static void main(String[] args) {
         System.out.println(baseConverter(100345, 2));

@@ -6,19 +6,16 @@ public class DecimalToBinary {
 
     public static String decimalToBinary(int number){
         Stack<Integer> stack = new Stack<>();
-        String binaryString = "";
-
+        StringBuilder binaryString = new StringBuilder();
         while(number > 0){
             int rem = number % 2;
             number = number / 2;
-            //stack.push(rem);
+            stack.push(rem);
         }
-
         while(!stack.isEmpty()){
-            //binaryString += stack.pop();
+            binaryString.append(stack.pop());
         }
-
-        return binaryString;
+        return binaryString.toString();
     }
 
     public static void main(String[] args) {
