@@ -5,26 +5,24 @@ import com.fredson.datastructures.Stack;
 public class Palindrome {
     
     public static boolean isPalindrome(String string){
+        if (isValidString(string)) return false;
         Stack<String> stack = new Stack<>();
-        String[] charString = string.replaceAll(" ", "").toLowerCase().split("");
+        String[] charStringVector = convertToCharString(string);
         StringBuilder stringReverse = new StringBuilder();
-        if(string.equals("")){
-            return false;
-        }
-        for (String s : charString) {
-            stack.push(s);
-        }
-        while(!stack.isEmpty()){
-            stringReverse.append(stack.pop());
-        }
-        return stringReverse.toString().equals(string.replaceAll(" ", "").toLowerCase());
+        for (String charString : charStringVector) stack.push(charString);
+        while(!stack.isEmpty()) stringReverse.append(stack.pop());
+        return isStringReverseEqualsString(stringReverse, string);
     }
 
-    public static void main(String[] args) {
-        System.out.println(isPalindrome("Ana"));
-        System.out.println(isPalindrome("Jhon"));
-        System.out.println(isPalindrome("A babá baba"));
-        System.out.println(isPalindrome("Socorram me subi no onibus em Marrocos"));
-        System.out.println(isPalindrome("O cachorro late"));
+    private static boolean isValidString(String string) {
+        return string.equals("");
+    }
+
+    private static String[] convertToCharString(String string) {
+        return string.replaceAll(" ", "").toLowerCase().split("");
+    }
+
+    private static boolean isStringReverseEqualsString(StringBuilder stringReverse, String string) {
+        return stringReverse.toString().equals(string.replaceAll(" ", "").toLowerCase());
     }
 }
