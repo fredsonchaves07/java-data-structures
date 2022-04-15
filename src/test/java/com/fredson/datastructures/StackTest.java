@@ -1,4 +1,4 @@
-package com.fredson.datastructures.datastructures;
+package com.fredson.datastructures;
 
 import com.fredson.datastructures.Stack;
 import org.junit.Test;

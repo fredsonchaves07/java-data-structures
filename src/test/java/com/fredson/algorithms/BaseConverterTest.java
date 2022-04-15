@@ -1,4 +1,4 @@
-package com.fredson.datastructures.algorithms;
+package com.fredson.algorithms;
 
 import org.junit.Test;
 
