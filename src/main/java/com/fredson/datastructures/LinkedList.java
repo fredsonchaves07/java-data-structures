@@ -4,7 +4,7 @@ import com.fredson.models.Node;
 
 public class LinkedList <T>{
 
-    protected int count = 0;
+    protected int count;
     protected Node<T> head;
     
     public LinkedList(){
@@ -13,16 +13,16 @@ public class LinkedList <T>{
     }
 
     public void push(T element){
-        Node<T> node = new Node<T>(element);
+        Node<T> node = new Node<>(element);
         Node<T> nodeCurrent;
         if(this.head == null){
             this.head = node;
         } else {
             nodeCurrent = this.head;
-            while(nodeCurrent.getNext() != null){
-                nodeCurrent = nodeCurrent.getNext();
+            while(nodeCurrent.getNextNode() != null){
+                nodeCurrent = nodeCurrent.getNextNode();
             }
-            nodeCurrent.setNext(node);
+            nodeCurrent.setNextNode(node);
         }
         this.count ++;
     }
@@ -31,11 +31,11 @@ public class LinkedList <T>{
         Node<T> nodeCurrent;
         if(index == 0){
             nodeCurrent = this.head;
-            this.head = nodeCurrent.getNext();
+            this.head = nodeCurrent.getNextNode();
         } else {
             Node<T> previous = this.getElementAt(index - 1);
-            nodeCurrent = previous.getNext();
-            previous.setNext(nodeCurrent.getNext());
+            nodeCurrent = previous.getNextNode();
+            previous.setNextNode(nodeCurrent.getNextNode());
         }
         this.count --;
     }
@@ -43,16 +43,16 @@ public class LinkedList <T>{
     public void insert(T element, int index){
         if(index >= 0 && index <= this.count){
             Node<T> nodeCurrent;
-            Node<T> node = new Node<T>(element);
+            Node<T> node = new Node<>(element);
             if(index == 0){
                 nodeCurrent = this.head;
-                node.setNext(nodeCurrent);
+                node.setNextNode(nodeCurrent);
                 this.head = node;
             } else {
                 Node<T> nodePrevious = this.getElementAt(index - 1);
-                nodeCurrent = nodePrevious.getNext();
-                node.setNext(nodeCurrent);
-                nodePrevious.setNext(node);
+                nodeCurrent = nodePrevious.getNextNode();
+                node.setNextNode(nodeCurrent);
+                nodePrevious.setNextNode(node);
             }
             this.count ++;
         }
@@ -62,7 +62,7 @@ public class LinkedList <T>{
         if(index >= 0 && index <= this.count){
             Node<T> node = this.head;
             for(int i = 0; i < index && node != null; i++){
-                node = node.getNext();
+                node = node.getNextNode();
             }
             return node;
         }
@@ -81,7 +81,7 @@ public class LinkedList <T>{
             if(node.getElement().equals(element)){
                 return i;
             }
-            node = node.getNext();
+            node = node.getNextNode();
         }
         return -1;
     }
@@ -103,12 +103,12 @@ public class LinkedList <T>{
         if(this.head == null){
             return "";
         }
-        String objString = this.head.getElement().toString();
-        Node nodeCurrent = this.head.getNext();
+        StringBuilder objString = new StringBuilder(this.head.getElement().toString());
+        Node<T> nodeCurrent = this.head.getNextNode();
         for(int i = 0; i < this.size() && nodeCurrent != null; i ++){
-            objString = objString + "," + nodeCurrent.getElement();
-            nodeCurrent = nodeCurrent.getNext();
+            objString.append(",").append(nodeCurrent.getElement());
+            nodeCurrent = nodeCurrent.getNextNode();
         }
-        return objString;
+        return objString.toString();
     }
 }

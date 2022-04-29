@@ -1,26 +1,26 @@
 package com.fredson.models;
 
-public class Node <T>{
+public class Node <T> {
     
-    private T element;
-    private Node<T> next;
+    private final T element;
+    private Node<T> nextNode;
 
-    public Node(T element){
+    public Node(T element) {
         this.element = element;
-        this.next = null;
+        this.nextNode = null;
     }
 
-    public Node(T element, Node<T> next){
+    public Node(T element, Node<T> next) {
         this.element = element;
-        this.next = next;
+        this.nextNode = next;
     }
 
-    public Node<T> getNext(){
-        return this.next;
+    public Node<T> getNextNode(){
+        return this.nextNode;
     }
 
-    public void setNext(Node<T> node){
-        this.next = node;
+    public void setNextNode(Node<T> node){
+        this.nextNode = node;
     }
 
     public T getElement(){

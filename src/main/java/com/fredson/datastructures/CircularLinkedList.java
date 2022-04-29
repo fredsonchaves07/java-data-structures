@@ -16,17 +16,17 @@ public class CircularLinkedList <T> extends LinkedList <T>{
             if (index == 0) {
                 if (this.head == null) {
                     this.head = node;
-                    node.setNext(this.head);
+                    node.setNextNode(this.head);
                 } else {
-                    node.setNext(nodeCurrent);
+                    node.setNextNode(nodeCurrent);
                     nodeCurrent = this.getElementAt(this.size());
                     this.head = node;
-                    nodeCurrent.setNext(this.head);
+                    nodeCurrent.setNextNode(this.head);
                 }
             } else {
                 Node previous = this.getElementAt(index - 1);
-                node.setNext(previous.getNext());
-                previous.setNext(node);
+                node.setNextNode(previous.getNextNode());
+                previous.setNextNode(node);
             }
             this.count ++;
         }
@@ -42,14 +42,14 @@ public class CircularLinkedList <T> extends LinkedList <T>{
                 } else {
                     Node removed = this.head;
                     nodeCurrent = this.getElementAt(this.size());
-                    this.head = this.head.getNext();
-                    nodeCurrent.setNext(this.head);
+                    this.head = this.head.getNextNode();
+                    nodeCurrent.setNextNode(this.head);
                     nodeCurrent = removed;
                 }
             } else {
                 Node previous = this.getElementAt(index - 1);
-                nodeCurrent = previous.getNext();
-                previous.setNext(nodeCurrent.getNext());
+                nodeCurrent = previous.getNextNode();
+                previous.setNextNode(nodeCurrent.getNextNode());
             }
             this.count --;
         }
