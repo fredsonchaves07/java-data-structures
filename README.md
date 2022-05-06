@@ -9,3 +9,11 @@
 
 - É um espaço em memória que armazena um determinado dado ou referência para o próximo nó
 - O conteúdo de um nó pode ser um do tipo genérco para evitar casting excessivo e códigos redundantes
+
+## Algumas das estruturas de dados 
+
+[ ] Pilha
+
+## Pilha
+
+Estrutura de dados onde último elemento a entrar é o primeiro a sair (LIFO). Muito utilizado nas chamadas de funções e métodos
