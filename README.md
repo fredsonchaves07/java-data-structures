@@ -12,8 +12,15 @@
 
 ## Algumas das estruturas de dados 
 
-[ ] Pilha
+ - [ ] Pilha
 
 ## Pilha
 
 Estrutura de dados onde último elemento a entrar é o primeiro a sair (LIFO). Muito utilizado nas chamadas de funções e métodos
+
+### Métodos implementados
+
+- [ ] `peek()`: visualiza o primeiro elemento
+- [ ] `push()`: adiciona um elemento
+- [ ] `pop()`: remove o elemento
+- [ ] `isEmpty()`: verifica se a pilha esta vazia
