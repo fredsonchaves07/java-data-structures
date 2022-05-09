@@ -1,6 +1,6 @@
 package com.fredson.models;
 
-public class Node <T> {
+public class Node<T> {
     
     private final T element;
     private Node<T> nextNode;

@@ -1,7 +1,7 @@
 package com.fredson.datastructures;
 
 
-public class Stack <T> extends StaticDatastructures<T>{
+public class Stack<T> extends StaticDatastructures<T>{
 
     public Stack() {
         super();
