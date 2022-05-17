@@ -1,12 +1,13 @@
 package com.fredson.algorithms;
 
+import com.fredson.datastructures.ArrayStack;
 import com.fredson.datastructures.Stack;
 
 public class Palindrome {
     
     public static boolean isPalindrome(String string){
         if (isValidString(string)) return false;
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new ArrayStack<>();
         String[] charStringVector = convertToCharString(string);
         StringBuilder stringReverse = new StringBuilder();
         for (String charString : charStringVector) stack.push(charString);

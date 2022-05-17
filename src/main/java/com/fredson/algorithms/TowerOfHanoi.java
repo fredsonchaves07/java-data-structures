@@ -1,8 +1,9 @@
 package com.fredson.algorithms;
 
-import java.util.Arrays;
-
+import com.fredson.datastructures.ArrayStack;
 import com.fredson.datastructures.Stack;
+
+import java.util.Arrays;
 
 public class TowerOfHanoi {
 
@@ -18,9 +19,9 @@ public class TowerOfHanoi {
     
     public static String towerOfHanoi(int[] discsVector){
         int numberOfDiscs = discsVector.length;
-        Stack<Integer> pillar1 = new Stack<>();
-        Stack<Integer> pillar2 = new Stack<>();
-        Stack<Integer> pillar3 = new Stack<>();
+        Stack<Integer> pillar1 = new ArrayStack<>();
+        Stack<Integer> pillar2 = new ArrayStack<>();
+        Stack<Integer> pillar3 = new ArrayStack<>();
         Arrays.sort(discsVector);
         for (int disc: discsVector){
             pillar1.push(disc);

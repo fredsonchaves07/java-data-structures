@@ -1,10 +1,10 @@
 package com.fredson.algorithms;
 
+import com.fredson.datastructures.Queue;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.fredson.datastructures.Queue;
 
 public class HotPotato {
     

@@ -5,11 +5,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class StackTest {
+public class ArrayStackTest {
 
     @Test
     public void shouldCreateStack() {
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new ArrayStack<>();
         assertTrue(stack.push("Java"));
         assertTrue(stack.push("Python"));
         assertTrue(stack.push("Javascript"));
@@ -17,7 +17,7 @@ public class StackTest {
 
     @Test
     public void ShouldCreateStackWithCapacity() {
-        Stack<String> stack = new Stack<>(3);
+        Stack<String> stack = new ArrayStack<>(3);
         assertTrue(stack.push("Java"));
         assertTrue(stack.push("Python"));
         assertTrue(stack.push("Javascript"));
@@ -25,13 +25,13 @@ public class StackTest {
 
     @Test
     public void ShouldCreateStackEmpty() {
-        Stack<String> vector = new Stack<>();
+        Stack<String> vector = new ArrayStack<>();
         assertTrue(vector.isEmpty());
     }
 
     @Test
     public void ShouldPrintStack() {
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
         stack.push("Javascript");
@@ -40,14 +40,14 @@ public class StackTest {
 
     @Test
     public void ShouldPeekStack() {
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         assertEquals("Java", stack.peek());
     }
 
     @Test
     public void ShouldPopStack() {
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
         stack.push("Javascript");

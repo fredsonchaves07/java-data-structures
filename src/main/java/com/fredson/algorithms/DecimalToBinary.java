@@ -1,11 +1,12 @@
 package com.fredson.algorithms;
 
+import com.fredson.datastructures.ArrayStack;
 import com.fredson.datastructures.Stack;
 
 public class DecimalToBinary {
 
     public static String decimalToBinary(int number){
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new ArrayStack<>();
         StringBuilder binaryString = new StringBuilder();
         while(number > 0){
             int rem = number % 2;

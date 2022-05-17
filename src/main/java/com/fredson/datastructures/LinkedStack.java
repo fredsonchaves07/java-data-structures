@@ -5,7 +5,7 @@ import com.fredson.models.Node;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinkedStack<T> {
+public class LinkedStack<T> implements Stack<T> {
 
     Node<T> node;
 
@@ -15,6 +15,7 @@ public class LinkedStack<T> {
         node = null;
     }
 
+    @Override
     public boolean push(T element) {
         Node<T> newNode = new Node<>(element);
         newNode.setNextNode(node);
@@ -23,6 +24,7 @@ public class LinkedStack<T> {
         return true;
     }
 
+    @Override
     public T pop() {
         if (isEmpty()) return null;
         T element = node.getElement();
@@ -31,15 +33,18 @@ public class LinkedStack<T> {
         return element;
     }
 
+    @Override
     public T peek() {
         if (isEmpty()) return null;
         return node.getElement();
     }
 
+    @Override
     public boolean isEmpty() {
         return length() == 0;
     }
 
+    @Override
     public int length() {
         return length;
     }

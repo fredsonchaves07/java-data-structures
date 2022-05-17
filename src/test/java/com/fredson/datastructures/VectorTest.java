@@ -1,6 +1,5 @@
 package com.fredson.datastructures;
 
-import com.fredson.datastructures.Vector;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -92,7 +91,7 @@ public class VectorTest {
         vector.push("Python");
         vector.push("Javascript");
         vector.push("C");
-        assertTrue(true);
+        assertEquals(4, vector.length());
         System.out.println(vector);
     }
 
@@ -112,6 +111,7 @@ public class VectorTest {
         vector.push("Python");
         vector.push("Javascript");
         assertTrue(vector.remove("Python"));
+        assertEquals(2, vector.length());
         System.out.println(vector);
     }
 
