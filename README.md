@@ -13,6 +13,7 @@
 ## Algumas das estruturas de dados 
 
  - [ ] Pilha
+ - [ ] Listas
 
 ## Pilha
 
@@ -24,3 +25,8 @@ Estrutura de dados onde último elemento a entrar é o primeiro a sair (LIFO). M
 - [ ] `push()`: adiciona um elemento
 - [ ] `pop()`: remove o elemento
 - [ ] `isEmpty()`: verifica se a pilha esta vazia
+
+## Listas
+
+Parecido com a fila, porém a sua manipulação é dinâmica, ou seja, é possível adicionar o elemento em qualquer posição.
+Uma das estruturas de dados mais utilizadas
