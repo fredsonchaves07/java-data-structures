@@ -1,11 +1,14 @@
 package com.fredson.datastructures;
 
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class ArrayStack<T> implements Stack<T>{
 
     private T[] elements;
 
-    protected int length;
+    private int length;
 
     public ArrayStack() {
         this(10);
@@ -13,7 +16,6 @@ public class ArrayStack<T> implements Stack<T>{
 
     public ArrayStack(int capacity) {
         elements = (T[]) new Object[capacity];
-        length = 0;
     }
 
     @Override
@@ -24,27 +26,12 @@ public class ArrayStack<T> implements Stack<T>{
         return  true;
     }
 
-    public boolean push(T element, int position) {
-        if (isFull()) increaseCapacity();
-        try {
-            if (length + 1 - position >= 0)
-                System.arraycopy(elements, position, elements, position + 1, length + 1 - position);
-            elements[position] = element;
-            length ++;
-        } catch (ArrayIndexOutOfBoundsException error){
-            throw new Error(error.getMessage());
-        }
-        return true;
-    }
-
     private boolean isFull() { return length >= elements.length; }
 
     private void increaseCapacity() {
         if (length == elements.length) {
             T[] newElements = (T[]) new Object[elements.length * 2];
-            for (int i = 0; i < length; i ++) {
-                newElements[i] = elements[i];
-            }
+            System.arraycopy(elements, 0, newElements, 0, length);
             elements = newElements;
         }
     }
@@ -69,5 +56,10 @@ public class ArrayStack<T> implements Stack<T>{
     @Override
     public boolean isEmpty() {
         return length == 0;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(elements).filter(Objects::nonNull).toList().toString();
     }
 }

@@ -16,7 +16,7 @@ public class ArrayStackTest {
     }
 
     @Test
-    public void ShouldCreateStackWithCapacity() {
+    public void shouldCreateStackWithCapacity() {
         Stack<String> stack = new ArrayStack<>(3);
         assertTrue(stack.push("Java"));
         assertTrue(stack.push("Python"));
@@ -24,13 +24,13 @@ public class ArrayStackTest {
     }
 
     @Test
-    public void ShouldCreateStackEmpty() {
+    public void shouldCreateStackEmpty() {
         Stack<String> vector = new ArrayStack<>();
         assertTrue(vector.isEmpty());
     }
 
     @Test
-    public void ShouldPrintStack() {
+    public void shouldPrintStack() {
         Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
@@ -39,14 +39,14 @@ public class ArrayStackTest {
     }
 
     @Test
-    public void ShouldPeekStack() {
+    public void shouldPeekStack() {
         Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         assertEquals("Java", stack.peek());
     }
 
     @Test
-    public void ShouldPopStack() {
+    public void shouldPopStack() {
         Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
