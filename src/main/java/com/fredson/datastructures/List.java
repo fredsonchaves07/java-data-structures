@@ -2,13 +2,13 @@ package com.fredson.datastructures;
 
 public interface List<T> {
 
-    boolean push(T element);
+    void push(T element);
 
-    boolean remove(T element);
+    void push(T element, int index);
 
-    boolean removeAt(int index);
+    void remove(T element);
 
-    boolean insert(T element, int index);
+    void removeAt(int index);
 
     int indexOf(T element);
 

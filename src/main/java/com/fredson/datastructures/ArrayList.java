@@ -18,11 +18,18 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean push(T element) {
+    public void push(T element) {
         if (isFull()) increaseCapacity();
         elements[length] = element;
         length ++;
-        return  true;
+    }
+
+    @Override
+    public void push(T element, int index) {
+        if (isFull()) increaseCapacity();
+        if (index > elements.length) increaseCapacity();
+        elements[index] = element;
+        length ++;
     }
 
     private boolean isFull() {
@@ -30,26 +37,19 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void increaseCapacity() {
-        if (length == elements.length) {
-            T[] newElements = (T[]) new Object[elements.length * 2];
-            System.arraycopy(elements, 0, newElements, 0, length);
-            elements = newElements;
-        }
+        T[] newElements = (T[]) new Object[elements.length * 2];
+        System.arraycopy(elements, 0, newElements, 0, length);
+        elements = newElements;
     }
 
     @Override
-    public boolean remove(T element) {
-        return false;
+    public void remove(T element) {
+
     }
 
     @Override
-    public boolean removeAt(int index) {
-        return false;
-    }
+    public void removeAt(int index) {
 
-    @Override
-    public boolean insert(T element, int index) {
-        return false;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public int length() {
-        return 0;
+        return length;
     }
 
     @Override
