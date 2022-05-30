@@ -10,17 +10,19 @@ public class VectorTest {
     @Test
     public void shouldCreateVector() {
         Vector<String> vector = new Vector<>();
-        assertTrue(vector.push("Java"));
-        assertTrue(vector.push("Python"));
-        assertTrue(vector.push("Javascript"));
+        vector.push("Java");
+        vector.push("Python");
+        vector.push("Javascript");
+        assertEquals(3, vector.length());
     }
 
     @Test
     public void ShouldCreateVectorWithCapacity() {
         Vector<String> vector = new Vector(5);
-        assertTrue(vector.push("Java"));
-        assertTrue(vector.push("Python"));
-        assertTrue(vector.push("Javascript"));
+        vector.push("Java");
+        vector.push("Python");
+        vector.push("Javascript");
+        assertEquals(3, vector.length());
     }
 
     @Test
@@ -80,7 +82,8 @@ public class VectorTest {
         Vector<String> vector = new Vector(5);
         vector.push("Java");
         vector.push("Python");
-        assertTrue(vector.push("Javascript", 1));
+        vector.push("Javascript", 1);
+        assertEquals(3, vector.length());
         System.out.println(vector);
     }
 
@@ -100,7 +103,8 @@ public class VectorTest {
         Vector<String> vector = new Vector(3);
         vector.push("Java");
         vector.push("Python");
-        assertTrue(vector.remove(0));
+        vector.remove(0);
+        assertEquals(1, vector.length());
         System.out.println(vector);
     }
 
@@ -110,7 +114,7 @@ public class VectorTest {
         vector.push("Java");
         vector.push("Python");
         vector.push("Javascript");
-        assertTrue(vector.remove("Python"));
+        vector.remove("Python");
         assertEquals(2, vector.length());
         System.out.println(vector);
     }
@@ -119,20 +123,22 @@ public class VectorTest {
     public void ShouldCreateGenericVector() {
         Vector<String> vectorString = new Vector(5);
         Vector<Integer> vectorNumber = new Vector(3);
-        assertTrue(vectorString.push("Java"));
-        assertTrue(vectorString.push("Python"));
-        assertTrue(vectorString.push("Javascript"));
-        assertTrue(vectorNumber.push(2));
-        assertTrue(vectorNumber.push(5));
-        assertTrue(vectorNumber.push(1));
+        vectorString.push("Java");
+        vectorString.push("Python");
+        vectorString.push("Javascript");
+        assertEquals(3, vectorString.length());
+        vectorNumber.push(2);
+        vectorNumber.push(5);
+        vectorNumber.push(1);
+        assertEquals(3, vectorNumber.length());
     }
 
     @Test
     public void ShouldLastIndexOf() {
         Vector<String> vectorString = new Vector(5);
-        assertTrue(vectorString.push("Java"));
-        assertTrue(vectorString.push("Python"));
-        assertTrue(vectorString.push("Java"));
+        vectorString.push("Java");
+        vectorString.push("Python");
+        vectorString.push("Java");
         assertEquals(2, vectorString.lastIndexOf("Java"));
     }
 }

@@ -10,9 +10,10 @@ public class LinkedStackTest {
     @Test
     public void shouldCreateStack() {
         Stack<String> stack = new LinkedStack<>();
-        assertTrue(stack.push("Java"));
-        assertTrue(stack.push("Python"));
-        assertTrue(stack.push("Javascript"));
+        stack.push("Java");
+        stack.push("Python");
+        stack.push("Javascript");
+        assertEquals(3, stack.length());
     }
 
     @Test

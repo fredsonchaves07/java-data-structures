@@ -19,11 +19,10 @@ public class ArrayStack<T> implements Stack<T>{
     }
 
     @Override
-    public boolean push(T element) {
+    public void push(T element) {
         if (isFull()) increaseCapacity();
         elements[length] = element;
         length ++;
-        return  true;
     }
 
     private boolean isFull() { return length >= elements.length; }

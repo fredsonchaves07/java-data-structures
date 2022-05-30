@@ -18,14 +18,13 @@ public class Vector<T> {
         length = 0;
     }
 
-    public boolean push(T element){
+    public void push(T element){
         if (isFull()) increaseCapacity();
         elements[length] = element;
         length ++;
-        return true;
     }
 
-    public boolean push(T element, int position) {
+    public void push(T element, int position) {
         if (isFull()) increaseCapacity();
         try {
             if (length + 1 - position >= 0)
@@ -35,7 +34,6 @@ public class Vector<T> {
         } catch (ArrayIndexOutOfBoundsException error){
             throw new Error(error.getMessage());
         }
-        return true;
     }
 
     private boolean isFull() { return length >= elements.length; }
@@ -65,25 +63,22 @@ public class Vector<T> {
         }
     }
 
-    public boolean remove(T element) {
+    public void remove(T element) {
         for (int i = 0; i <= length; i ++) {
             if (element.equals(getElement(i))) {
                 remove(i);
-                return true;
             }
         }
-        return false;
     }
 
-    public boolean remove(int position) {
+    public void remove(int position) {
         try {
             if (length - position >= 0)
                 System.arraycopy(elements, position + 1, elements, position, length - position);
             length --;
         } catch (ArrayIndexOutOfBoundsException error) {
-            return false;
+            throw new Error(error.getMessage());
         }
-        return true;
     }
 
     public boolean contain(T element) {

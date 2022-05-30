@@ -2,7 +2,7 @@ package com.fredson.datastructures;
 
 public interface Stack<T> {
 
-    boolean push(T element);
+    void push(T element);
 
     T pop();
 
