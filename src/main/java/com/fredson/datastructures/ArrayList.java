@@ -44,26 +44,43 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void remove(T element) {
+        for (int i = 0; i < elements.length; i ++) {
+            if (elements[i] != null && elements[i].equals(element)) {
+                if (elements.length - (i + 1) >= 0)
+                    System.arraycopy(elements, i + 1, elements, i + 1 - 1, elements.length - (i + 1));
+                length --;
+            }
 
+        }
     }
 
     @Override
-    public void removeAt(int index) {
-
+    public void remove(int index) {
+        if (index >= length() || index < 0) throw new IndexOutOfBoundsException();
+        if (elements.length - (index + 1) >= 0)
+            System.arraycopy(elements, index + 1, elements, index + 1 - 1, elements.length - (index + 1));
+        length --;
     }
 
     @Override
     public int indexOf(T element) {
-        return 0;
+        for (int i = 0; i < elements.length; i ++) {
+            if (elements[i] != null && elements[i].equals(element)) return i;
+        }
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
-    public T getElementAt(int index) {
-        return null;
+    public T getElement(int index) {
+        if (index >= length() || index < 0) throw new IndexOutOfBoundsException();
+        return elements[index];
     }
 
     @Override
     public T getElement(T element) {
+        for (T elementData : elements) {
+            if (elementData != null && elementData.equals(element)) return elementData;
+        }
         return null;
     }
 

@@ -8,11 +8,11 @@ public interface List<T> {
 
     void remove(T element);
 
-    void removeAt(int index);
+    void remove(int index);
 
     int indexOf(T element);
 
-    T getElementAt(int index);
+    T getElement(int index);
 
     T getElement(T element);
 
