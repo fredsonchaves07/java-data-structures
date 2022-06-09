@@ -24,7 +24,6 @@ public class ArrayList<T> implements List<T> {
         length ++;
     }
 
-    @Override
     public void push(T element, int index) {
         if (isFull()) increaseCapacity();
         if (index > elements.length) increaseCapacity();
@@ -36,7 +35,7 @@ public class ArrayList<T> implements List<T> {
         return length >= elements.length;
     }
 
-    private void increaseCapacity() {
+    public void increaseCapacity() {
         T[] newElements = (T[]) new Object[elements.length * 2];
         System.arraycopy(elements, 0, newElements, 0, length);
         elements = newElements;

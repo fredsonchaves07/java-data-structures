@@ -4,8 +4,6 @@ public interface List<T> {
 
     void push(T element);
 
-    void push(T element, int index);
-
     void remove(T element);
 
     void remove(int index);
