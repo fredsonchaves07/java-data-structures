@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LinkedStack<T> implements Stack<T> {
 
-    Node<T> node;
+    private Node<T> node;
 
     private int length;
 
