@@ -32,8 +32,6 @@ public class ArrayListTest {
         list.push("Python", 0);
         list.push("Javascript", 11);
         assertEquals(3, list.length());
-        java.util.List<String> strings = new java.util.LinkedList<>();
-        strings.add(1, 10);
     }
 
     @Test

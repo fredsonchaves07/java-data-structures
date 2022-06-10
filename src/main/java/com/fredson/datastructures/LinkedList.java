@@ -18,9 +18,57 @@ public class LinkedList <T> implements List<T> {
         if (isEmpty()) {
             node = newNode;
         } else {
-            Node<T> nodeCurrent = node;
-            while (nodeCurrent.getNextNode() != null) nodeCurrent = nodeCurrent.getNextNode();
-            nodeCurrent.setNextNode(newNode);
+            Node<T> currentNode = node;
+            while (currentNode.getNextNode() != null) currentNode = currentNode.getNextNode();
+            currentNode.setNextNode(newNode);
+        }
+        length += 1;
+    }
+
+    @Override
+    public void push(T element, int index) {
+        if (isEmpty()) {
+            push(element);
+        } else if (index == 0) {
+            addElementFirstNode(element);
+        } else if (index > length()) {
+            addElementLastNode(element);
+        } else {
+            addElementIndexNode(element, index);
+        }
+    }
+
+    private void addElementFirstNode(T element) {
+        Node<T> newNode = new Node<>(element);
+        Node<T> currentNode = node;
+        newNode.setNextNode(currentNode);
+        node = newNode;
+        length += 1;
+    }
+
+    private void addElementLastNode(T element) {
+        Node<T> newNode = new Node<>(element);
+        Node<T> currentNode = node;
+        while (currentNode.getNextNode() != null) {
+            currentNode = node.getNextNode();
+        }
+        currentNode.setNextNode(newNode);
+        length += 1;
+    }
+
+    private void addElementIndexNode(T element, int index) {
+        Node<T> newNode = new Node<>(element);
+        Node<T> currentNode = node;
+        int contIndex = 1;
+        while (currentNode != null) {
+            if (contIndex == index) {
+               Node<T> nodeAux = currentNode;
+               currentNode = newNode;
+               currentNode.setNextNode(nodeAux.getNextNode());
+               break;
+            }
+            contIndex += 1;
+            currentNode = currentNode.getNextNode();
         }
         length += 1;
     }

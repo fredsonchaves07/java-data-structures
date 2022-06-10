@@ -13,14 +13,17 @@ public class LinkedListTest {
         list.push("Python");
         list.push("Javascript");
         assertEquals(3, list.length());
+        System.out.println(list);
     }
 
     @Test
     public void shouldInsertElementInIndex() {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         list.push("Java", 1);
         list.push("Python", 0);
         list.push("Javascript", 11);
+        list.push("C++", 3);
         assertEquals(3, list.length());
+        System.out.println(list);
     }
 }
