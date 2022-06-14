@@ -3,6 +3,7 @@ package com.fredson.datastructures;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LinkedListTest {
 
@@ -13,7 +14,6 @@ public class LinkedListTest {
         list.push("Python");
         list.push("Javascript");
         assertEquals(3, list.length());
-        System.out.println(list);
     }
 
     @Test
@@ -23,7 +23,31 @@ public class LinkedListTest {
         list.push("Python", 0);
         list.push("Javascript", 11);
         list.push("C++", 3);
-        assertEquals(3, list.length());
+        assertEquals(4, list.length());
+    }
+
+    @Test
+    public void shouldCreateListEmpty() {
+        List<String> list = new LinkedList<>();
+        assertTrue(list.isEmpty());
+    }
+
+    @Test
+    public void shouldPrintList() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
         System.out.println(list);
+    }
+
+    @Test
+    public void shouldRemoveElement() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.remove("Python");
+        assertEquals(2, list.length());
     }
 }

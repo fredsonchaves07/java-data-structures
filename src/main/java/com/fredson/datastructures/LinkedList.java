@@ -2,6 +2,8 @@ package com.fredson.datastructures;
 
 import com.fredson.models.Node;
 
+import java.util.ArrayList;
+
 public class LinkedList <T> implements List<T> {
 
     private Node<T> node;
@@ -63,14 +65,25 @@ public class LinkedList <T> implements List<T> {
         while (currentNode != null) {
             if (contIndex == index) {
                Node<T> nodeAux = currentNode;
+               Node<T> beforeNode = getBeforeNode(currentNode);
                currentNode = newNode;
-               currentNode.setNextNode(nodeAux.getNextNode());
+               beforeNode.setNextNode(currentNode);
+               currentNode.setNextNode(nodeAux);
                break;
             }
             contIndex += 1;
             currentNode = currentNode.getNextNode();
         }
         length += 1;
+    }
+
+    private Node<T> getBeforeNode(Node<T> node) {
+        Node<T> currentNode = this.node;
+        while (currentNode.getNextNode() != null) {
+            if (currentNode.getNextNode().equals(node)) return currentNode;
+            currentNode = currentNode.getNextNode();
+        }
+        return null;
     }
 
     public void removeAt(int index){
@@ -115,9 +128,23 @@ public class LinkedList <T> implements List<T> {
         return null;
     }
 
+    @Override
     public void remove(T element){
-//        int index = this.indexOf(element);
-//        this.removeAt(index);
+        Node<T> currentNode = node;
+        while (currentNode != null) {
+            if (currentNode.getElement().equals(element)) {
+                Node<T> beforeNode = getBeforeNode(currentNode);
+                Node<T> nextNode = currentNode.getNextNode();
+                if (beforeNode != null) {
+                    beforeNode.setNextNode(nextNode);
+                } else {
+                    this.node = nextNode;
+                }
+                length -= 1;
+                break;
+            }
+            currentNode = currentNode.getNextNode();
+        }
     }
 
     @Override
@@ -164,16 +191,12 @@ public class LinkedList <T> implements List<T> {
 
     @Override
     public String toString() {
-//        if(this.head == null){
-//            return "";
-//        }
-//        StringBuilder objString = new StringBuilder(this.head.getElement().toString());
-//        Node<T> nodeCurrent = this.head.getNextNode();
-//        for(int i = 0; i < this.size() && nodeCurrent != null; i ++){
-//            objString.append(",").append(nodeCurrent.getElement());
-//            nodeCurrent = nodeCurrent.getNextNode();
-//        }
-//        return objString.toString();
-        return "";
+        java.util.List<T> elements = new ArrayList<>();
+        Node<T> verifyElement = node;
+        while (verifyElement != null) {
+            elements.add(verifyElement.getElement());
+            verifyElement = verifyElement.getNextNode();
+        }
+        return elements.toString();
     }
 }
