@@ -50,4 +50,41 @@ public class LinkedListTest {
         list.remove("Python");
         assertEquals(2, list.length());
     }
+
+    @Test
+    public void shouldRemoveElementAtIndex() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.remove(2);
+        assertEquals(2, list.length());
+    }
+
+    @Test
+    public void shouldGetIndexElement() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertEquals(1, list.indexOf("Python"));
+    }
+
+    @Test
+    public void shouldGetElementByElement() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertEquals("Python", list.getElement("Python"));
+    }
+
+    @Test
+    public void shouldGetElementByIndex() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertEquals("Python", list.getElement(1));
+    }
 }

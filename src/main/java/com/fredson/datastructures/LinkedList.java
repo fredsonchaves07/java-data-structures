@@ -86,48 +86,6 @@ public class LinkedList <T> implements List<T> {
         return null;
     }
 
-    public void removeAt(int index){
-//        Node<T> nodeCurrent;
-//        if(index == 0){
-//            nodeCurrent = this.head;
-//            this.head = nodeCurrent.getNextNode();
-//        } else {
-//            Node<T> previous = this.getElementAt(index - 1);
-//            nodeCurrent = previous.getNextNode();
-//            previous.setNextNode(nodeCurrent.getNextNode());
-//        }
-//        this.count --;
-    }
-
-    public void insert(T element, int index){
-//        if(index >= 0 && index <= this.count){
-//            Node<T> nodeCurrent;
-//            Node<T> node = new Node<>(element);
-//            if(index == 0){
-//                nodeCurrent = this.head;
-//                node.setNextNode(nodeCurrent);
-//                this.head = node;
-//            } else {
-//                Node<T> nodePrevious = this.getElementAt(index - 1);
-//                nodeCurrent = nodePrevious.getNextNode();
-//                node.setNextNode(nodeCurrent);
-//                nodePrevious.setNextNode(node);
-//            }
-//            this.count ++;
-//        }
-    }
-
-    protected Node<T> getElementAt(int index){
-//        if(index >= 0 && index <= this.count){
-//            Node<T> node = this.head;
-//            for(int i = 0; i < index && node != null; i++){
-//                node = node.getNextNode();
-//            }
-//            return node;
-//        }
-        return null;
-    }
-
     @Override
     public void remove(T element){
         Node<T> currentNode = node;
@@ -149,28 +107,80 @@ public class LinkedList <T> implements List<T> {
 
     @Override
     public void remove(int index) {
-
+        if (index < 0 || index >= length()) throw new IndexOutOfBoundsException();
+        if (index == 0){
+            removeElementFirstNode();
+        } else if (index == length() - 1) {
+            removeElementLastNode();
+        } else {
+            removeElementIndexNode(index);
+        }
     }
 
+    private void removeElementFirstNode() {
+        node = node.getNextNode();
+        length -= 1;
+    }
 
+    private void removeElementLastNode() {
+        Node<T> currentNode = node;
+        while (currentNode.getNextNode() != null) {
+            currentNode = currentNode.getNextNode();
+        }
+        if (currentNode.getNextNode() == null) {
+            T element = currentNode.getElement();
+            remove(element);
+        }
+    }
+
+    private void removeElementIndexNode(int index) {
+        Node<T> currentNode = node;
+        int contIndex = 0;
+        while (currentNode != null) {
+            if (contIndex == index) {
+                T element = currentNode.getElement();
+                remove(element);
+            }
+            currentNode = currentNode.getNextNode();
+            contIndex += 1;
+        }
+    }
+
+    @Override
     public int indexOf(T element){
-//        Node<T> node = this.head;
-//        for(int i = 0; i < this.count && node != null; i ++){
-//            if(node.getElement().equals(element)){
-//                return i;
-//            }
-//            node = node.getNextNode();
-//        }
-        return -1;
+        Node<T> currentNode = node;
+        int index = 0;
+        while (currentNode != null) {
+            if (currentNode.getElement().equals(element)) {
+                return index;
+            }
+            currentNode = currentNode.getNextNode();
+            index += 1;
+        }
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
     public T getElement(int index) {
-        return null;
+        Node<T> currentNode = node;
+        int contIndex = 0;
+        while (currentNode != null) {
+            if (index == contIndex) {
+                return currentNode.getElement();
+            }
+            currentNode = currentNode.getNextNode();
+            contIndex += 1;
+        }
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
     public T getElement(T element) {
+        Node<T> currentNode = node;
+        while (currentNode != null) {
+            if (currentNode.getElement().equals(element)) return currentNode.getElement();
+            currentNode = currentNode.getNextNode();
+        }
         return null;
     }
 
@@ -182,11 +192,6 @@ public class LinkedList <T> implements List<T> {
     @Override
     public boolean isEmpty(){
         return length() == 0;
-    }
-
-    public Node<T> getHead(){
-//        return this.head;
-        return null;
     }
 
     @Override
