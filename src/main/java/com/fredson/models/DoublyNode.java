@@ -1,6 +1,6 @@
 package com.fredson.models;
 
-public class DoublyNode <T> extends Node<T> {
+public class DoublyNode<T> extends Node<T> {
 
     private Node<T> prevNode;
 

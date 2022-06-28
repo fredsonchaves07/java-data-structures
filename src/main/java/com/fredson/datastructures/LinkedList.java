@@ -8,7 +8,7 @@ public class LinkedList <T> implements List<T> {
 
     private Node<T> node;
 
-    private int length;
+    protected int length;
     
     public LinkedList(){
         node = null;
