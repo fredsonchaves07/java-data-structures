@@ -13,7 +13,6 @@ public class DoublyLinkedListTest {
         list.push("Python");
         list.push("Javascript");
         assertEquals(3, list.length());
-        System.out.println(list);
     }
 
     @Test
@@ -24,5 +23,6 @@ public class DoublyLinkedListTest {
         list.push("Javascript", 11);
         list.push("C++", 3);
         assertEquals(4, list.length());
+        System.out.println(list);
     }
 }
