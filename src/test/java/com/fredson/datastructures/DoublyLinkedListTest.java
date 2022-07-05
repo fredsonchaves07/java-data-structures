@@ -21,7 +21,7 @@ public class DoublyLinkedListTest {
         list.push("Java", 1);
         list.push("Python", 0);
         list.push("Javascript", 11);
-        list.push("C++", 3);
+        list.push("C++", 4);
         assertEquals(4, list.length());
         System.out.println(list);
     }

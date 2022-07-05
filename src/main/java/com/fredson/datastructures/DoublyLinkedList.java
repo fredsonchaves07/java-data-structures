@@ -35,10 +35,10 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
             push(element);
         } else if (index == 0) {
             addElementFirstNode(element);
-        } else if (index > length()) {
-            addElementLastNode(element);
-        } else {
+        } else if (index <= length() + 1) {
             addElementIndexNode(element, index);
+        } else {
+            addElementLastNode(element);
         }
 //        if(index >= 0 && index <= this.length()){
 //            DoublyNode<T> node = new DoublyNode(element);
@@ -74,9 +74,16 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
     private void addElementFirstNode(T element) {
         DoublyNode<T> doublyNode = new DoublyNode<>(element);
         DoublyNode<T> currentNode = headNode;
-        doublyNode.setNextNode(currentNode.getNextNode());
+        currentNode.setPrevNode(doublyNode);
+        doublyNode.setNextNode(currentNode);
         headNode = doublyNode;
-        if (length() == 1) tailNode = headNode;
+        while (currentNode != null) {
+            if (currentNode.getNextNode() == null){
+                tailNode = currentNode;
+                break;
+            }
+            currentNode = (DoublyNode<T>) currentNode.getNextNode();
+        }
         length += 1;
     }
 
@@ -102,15 +109,27 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         while (currentNode != null) {
             if (contIndex == index) {
                 DoublyNode<T> prevNode = (DoublyNode<T>) currentNode.getPrevNode();
-                DoublyNode<T> nextNode = (DoublyNode<T>) currentNode.getNextNode();
-                currentNode = doublyNode;
-                currentNode.setNextNode(nextNode);
-                currentNode.setPrevNode(prevNode);
-                prevNode.setNextNode(currentNode);
-                nextNode.setPrevNode(currentNode);
+                doublyNode.setNextNode(currentNode);
+                currentNode.setPrevNode(doublyNode);
+                doublyNode.setPrevNode(prevNode);
+                prevNode.setNextNode(doublyNode);
+                currentNode = headNode;
+                while (currentNode != null) {
+                    if (currentNode.getNextNode() == null){
+                        tailNode = currentNode;
+                        break;
+                    }
+                    currentNode = (DoublyNode<T>) currentNode.getNextNode();
+                }
+                break;
             }
             contIndex += 1;
             currentNode = (DoublyNode<T>) currentNode.getNextNode();
+        }
+        if (currentNode == null) {
+            tailNode.setPrevNode(doublyNode);
+            doublyNode.setNextNode(tailNode);
+            doublyNode.setPrevNode(tailNode.getPrevNode());
         }
         length += 1;
     }
