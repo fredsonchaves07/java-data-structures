@@ -40,35 +40,6 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         } else {
             addElementLastNode(element);
         }
-//        if(index >= 0 && index <= this.length()){
-//            DoublyNode<T> node = new DoublyNode(element);
-//            DoublyNode<T> nodeCurrent = this.headNode;
-//            if(index == 0){
-//                if(this.headNode == null){
-//                    this.headNode = node;
-//                    this.tailNode = node;
-//                } else {
-//                    node.setNextNode(this.headNode);
-//                    nodeCurrent.setPrevNode(node);
-//                    this.headNode = node;
-//                }
-//            } else if(index == this.length()){
-//                nodeCurrent = this.tailNode;
-//                nodeCurrent.setNextNode(node);
-//                node.setPrevNode(nodeCurrent);
-//                this.tailNode = node;
-//            } else {
-//                Node<T> previous = this.getElement(index - 1);
-//                nodeCurrent = (DoublyNode<T>) previous.getNextNode();
-//                node.setNextNode(nodeCurrent);
-//                previous.setNextNode(node);
-//                nodeCurrent.setPrevNode(node);
-//                node.setPrevNode(previous);
-//            }
-//            this.length() ++;
-//        }
-
-
     }
 
     private void addElementFirstNode(T element) {
@@ -105,7 +76,7 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
     private void addElementIndexNode(T element, int index) {
         DoublyNode<T> doublyNode = new DoublyNode<>(element);
         DoublyNode<T> currentNode = headNode;
-        int contIndex = 1;
+        int contIndex = 0;
         while (currentNode != null) {
             if (contIndex == index) {
                 DoublyNode<T> prevNode = (DoublyNode<T>) currentNode.getPrevNode();
@@ -127,11 +98,39 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
             currentNode = (DoublyNode<T>) currentNode.getNextNode();
         }
         if (currentNode == null) {
-            tailNode.setPrevNode(doublyNode);
+            DoublyNode<T> prevNode = (DoublyNode<T>) tailNode.getPrevNode();
+            prevNode.setNextNode(doublyNode);
+            doublyNode.setPrevNode(prevNode);
             doublyNode.setNextNode(tailNode);
-            doublyNode.setPrevNode(tailNode.getPrevNode());
+            tailNode.setPrevNode(doublyNode);
         }
         length += 1;
+    }
+
+    @Override
+    public void remove(T element) {
+        DoublyNode<T> currentNode = headNode;
+        while(currentNode != null) {
+            if (currentNode.getElement().equals(element)) {
+                DoublyNode<T> prevNode = (DoublyNode<T>) currentNode.getPrevNode();
+                DoublyNode<T> nextNode = (DoublyNode<T>) currentNode.getNextNode();
+                if (prevNode == null) {
+                    headNode = nextNode;
+                }
+                if (nextNode == null) {
+                    tailNode = prevNode;
+                }
+                if (prevNode != null) {
+                    prevNode.setNextNode(nextNode);
+                }
+                if (nextNode != null) {
+                    nextNode.setPrevNode(prevNode);
+                }
+                length -= 1;
+                break;
+            }
+            currentNode = (DoublyNode<T>) currentNode.getNextNode();
+        }
     }
 
     public void removeAt(int index) {
