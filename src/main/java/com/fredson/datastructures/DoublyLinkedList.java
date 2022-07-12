@@ -175,29 +175,20 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         length -= 1;
     }
 
-    public void removeAt(int index) {
-//        if (index >= 0 && index < this.count) {
-//            DoublyNode<T> nodeCurrent = this.headNode;
-//            if (index == 0) {
-//                this.headNode = (DoublyNode<T>) nodeCurrent.getNextNode();
-//                if (this.count == 1) {
-//                    this.tailNode = null;
-//                } else {
-//                    this.headNode.setPrev(null);
-//                }
-//            } else if (index == this.count - 1) {
-//             nodeCurrent = this.tailNode;
-//             this.tailNode = (DoublyNode<T>) nodeCurrent.getPrev();
-//             this.tailNode.setNextNode(null);
-//            } else {
-//                nodeCurrent = (DoublyNode<T>) this.getElementAt(index);
-//                Node previous = nodeCurrent.getPrev();
-//                previous.setNextNode(nodeCurrent.getNextNode());
-//                /* TODO -> Ajustar herança */
-//                /* nodeCurrent.getNext().setPrev(previous);*/
-//            }
-//            this.count --;
-//        }
+    @Override
+    public int indexOf(T element){
+        if (headNode.getElement().equals(element)) return 0;
+        if (tailNode.getElement().equals(element)) return length() - 1;
+        int cont = 0;
+        DoublyNode<T> currentNode = headNode;
+        while (currentNode != null) {
+            if (currentNode.getElement().equals(element)){
+                break;
+            }
+            cont += 1;
+            currentNode = (DoublyNode<T>) currentNode.getNextNode();
+        }
+        return cont;
     }
 
     @Override
