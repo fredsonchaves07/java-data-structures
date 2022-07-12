@@ -133,6 +133,48 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         }
     }
 
+    @Override
+    public void remove(int index) {
+        if (index < 0 || index >= length()) throw new IndexOutOfBoundsException();
+        if (isEmpty()) return;
+        if (index == 0) {
+            removeElementFirstNode();
+        } else if (index == length() - 1) {
+            removeElementLastNode();
+        } else {
+            removeElementIndexNode(index);
+        }
+    }
+
+    private void removeElementFirstNode() {
+        headNode = (DoublyNode<T>) headNode.getNextNode();
+        headNode.setPrevNode(null);
+        length -= 1;
+    }
+
+    private void removeElementLastNode() {
+        tailNode = (DoublyNode<T>) tailNode.getPrevNode();
+        tailNode.setNextNode(null);
+        length -= 1;
+    }
+
+    private void removeElementIndexNode(int index) {
+        int cont = 0;
+        DoublyNode<T> nodeCurrent = headNode;
+        while (nodeCurrent != null) {
+            if (cont == index) {
+                DoublyNode<T> prevNode = (DoublyNode<T>) nodeCurrent.getPrevNode();
+                DoublyNode<T> nextNode = (DoublyNode<T>) nodeCurrent.getNextNode();
+                prevNode.setNextNode(nextNode);
+                nextNode.setPrevNode(prevNode);
+                break;
+            }
+            cont += 1;
+            nodeCurrent = (DoublyNode<T>) nodeCurrent.getNextNode();
+        }
+        length -= 1;
+    }
+
     public void removeAt(int index) {
 //        if (index >= 0 && index < this.count) {
 //            DoublyNode<T> nodeCurrent = this.headNode;

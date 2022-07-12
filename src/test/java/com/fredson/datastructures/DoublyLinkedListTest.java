@@ -51,4 +51,15 @@ public class DoublyLinkedListTest {
         assertEquals(2, list.length());
         System.out.println(list);
     }
+
+    @Test
+    public void shouldRemoveElementAtIndex() {
+        List<String> list = new DoublyLinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.remove(1);
+        assertEquals(2, list.length());
+        System.out.println(list);
+    }
 }
