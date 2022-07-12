@@ -201,4 +201,34 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         }
         return elements.toString();
     }
+
+    @Override
+    public T getElement(T element) {
+        if (headNode.getElement().equals(element)) return headNode.getElement();
+        if (tailNode.getElement().equals(element)) return tailNode.getElement();
+        Node<T> nodeCurrent = headNode;
+        T findElement = null;
+        while (nodeCurrent != null) {
+            if (nodeCurrent.getElement().equals(element)) {
+                findElement = nodeCurrent.getElement();
+                break;
+            }
+            nodeCurrent = nodeCurrent.getNextNode();
+        }
+        return findElement;
+    }
+
+    @Override
+    public T getElement(int index) {
+        if (index == 0) return headNode.getElement();
+        if (index == length() - 1) return tailNode.getElement();
+        Node<T> nodeCurrent = headNode;
+        int cont = 0;
+        while (nodeCurrent != null) {
+            if (cont == index) return nodeCurrent.getElement();
+            cont += 1;
+            nodeCurrent = nodeCurrent.getNextNode();
+        }
+        throw new IndexOutOfBoundsException();
+    }
 }

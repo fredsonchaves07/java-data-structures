@@ -69,4 +69,22 @@ public class DoublyLinkedListTest {
         list.push("Javascript");
         assertEquals(1, list.indexOf("Python"));
     }
+
+    @Test
+    public void shouldGetElementByElement() {
+        List<String> list = new DoublyLinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertEquals("Python", list.getElement("Python"));
+    }
+
+    @Test
+    public void shouldGetElementByIndex() {
+        List<String> list = new DoublyLinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertEquals("Python", list.getElement(1));
+    }
 }
