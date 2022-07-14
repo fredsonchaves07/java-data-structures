@@ -5,8 +5,8 @@ import com.fredson.models.Node;
 
 public class DoublyLinkedList<T> extends LinkedList<T> {
 
-    private DoublyNode<T> headNode;
-    private DoublyNode<T> tailNode;
+    protected DoublyNode<T> headNode;
+    protected DoublyNode<T> tailNode;
 
     public DoublyLinkedList() {
         super();

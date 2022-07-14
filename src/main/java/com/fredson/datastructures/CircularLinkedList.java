@@ -1,13 +1,39 @@
-//package com.fredson.datastructures;
-//
-//import com.fredson.models.Node;
-//
-//public class CircularLinkedList <T> extends LinkedList <T>{
-//
-//    public CircularLinkedList() {
-//        super();
-//    }
-//
+package com.fredson.datastructures;
+
+import com.fredson.models.DoublyNode;
+
+public class CircularLinkedList <T> extends DoublyLinkedList <T>{
+
+    public CircularLinkedList() {
+        super();
+    }
+
+    @Override
+    public void push(T element) {
+        DoublyNode<T> doublyNode = new DoublyNode<>(element);
+        if (isEmpty()) {
+            headNode = doublyNode;
+        } else {
+            DoublyNode<T> currentNode = headNode;
+            if (currentNode.getNextNode() == null) {
+                currentNode.setNextNode(doublyNode);
+                doublyNode.setPrevNode(currentNode);
+                doublyNode.setNextNode(headNode);
+            }
+            while (currentNode.getNextNode() != null) {
+                if (currentNode.getNextNode().equals(headNode) || currentNode.getNextNode() == null) {
+                    currentNode.setNextNode(doublyNode);
+                    doublyNode.setPrevNode(currentNode);
+                    doublyNode.setNextNode(headNode);
+                    break;
+                }
+                currentNode = (DoublyNode<T>) currentNode.getNextNode();
+            }
+        }
+        tailNode = doublyNode;
+        length += 1;
+    }
+
 //    @Override
 //    public void insert(T element, int index) {
 //        if (index >= 0 && index <= this.count) {
@@ -54,4 +80,4 @@
 //            this.count --;
 //        }
 //    }
-//}
+}
