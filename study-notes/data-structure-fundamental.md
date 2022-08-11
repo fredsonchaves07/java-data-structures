@@ -18,4 +18,4 @@
 - O Java possui uma implementação padrão do array
 - É definido geralmente pelo uso de `[]`  que pode ser acessado por indices
 - Como exemplo, utilizamos uma aplicação que armazena dados de pontuação de jogadores
-
+![Captura de tela de 2022-08-10 20-50-19](https://user-images.githubusercontent.com/43495376/184044967-9c62c3c8-fad3-43e0-8082-4aa5ff806f43.png)
