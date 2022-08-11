@@ -1,9 +1,5 @@
 # Estruturas de Dados
-## Introdução
 
-- Organização de dados em memória
-- Mecanismos de organização de dados que atendem diferentes requisitos de processamento
-- Presentes em diversos meios tecnológicos
 
 ## Conceito de nó
 
