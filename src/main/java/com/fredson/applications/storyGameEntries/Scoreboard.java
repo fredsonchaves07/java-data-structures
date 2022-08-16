@@ -22,21 +22,6 @@ public class Scoreboard {
         }
     }
 
-//    public GameEntry remove(GameEntry gameEntry) {
-//        for (int gameEntryIndex = 0; gameEntryIndex <= board.length; gameEntryIndex ++) {
-//            if (board[gameEntryIndex].equals(gameEntry)) {
-//                GameEntry gameEntryRemoved = gameEntry;
-//                for (int gameEntryIndex = 0; gameEntryIndex < numEntries - 1; gameEntryIndex ++) {
-//                    board[gameEntryIndex] = board[gameEntryIndex + 1];
-//                }
-//                board[numEntries - 1] = null;
-//                numEntries --;
-//                return gameEntryRemoved;
-//            }
-//        }
-//        return null;
-//    }
-
     public GameEntry remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= numEntries) throw new IndexOutOfBoundsException("Invalid index: " + index);
         GameEntry gameEntryRemoved = board[index];
