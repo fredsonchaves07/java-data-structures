@@ -1,19 +1,5 @@
 # Fundamentos de Estrutura de Dados
 
-## Introdução
-
-- Organização de dados em memória
-- Mecanismos de organização de dados que atendem diferentes requisitos de processamento
-- Presentes em diversos meios tecnológicos
-- Principais estruturas de dados básicas:
-  - Arrays;
-  - LinkedList
-  - CircularLinkedList
-  - DoublyLinkedList
-  - Stack
-  - Deque
-  - Tree
-
 ## Usando Arrays
 
 - Por padrão utilizamos os arrays quando queremos definir um conjunto de elementos
@@ -63,3 +49,4 @@
 
 - Busca por um array ordenado A para um valor x.
 - Retorna o index onde foi encontrado ou o indice onde o valor x pode ser inserido
+
