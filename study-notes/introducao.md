@@ -22,3 +22,7 @@
 ![image 2LE6R1](https://user-images.githubusercontent.com/43495376/189700224-0a26d7fe-f6f1-4171-a962-f7ec63e65c8b.png)
 
 - Para uma lista de n números, a pesquisa binária precisa de log2n para retornar o valor correto, enquanto a pesquisa simples precisa de n etapas
+- A pesquisa binária deve ser utilizada quando os dados estão ordenados caso contrário ela não será tão eficiente
+- Algumas diferenças entre pesquisa binária e simples
+
+![image LCD1S1](https://user-images.githubusercontent.com/43495376/190292049-26310c18-284f-4e6f-a861-e4dce16fbbe1.png)
