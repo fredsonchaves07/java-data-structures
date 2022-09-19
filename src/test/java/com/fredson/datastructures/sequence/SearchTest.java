@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,11 +12,10 @@ public class SearchTest {
 
     @Test
     public void shouldGetNamesOnBinarySearch() {
-        List<String> names = Arrays.asList("Ana", "Carlos", "Beatriz", "Clelton", "Silva", "Maria");
-        Collections.sort(names);
-        Search<String> search = new Search<>(names);
-        assertEquals("Maria", search.binarySearch("Maria"));
-        assertEquals("Beatriz", search.binarySearch("Beatriz"));
-        assertEquals("Ana", search.binarySearch("Ana"));
+        String[] names = {"Ana", "Carlos", "Beatriz", "Clelton", "Silva", "Maria"};
+        Collections.sort(Arrays.asList(names));
+        assertEquals("Maria", Search.binarySearch(names, "Maria"));
+        assertEquals("Beatriz", Search.binarySearch(names, "Beatriz"));
+        assertEquals("Ana", Search.binarySearch(names, "Ana"));
     }
 }

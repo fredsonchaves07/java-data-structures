@@ -1,22 +1,27 @@
 package com.fredson.datastructures.sequence;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Iterator;
 
-public class Search<T> {
-
-    private final List list;
+public class Search {
     
-    public Search(List list) {
-        this.list = list;
+    public Search() {
     }
 
-    public T binarySearch(T element) {
-        if (!isSort(list)) throw new RuntimeException("List is not ordered");
-        List firstBinaryList = list.subList(0, list.size() / 2);
+    public static <T extends Comparable<T>> T binarySearch(T[] elements, T element) {
+        if (!Search.isSorted(elements)) throw new RuntimeException("List is not ordered");
         return null;
     }
 
-    private boolean isSort(List list) {
-        return false;
+    private static <T extends Comparable<T>> boolean isSorted(T[] elements) {
+        Iterator<T> iterator = Arrays.stream(elements).iterator();
+        if (!iterator.hasNext()) return true;
+        T element = iterator.next();
+        while (iterator.hasNext()) {
+            T nextElement = iterator.next();
+            if (element == null || element.compareTo(nextElement) > 0) return false;
+            element = nextElement;
+        }
+        return true;
     }
 }
