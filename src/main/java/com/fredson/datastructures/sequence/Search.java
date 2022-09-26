@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class Search {
-    
-    public Search() {
-    }
 
     public static <T extends Comparable<T>> T binarySearch(T[] elements, T element) {
         if (!Search.isSorted(elements)) throw new RuntimeException("List is not ordered");

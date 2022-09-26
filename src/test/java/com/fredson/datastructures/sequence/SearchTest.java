@@ -20,10 +20,7 @@ public class SearchTest {
 
     @Test
     public void shouldGetNumbersOnBinarySearch() {
-        Integer[] numbers = new Integer[1000];
-        for (int i = 0; i < numbers.length; i ++) {
-            numbers[i] = i;
-        }
+        Integer[] numbers = generate0to1000NumbersArray();
         Arrays.sort(numbers);
         assertEquals(Integer.valueOf(0), Search.binarySearch(numbers, 0));
         assertEquals(Integer.valueOf(100), Search.binarySearch(numbers, 100));
@@ -31,5 +28,11 @@ public class SearchTest {
         assertEquals(Integer.valueOf(300), Search.binarySearch(numbers, 300));
         assertEquals(Integer.valueOf(999), Search.binarySearch(numbers, 999));
         assertEquals(Integer.valueOf(600), Search.binarySearch(numbers, 600));
+    }
+
+    private Integer[] generate0to1000NumbersArray() {
+        Integer[] numbers = new Integer[1000];
+        for (int i = 0; i < numbers.length; i ++) numbers[i] = i;
+        return numbers;
     }
 }
