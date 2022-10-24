@@ -38,10 +38,14 @@ public class ScoreBoard {
     }
 
     public void sort() {
-        GameEntry[] boardSorted;
-        int minScore;
         for (int i = 0; i < size; i ++) {
-            if (board[i].getScore() <= board[i + 1])
+            for (int j = i + 1; j < size; j ++) {
+                if (board[j].getScore() < board[i].getScore()) {
+                    GameEntry gameEntryAux = board[j];
+                    board[j] = board[i];
+                    board[i] = gameEntryAux;
+                }
+            }
         }
     }
 

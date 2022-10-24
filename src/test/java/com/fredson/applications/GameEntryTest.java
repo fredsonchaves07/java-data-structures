@@ -82,6 +82,6 @@ public class GameEntryTest {
         scoreboard.add(gameEntryCarlos);
         scoreboard.add(gameEntryAlice);
         scoreboard.sort();
-        assertEquals(scoreExpected, scoreboard);
+        assertEquals(scoreExpected, scoreboard.toString());
     }
 }
