@@ -6,9 +6,16 @@ import org.junit.Test;
 public class CaesarCipherTest {
 
     @Test
-    public void shouldEncryptMessage() {
-        String message = "Java e uma linguagem de programacao";
+    public void shouldGetEncryptMessage() {
+        String message = "Java é uma linguagem de programação";
         String messageEncrypted = CaesarCipher.encrypt(message);
         System.out.println(messageEncrypted);
+    }
+
+    @Test
+    public void shouldGetDecryptedMessage() {
+        String message = "NEZE I YQE PMRKYEKIQ HI TVSKVEQEGES";
+        String decruptedMessage = CaesarCipher.decrypt(message);
+        System.out.println(decruptedMessage);
     }
 }
