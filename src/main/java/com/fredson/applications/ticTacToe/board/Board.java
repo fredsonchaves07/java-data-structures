@@ -41,22 +41,35 @@ public class Board {
         position.setRow(row);
         position.setColumn(column);
         if (!isEmpty(position)) throw new IllegalArgumentException("Position is invalid!");
-        board[position.getRow()][position.getColumn()] = player.toString().charAt(0);
+        board[position.getRow() - 1][position.getColumn() - 1] = player.toString().charAt(0);
     }
 
     public void setPosition(Player player) {
         Random positionRadom = new Random();
         while (true) {
-            position.setRow(positionRadom.nextInt(0, 3));
-            position.setColumn(positionRadom.nextInt(0, 3));
+            position.setRow(positionRadom.nextInt(1, 3));
+            position.setColumn(positionRadom.nextInt(1, 3));
             if (isEmpty(position)) {
-                board[position.getRow()][position.getColumn()] = player.toString().charAt(0);
+                board[position.getRow() - 1][position.getColumn() - 1] = player.toString().charAt(0);
                 break;
             }
         }
     }
 
     private boolean isEmpty(Position position) {
-        return board[position.getRow()][position.getColumn()] == ' ';
+        return board[position.getRow() - 1][position.getColumn() - 1] == ' ';
+    }
+
+    public boolean isEmpty() {
+        for (int i = 0; i < board.length; i ++) {
+            for (int j = 0; j < board.length; j ++) {
+                position.setRow(i);
+                position.setColumn(j);
+                if (board[position.getRow()][position.getColumn()] == ' ') {
+                    return true;
+                }
+            }
+        }
+        return true;
     }
 }

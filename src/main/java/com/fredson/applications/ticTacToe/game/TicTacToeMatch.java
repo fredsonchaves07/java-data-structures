@@ -17,7 +17,7 @@ public class TicTacToeMatch {
     }
 
     public boolean isFinish() {
-        return false;
+        return !board.isEmpty() && getWinner() != null;
     }
 
     public String getBoard() {
@@ -30,6 +30,14 @@ public class TicTacToeMatch {
 
     public String getOpponentPlayer() {
         return opponentPlayer.toString();
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public String getWinner() {
+        return "";
     }
 
     public void setPosition(int row, int column) {
