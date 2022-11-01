@@ -7,4 +7,9 @@ public class Player {
     public Player(char type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(type);
+    }
 }
