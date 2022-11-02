@@ -47,7 +47,7 @@ public class Board {
     public void setPosition(Player player) {
         Random positionRadom = new Random();
         while (true) {
-            position.setRow(positionRadom.nextInt(1, 3));
+            position.setRow(positionRadom.nextInt(1, 4));
             position.setColumn(positionRadom.nextInt(1, 3));
             if (isEmpty(position)) {
                 board[position.getRow() - 1][position.getColumn() - 1] = player.toString().charAt(0);

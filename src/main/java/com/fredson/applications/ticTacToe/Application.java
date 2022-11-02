@@ -19,8 +19,8 @@ public class Application {
         System.out.println("TURN: " + ticTacToeMatch.getTurn());
         System.out.print("Select position (row,column): ");
         String inputPosition = scanner.nextLine();
-        int column = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
-        int row = Integer.parseInt(inputPosition.split(",")[1]);
+        int row = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
+        int column = Integer.parseInt(inputPosition.split(",")[1]);
         ticTacToeMatch.setPosition(row, column);
         while (!ticTacToeMatch.isFinish()) {
             clear();
@@ -28,8 +28,8 @@ public class Application {
             System.out.println("TURN: " + ticTacToeMatch.getTurn());
             System.out.print("Select position (row,column): ");
             inputPosition = scanner.nextLine();
-            column = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
-            row = Integer.parseInt(inputPosition.split(",")[1]);
+            row = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
+            column = Integer.parseInt(inputPosition.split(",")[1]);
             ticTacToeMatch.setPosition(row, column);
         }
         clear();
