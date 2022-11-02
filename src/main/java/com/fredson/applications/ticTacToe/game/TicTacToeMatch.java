@@ -37,13 +37,21 @@ public class TicTacToeMatch {
     }
 
     public String getWinner() {
-        return "";
+        return null;
+    }
+
+    private boolean isCurrentPlayerWinner() {
+        return false;
     }
 
     public void setPosition(int row, int column) {
-        setCurrentPlayerPosition(row, column);
-        setOpponentPlayerPosition();
+        if (!hasWinner()) setCurrentPlayerPosition(row, column);
+        if (!hasWinner()) setOpponentPlayerPosition();
         turn += 1;
+    }
+
+    private boolean hasWinner() {
+        return getWinner() != null;
     }
 
     private void setCurrentPlayerPosition(int row, int column) {

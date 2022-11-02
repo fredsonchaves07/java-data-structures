@@ -72,4 +72,37 @@ public class Board {
         }
         return true;
     }
+
+    private boolean getWinner(char typePlayer) {
+
+        return false;
+    }
+
+    private boolean getWinnerRow(char typePlayer) {
+        for (int i = 0; i < board.length; i ++) {
+            for (int j = 0; j < board.length; j ++) {
+                position.setRow(i);
+                position.setColumn(j);
+                if (board[position.getRow()][position.getColumn()] != typePlayer) {
+                    break;
+                }
+                if (position.getColumn() == 2) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean getWinnerColumn(char typePlayer) {
+        for (int i = 0; i < board.length; i ++) {
+            for (int j = 0; j < board.length; j ++) {
+                position.setRow(j);
+                position.setColumn(i);
+                if (board[position.getRow()][position.getColumn()] != typePlayer) {
+                    break;
+                }
+                if (position.getRow() == 2) return true;
+            }
+        }
+        return false;
+    }
 }
