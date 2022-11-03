@@ -17,7 +17,7 @@ public class TicTacToeMatch {
     }
 
     public boolean isFinish() {
-        return !board.isEmpty() && getWinner() != null;
+        return !board.isEmpty() || getWinner() != null;
     }
 
     public String getBoard() {
@@ -37,6 +37,9 @@ public class TicTacToeMatch {
     }
 
     public String getWinner() {
+        if (board.getWinner(currentPlayer.toString().charAt(0))) return currentPlayer.toString();
+        if (board.getWinner(opponentPlayer.toString().charAt(0))) return opponentPlayer.toString();
+        if (!board.isEmpty()) return "TIE!";
         return null;
     }
 

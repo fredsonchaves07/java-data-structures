@@ -73,9 +73,8 @@ public class Board {
         return true;
     }
 
-    private boolean getWinner(char typePlayer) {
-
-        return false;
+    public boolean getWinner(char typePlayer) {
+        return getWinnerRow(typePlayer) || getWinnerColumn(typePlayer) || getWinnerDiagonal(typePlayer);
     }
 
     private boolean getWinnerRow(char typePlayer) {
@@ -97,6 +96,28 @@ public class Board {
             for (int j = 0; j < board.length; j ++) {
                 position.setRow(j);
                 position.setColumn(i);
+                if (board[position.getRow()][position.getColumn()] != typePlayer) {
+                    break;
+                }
+                if (position.getRow() == 2) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean getWinnerDiagonal(char typePlayer) {
+        for (int i = 0; i < board.length; i ++) {
+            position.setRow(i);
+            position.setColumn(i);
+            if (board[position.getRow()][position.getColumn()] != typePlayer) {
+               break;
+            }
+            if (position.getRow() == 2) return true;
+        }
+        for (int i = 0; i < board.length; i ++) {
+            for (int j = board.length - 1; j >= 0 ; j --) {
+                position.setRow(i);
+                position.setColumn(j);
                 if (board[position.getRow()][position.getColumn()] != typePlayer) {
                     break;
                 }
