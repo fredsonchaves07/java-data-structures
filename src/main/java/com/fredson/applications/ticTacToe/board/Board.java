@@ -48,7 +48,7 @@ public class Board {
         Random positionRadom = new Random();
         while (true) {
             position.setRow(positionRadom.nextInt(1, 4));
-            position.setColumn(positionRadom.nextInt(1, 3));
+            position.setColumn(positionRadom.nextInt(1, 4));
             if (isEmpty(position)) {
                 board[position.getRow() - 1][position.getColumn() - 1] = player.toString().charAt(0);
                 break;
@@ -119,10 +119,11 @@ public class Board {
                 position.setRow(i);
                 position.setColumn(j);
                 if (board[position.getRow()][position.getColumn()] != typePlayer) {
-                    break;
+                    return false;
                 }
-                if (position.getRow() == 2) return true;
+                i = i + 1;
             }
+            if (position.getRow() == 2 && position.getColumn() == 0) return true;
         }
         return false;
     }
