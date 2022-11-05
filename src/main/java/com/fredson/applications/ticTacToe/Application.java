@@ -6,40 +6,50 @@ import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        start();
-    }
-
-    public static void start() {
         Scanner scanner = new Scanner(System.in);
         TicTacToeMatch ticTacToeMatch = new TicTacToeMatch();
-        System.out.print(ticTacToeMatch.getBoard());
-        System.out.println("Welcome to Tic Tac Toe Game!");
-        System.out.println("You: " + ticTacToeMatch.getCurrentPlayer());
-        System.out.println("Opponet: " + ticTacToeMatch.getOpponentPlayer());
-        System.out.println("TURN: " + ticTacToeMatch.getTurn());
-        System.out.print("Select position (row,column): ");
-        String inputPosition = scanner.nextLine();
-        int row = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
-        int column = Integer.parseInt(inputPosition.split(",")[1]);
-        ticTacToeMatch.setPosition(row, column);
+        printBoard(ticTacToeMatch);
+        printWelcomeGame(ticTacToeMatch);
         while (!ticTacToeMatch.isFinish()) {
+            printTurn(ticTacToeMatch);
+            inputPosition(scanner, ticTacToeMatch);
             clear();
-            System.out.print(ticTacToeMatch.getBoard());
-            System.out.println("TURN: " + ticTacToeMatch.getTurn());
-            System.out.print("Select position (row,column): ");
-            inputPosition = scanner.nextLine();
-            row = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
-            column = Integer.parseInt(inputPosition.split(",")[1]);
-            ticTacToeMatch.setPosition(row, column);
+            printBoard(ticTacToeMatch);
         }
         clear();
-        System.out.print(ticTacToeMatch.getBoard());
-        System.out.println("FINISH!!");
-        System.out.println("WINNER: " + ticTacToeMatch.getWinner());
+        printEndGame(ticTacToeMatch);
     }
 
     public static void clear() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static void printBoard(TicTacToeMatch ticTacToeMatch) {
+        System.out.print(ticTacToeMatch.getBoard());
+    }
+
+    public static void printWelcomeGame(TicTacToeMatch ticTacToeMatch) {
+        System.out.println("Welcome to Tic Tac Toe Game!");
+        System.out.println("You: " + ticTacToeMatch.getCurrentPlayer());
+        System.out.println("Opponet: " + ticTacToeMatch.getOpponentPlayer());
+    }
+
+    public static void printTurn(TicTacToeMatch ticTacToeMatch) {
+        System.out.println("TURN: " + ticTacToeMatch.getTurn());
+    }
+
+    public static void inputPosition(Scanner scanner, TicTacToeMatch ticTacToeMatch) {
+        System.out.print("Select position (row,column): ");
+        String inputPosition = scanner.nextLine();
+        int row = Integer.parseInt(String.valueOf(inputPosition.charAt(0)));
+        int column = Integer.parseInt(inputPosition.split(",")[1]);
+        ticTacToeMatch.setPosition(row, column);
+    }
+
+    public static void printEndGame(TicTacToeMatch ticTacToeMatch) {
+        printBoard(ticTacToeMatch);
+        System.out.println("FINISH!!");
+        System.out.println("WINNER: " + ticTacToeMatch.getWinner());
     }
 }

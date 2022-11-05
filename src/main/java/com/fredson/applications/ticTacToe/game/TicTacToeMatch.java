@@ -4,15 +4,17 @@ import com.fredson.applications.ticTacToe.board.Board;
 
 public class TicTacToeMatch {
 
-    private Board board;
-    private Player opponentPlayer;
-    private Player currentPlayer;
+    private final Board board;
+    private final Player opponentPlayer;
+    private final Player currentPlayer;
     private int turn;
+    private static final char X = 'X';
+    private static final char O = 'O';
 
     public TicTacToeMatch() {
         board = new Board();
-        currentPlayer = new Player('X');
-        opponentPlayer = new Player('O');
+        currentPlayer = new Player(X);
+        opponentPlayer = new Player(O);
         turn = 1;
     }
 
@@ -20,8 +22,23 @@ public class TicTacToeMatch {
         return !board.isEmpty() || getWinner() != null;
     }
 
-    public String getBoard() {
-        return board.getBoard();
+    public String getWinner() {
+        if (isCurrentPlayerWinner()) return getCurrentPlayer();
+        if (isOpponentPlayerWinner()) return getOpponentPlayer();
+        if (isTie()) return "TIE!";
+        return null;
+    }
+
+    private boolean isCurrentPlayerWinner() {
+        return board.getWinner(currentPlayer);
+    }
+
+    private boolean isOpponentPlayerWinner() {
+        return board.getWinner(opponentPlayer);
+    }
+
+    private boolean isTie() {
+        return !board.isEmpty();
     }
 
     public String getCurrentPlayer() {
@@ -32,28 +49,21 @@ public class TicTacToeMatch {
         return opponentPlayer.toString();
     }
 
+    public String getBoard() {
+        return board.getBoard();
+    }
+
     public int getTurn() {
         return turn;
     }
 
-    public String getWinner() {
-        if (board.getWinner(currentPlayer.toString().charAt(0))) return currentPlayer.toString();
-        if (board.getWinner(opponentPlayer.toString().charAt(0))) return opponentPlayer.toString();
-        if (!board.isEmpty()) return "TIE!";
-        return null;
-    }
-
-    private boolean isCurrentPlayerWinner() {
-        return false;
-    }
-
     public void setPosition(int row, int column) {
-        if (!hasWinner()) setCurrentPlayerPosition(row, column);
-        if (!hasWinner()) setOpponentPlayerPosition();
+        if (!haveWinner()) setCurrentPlayerPosition(row, column);
+        if (!haveWinner()) setOpponentPlayerPosition();
         turn += 1;
     }
 
-    private boolean hasWinner() {
+    private boolean haveWinner() {
         return getWinner() != null;
     }
 

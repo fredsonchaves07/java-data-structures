@@ -7,20 +7,14 @@ import java.util.Random;
 public class Board {
 
     private final char[][] board = new char[3][3];
-    private static final char X = 'X';
-    private static final char O = 'O';
-    private Position position = new Position();
+    private final Position position = new Position();
 
     public Board() {
         clearBoard();
     }
 
     private void clearBoard() {
-        for (int i = 0; i < board.length; i ++ ) {
-            for (int j = 0; j < board.length; j ++) {
-                board[i][j] = ' ';
-            }
-        }
+        for (int i = 0; i < board.length; i ++ ) for (int j = 0; j < board.length; j ++)  board[i][j] = ' ';
     }
 
     public String getBoard() {
@@ -38,89 +32,81 @@ public class Board {
     }
 
     public void setPosition(int row, int column, Player player) {
-        position.setRow(row);
-        position.setColumn(column);
         if (!isEmpty(position)) throw new IllegalArgumentException("Position is invalid!");
-        board[position.getRow() - 1][position.getColumn() - 1] = player.toString().charAt(0);
-    }
-
-    public void setPosition(Player player) {
-        Random positionRadom = new Random();
-        while (true) {
-            position.setRow(positionRadom.nextInt(1, 4));
-            position.setColumn(positionRadom.nextInt(1, 4));
-            if (isEmpty(position)) {
-                board[position.getRow() - 1][position.getColumn() - 1] = player.toString().charAt(0);
-                break;
-            }
-        }
+        setPosition(row, column);
+        inputPositionPlayer(position, player);
     }
 
     private boolean isEmpty(Position position) {
         return board[position.getRow() - 1][position.getColumn() - 1] == ' ';
     }
 
+    public void setPosition(Player player) {
+        Random positionRadom = new Random();
+        while (true) {
+            setPosition(positionRadom.nextInt(1, 4), positionRadom.nextInt(1, 4));
+            if (isEmpty(position)) {
+                inputPositionPlayer(position, player);
+                break;
+            }
+        }
+    }
+
+    private void setPosition(int row, int column) {
+        position.setRow(row);
+        position.setColumn(column);
+    }
+
     public boolean isEmpty() {
         for (int i = 0; i < board.length; i ++) {
             for (int j = 0; j < board.length; j ++) {
-                position.setRow(i);
-                position.setColumn(j);
-                if (board[position.getRow()][position.getColumn()] == ' ') {
-                    return true;
-                }
+                setPosition(i, j);
+                if (board[position.getRow()][position.getColumn()] == ' ') return true;
             }
         }
         return true;
     }
 
-    public boolean getWinner(char typePlayer) {
-        return getWinnerRow(typePlayer) || getWinnerColumn(typePlayer) || getWinnerDiagonal(typePlayer);
+    private void inputPositionPlayer(Position position, Player player) {
+        board[position.getRow() - 1][position.getColumn() - 1] = player.getType();
     }
 
-    private boolean getWinnerRow(char typePlayer) {
+    public boolean getWinner(Player player) {
+        return getWinnerRow(player) || getWinnerColumn(player) || getWinnerDiagonal(player);
+    }
+
+    private boolean getWinnerRow(Player player) {
         for (int i = 0; i < board.length; i ++) {
             for (int j = 0; j < board.length; j ++) {
-                position.setRow(i);
-                position.setColumn(j);
-                if (board[position.getRow()][position.getColumn()] != typePlayer) {
-                    break;
-                }
+                setPosition(i, j);
+                if (board[position.getRow()][position.getColumn()] != player.getType()) break;
                 if (position.getColumn() == 2) return true;
             }
         }
         return false;
     }
 
-    private boolean getWinnerColumn(char typePlayer) {
+    private boolean getWinnerColumn(Player player) {
         for (int i = 0; i < board.length; i ++) {
             for (int j = 0; j < board.length; j ++) {
-                position.setRow(j);
-                position.setColumn(i);
-                if (board[position.getRow()][position.getColumn()] != typePlayer) {
-                    break;
-                }
+                setPosition(j, i);
+                if (board[position.getRow()][position.getColumn()] != player.getType()) break;
                 if (position.getRow() == 2) return true;
             }
         }
         return false;
     }
 
-    private boolean getWinnerDiagonal(char typePlayer) {
+    private boolean getWinnerDiagonal(Player player) {
         for (int i = 0; i < board.length; i ++) {
-            position.setRow(i);
-            position.setColumn(i);
-            if (board[position.getRow()][position.getColumn()] != typePlayer) {
-               break;
-            }
+            setPosition(i, i);
+            if (board[position.getRow()][position.getColumn()] != player.getType()) break;
             if (position.getRow() == 2) return true;
         }
         for (int i = 0; i < board.length; i ++) {
             for (int j = board.length - 1; j >= 0 ; j --) {
-                position.setRow(i);
-                position.setColumn(j);
-                if (board[position.getRow()][position.getColumn()] != typePlayer) {
-                    return false;
-                }
+                setPosition(i, j);
+                if (board[position.getRow()][position.getColumn()] != player.getType()) return false;
                 i = i + 1;
             }
             if (position.getRow() == 2 && position.getColumn() == 0) return true;
