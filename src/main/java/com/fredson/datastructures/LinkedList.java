@@ -4,18 +4,18 @@ import com.fredson.models.Node;
 
 import java.util.ArrayList;
 
-public class LinkedList <T> implements List<T> {
+public class LinkedList<T> implements List<T> {
 
     private Node<T> node;
 
     protected int length;
     
-    public LinkedList(){
+    public LinkedList() {
         node = null;
     }
 
     @Override
-    public void push(T element){
+    public void push(T element) {
         Node<T> newNode = new Node<>(element);
         if (isEmpty()) {
             node = newNode;
@@ -147,7 +147,7 @@ public class LinkedList <T> implements List<T> {
     }
 
     @Override
-    public int indexOf(T element){
+    public int indexOf(T element) {
         Node<T> currentNode = node;
         int index = 0;
         while (currentNode != null) {
