@@ -87,7 +87,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public void remove(T element){
+    public void remove(T element) {
         Node<T> currentNode = node;
         while (currentNode != null) {
             if (currentNode.getElement().equals(element)) {
