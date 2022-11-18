@@ -87,4 +87,14 @@ public class LinkedListTest {
         list.push("Javascript");
         assertEquals("Python", list.getElement(1));
     }
+
+    @Test
+    public void shouldClearList() {
+        List<String> list = new LinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.clear();
+        assertTrue(list.isEmpty());
+    }
 }

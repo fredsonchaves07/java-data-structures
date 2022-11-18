@@ -19,4 +19,6 @@ public interface List<T> {
     int length();
 
     boolean isEmpty();
+
+    void clear();
 }

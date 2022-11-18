@@ -97,4 +97,10 @@ public class ArrayList<T> implements List<T> {
     public String toString() {
         return Arrays.stream(elements).filter(Objects::nonNull).toList().toString();
     }
+
+    @Override
+    public void clear() {
+        //TODO -> Implementar limpeza do array
+    }
+
 }

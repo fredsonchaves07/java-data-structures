@@ -11,7 +11,7 @@ public class LinkedList<T> implements List<T> {
     protected int length;
     
     public LinkedList() {
-        node = null;
+        clear();
     }
 
     @Override
@@ -192,6 +192,20 @@ public class LinkedList<T> implements List<T> {
     @Override
     public boolean isEmpty(){
         return length() == 0;
+    }
+
+    @Override
+    public void clear() {
+        if (node != null) clear(node);
+        node = null;
+        length = 0;
+    }
+
+    private void clear(Node<T> node) {
+        if (node.getNextNode() != null) {
+            clear(node.getNextNode());
+        }
+         node.setNextNode(null);
     }
 
     @Override
