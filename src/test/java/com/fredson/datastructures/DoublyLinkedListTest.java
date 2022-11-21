@@ -87,4 +87,28 @@ public class DoublyLinkedListTest {
         list.push("Javascript");
         assertEquals("Python", list.getElement(1));
     }
+
+    @Test
+    public void shouldClearList() {
+        List<String> list = new DoublyLinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.clear();
+        assertTrue(list.isEmpty());
+    }
+
+    @Test
+    public void shouldCreateListAfterClearList() {
+        List<String> list = new DoublyLinkedList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.clear();
+        list.push("Java");
+        list.push("Python");
+        assertEquals(2, list.length());
+        assertEquals(0, list.indexOf("Java"));
+        assertEquals(1, list.indexOf("Python"));
+    }
 }

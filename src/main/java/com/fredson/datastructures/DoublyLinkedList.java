@@ -9,8 +9,6 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     protected DoublyNode<T> tailNode;
 
-    private DoublyNode<T> doublyNode;
-
     public DoublyLinkedList() {
         super();
     }
@@ -232,5 +230,30 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
             nodeCurrent = nodeCurrent.getNextNode();
         }
         throw new IndexOutOfBoundsException();
+    }
+
+    @Override
+    public void clear() {
+        if (headNode != null && tailNode != null) {
+            while (headNode.getNextNode() != null) {
+                DoublyNode<T> doublyNodeNext = (DoublyNode<T>) headNode.getNextNode();
+                setNullHeadNode();
+                setNullTailNode();
+                headNode = doublyNodeNext;
+            }
+        }
+        headNode = null;
+        tailNode = null;
+        length = 0;
+    }
+
+    private void setNullHeadNode() {
+        headNode.setNextNode(null);
+        headNode.setPrevNode(null);
+    }
+
+    private void setNullTailNode() {
+        tailNode.setPrevNode(null);
+        tailNode.setNextNode(null);
     }
 }
