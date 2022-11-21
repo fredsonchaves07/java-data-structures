@@ -16,6 +16,7 @@
 - Para as operações de leitura e deleção os arrays são ruim tendo em vista que é necessário o deslocamento dos elementos no array
 
 ## Usando Listas encadeadas
+
 - É um conjunto de elementos que não necessáriamente precisam ser armazenados contiguamente
 - Um elemento possui endereço que aponta para outro elemento
 - A inserção de dados é similar um array
@@ -27,5 +28,13 @@
 - A deleção também é melhor em listas encadeadas. Basta alterar a referencia do próximo elemento
 
 ## Acesso aleatório e sequencial
+
 - Os arrays permitem acesso aleatório dos dados
 - As listas encadeadas permitem o acesso sequencial
+
+## Listas duplamente encadeadas
+
+- É um tipo de lista encadeada que possui 2 nós.
+- Um nó terá referencia a um nó anterior e um nó próximo
+- Simula a ideia de um array encadeado
+- Possui as mesmas funcionalidades de uma lista encadeada

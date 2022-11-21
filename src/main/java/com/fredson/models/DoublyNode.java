@@ -4,8 +4,8 @@ public class DoublyNode<T> extends Node<T> {
 
     private Node<T> prevNode;
 
-    public DoublyNode(T element, Node<T> prevNode, Node<T> next) {
-        super(element, next);
+    public DoublyNode(T element, Node<T> prevNode, Node<T> nextNode) {
+        super(element, nextNode);
         this.prevNode = prevNode;
     }
 

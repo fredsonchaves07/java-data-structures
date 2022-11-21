@@ -6,7 +6,10 @@ import com.fredson.models.Node;
 public class DoublyLinkedList<T> extends LinkedList<T> {
 
     protected DoublyNode<T> headNode;
+
     protected DoublyNode<T> tailNode;
+
+    private DoublyNode<T> doublyNode;
 
     public DoublyLinkedList() {
         super();
@@ -18,15 +21,14 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         if (isEmpty()) {
             headNode = doublyNode;
         } else {
-            DoublyNode<T> currentNode = headNode;
-            while (currentNode.getNextNode() != null) {
-                currentNode = (DoublyNode<T>) currentNode.getNextNode();
-            }
-            currentNode.setNextNode(doublyNode);
-            doublyNode.setPrevNode(currentNode);
+            DoublyNode<T> currentDoublyNode = headNode;
+            while (currentDoublyNode.getNextNode() != null)
+                currentDoublyNode = (DoublyNode<T>) currentDoublyNode.getNextNode();
+            currentDoublyNode.setNextNode(doublyNode);
+            doublyNode.setPrevNode(currentDoublyNode);
         }
-        length += 1;
         tailNode = doublyNode;
+        length += 1;
     }
 
     @Override
@@ -49,7 +51,7 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
         doublyNode.setNextNode(currentNode);
         headNode = doublyNode;
         while (currentNode != null) {
-            if (currentNode.getNextNode() == null){
+            if (currentNode.getNextNode() == null) {
                 tailNode = currentNode;
                 break;
             }
