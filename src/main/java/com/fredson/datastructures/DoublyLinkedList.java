@@ -15,25 +15,16 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     @Override
     public void push(T element) {
-        DoublyNode<T> doublyNode = new DoublyNode<>(element);
         if (isEmpty()) {
-            headNode = doublyNode;
+            addElementFirstNode(element);
         } else {
-            DoublyNode<T> currentDoublyNode = headNode;
-            while (currentDoublyNode.getNextNode() != null)
-                currentDoublyNode = (DoublyNode<T>) currentDoublyNode.getNextNode();
-            currentDoublyNode.setNextNode(doublyNode);
-            doublyNode.setPrevNode(currentDoublyNode);
+            addElementLastNode(element);
         }
-        tailNode = doublyNode;
-        length += 1;
     }
 
     @Override
     public void push(T element, int index) {
-        if (isEmpty()) {
-            push(element);
-        } else if (index == 0) {
+        if (isEmpty() || index == 0) {
             addElementFirstNode(element);
         } else if (index <= length() + 1) {
             addElementIndexNode(element, index);
@@ -44,36 +35,25 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     private void addElementFirstNode(T element) {
         DoublyNode<T> doublyNode = new DoublyNode<>(element);
-        DoublyNode<T> currentNode = headNode;
-        currentNode.setPrevNode(doublyNode);
-        doublyNode.setNextNode(currentNode);
-        headNode = doublyNode;
-        while (currentNode != null) {
-            if (currentNode.getNextNode() == null) {
-                tailNode = currentNode;
-                break;
-            }
-            currentNode = (DoublyNode<T>) currentNode.getNextNode();
+        if (headNode != null) {
+            headNode.setPrevNode(doublyNode);
+            doublyNode.setNextNode(headNode);
         }
+        headNode = doublyNode;
+        if (tailNode == null) tailNode = headNode;
         length += 1;
     }
 
     private void addElementLastNode(T element) {
         DoublyNode<T> doublyNode = new DoublyNode<>(element);
-        Node<T> currentNode = headNode;
-        while (currentNode != null) {
-            if (currentNode.equals(tailNode)) {
-                tailNode = doublyNode;
-                tailNode.setPrevNode(currentNode);
-                currentNode.setNextNode(tailNode);
-                break;
-            }
-            currentNode = currentNode.getNextNode();
-        }
+        tailNode.setNextNode(doublyNode);
+        doublyNode.setPrevNode(tailNode);
+        tailNode = doublyNode;
         length += 1;
     }
 
     private void addElementIndexNode(T element, int index) {
+
         DoublyNode<T> doublyNode = new DoublyNode<>(element);
         DoublyNode<T> currentNode = headNode;
         int contIndex = 0;
@@ -104,6 +84,20 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
             doublyNode.setNextNode(tailNode);
             tailNode.setPrevNode(doublyNode);
         }
+        length += 1;
+    }
+
+    private void addElementBeforeNode(DoublyNode<T> node, T element) {
+        DoublyNode<T> doublyNode = new DoublyNode<>(element);
+        doublyNode.setNextNode(node);
+        node.setPrevNode(doublyNode);
+        length += 1;
+    }
+
+    private void addElementAfterNode(DoublyNode<T> node, T element) {
+        DoublyNode<T> doublyNode = new DoublyNode<>(element);
+        node.setNextNode(doublyNode);
+        doublyNode.setPrevNode(node);
         length += 1;
     }
 
