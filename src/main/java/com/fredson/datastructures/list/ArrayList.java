@@ -1,4 +1,4 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.list;
 
 import java.util.Arrays;
 import java.util.Objects;

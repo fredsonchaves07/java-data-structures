@@ -1,7 +1,7 @@
 package com.fredson.algorithms;
 
-import com.fredson.datastructures.ArrayStack;
-import com.fredson.datastructures.Stack;
+import com.fredson.datastructures.stack.ArrayStack;
+import com.fredson.datastructures.stack.Stack;
 
 public class Palindrome {
     

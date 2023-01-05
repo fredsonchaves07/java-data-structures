@@ -1,5 +1,7 @@
 package com.fredson.datastructures;
 
+import com.fredson.datastructures.list.LinkedStack;
+import com.fredson.datastructures.stack.Stack;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

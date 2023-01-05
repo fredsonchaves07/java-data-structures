@@ -1,4 +1,4 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.stack;
 
 public interface Stack<T> {
 

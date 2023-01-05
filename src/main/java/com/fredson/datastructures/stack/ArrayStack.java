@@ -1,4 +1,4 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.stack;
 
 
 import java.util.Arrays;

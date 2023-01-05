@@ -1,5 +1,6 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.list;
 
+import com.fredson.datastructures.stack.Stack;
 import com.fredson.models.Node;
 
 import java.util.ArrayList;
