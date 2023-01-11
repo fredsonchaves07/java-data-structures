@@ -1,4 +1,4 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.queue;
 
 import java.util.ArrayList;
 import java.util.List;

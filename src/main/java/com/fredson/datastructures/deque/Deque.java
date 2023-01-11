@@ -1,4 +1,4 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.deque;
 
 import java.util.ArrayList;
 import java.util.List;

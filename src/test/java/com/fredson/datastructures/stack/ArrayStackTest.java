@@ -1,17 +1,15 @@
-package com.fredson.datastructures;
+package com.fredson.datastructures.stack;
 
-import com.fredson.datastructures.list.LinkedStack;
-import com.fredson.datastructures.stack.Stack;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class LinkedStackTest {
+public class ArrayStackTest {
 
     @Test
     public void shouldCreateStack() {
-        Stack<String> stack = new LinkedStack<>();
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
         stack.push("Javascript");
@@ -19,14 +17,23 @@ public class LinkedStackTest {
     }
 
     @Test
-    public void ShouldCreateStackEmpty() {
-        Stack<String> vector = new LinkedStack<>();
+    public void shouldCreateStackWithCapacity() {
+        Stack<String> stack = new ArrayStack<>(3);
+        stack.push("Java");
+        stack.push("Python");
+        stack.push("Javascript");
+        assertEquals(3, stack.length());
+    }
+
+    @Test
+    public void shouldCreateStackEmpty() {
+        Stack<String> vector = new ArrayStack<>();
         assertTrue(vector.isEmpty());
     }
 
     @Test
-    public void ShouldPrintStack() {
-        Stack<String> stack = new LinkedStack<>();
+    public void shouldPrintStack() {
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
         stack.push("Javascript");
@@ -34,15 +41,15 @@ public class LinkedStackTest {
     }
 
     @Test
-    public void ShouldPeekStack() {
-        Stack<String> stack = new LinkedStack<>();
+    public void shouldPeekStack() {
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         assertEquals("Java", stack.peek());
     }
 
     @Test
-    public void ShouldPopStack() {
-        Stack<String> stack = new LinkedStack<>();
+    public void shouldPopStack() {
+        Stack<String> stack = new ArrayStack<>();
         stack.push("Java");
         stack.push("Python");
         stack.push("Javascript");

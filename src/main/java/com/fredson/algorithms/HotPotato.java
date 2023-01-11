@@ -1,6 +1,6 @@
 package com.fredson.algorithms;
 
-import com.fredson.datastructures.Queue;
+import com.fredson.datastructures.queue.Queue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
