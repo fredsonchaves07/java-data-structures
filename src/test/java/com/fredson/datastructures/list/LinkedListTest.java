@@ -22,8 +22,9 @@ public class LinkedListTest {
         list.push("Java", 1);
         list.push("Python", 0);
         list.push("Javascript", 11);
-        list.push("C++", 3);
+        list.push("C++", 2);
         assertEquals(4, list.length());
+        assertEquals("[Python, Java, C++, Javascript]", list.toString());
     }
 
     @Test

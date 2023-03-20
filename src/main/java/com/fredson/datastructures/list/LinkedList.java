@@ -30,7 +30,7 @@ public class LinkedList<T> implements List<T> {
     @Override
     public void push(T element, int index) {
         if (isEmpty()) {
-            push(element);
+            addElementIndexNode(element, index);
         } else if (index == 0) {
             addElementFirstNode(element);
         } else if (index > length()) {
@@ -59,22 +59,24 @@ public class LinkedList<T> implements List<T> {
     }
 
     private void addElementIndexNode(T element, int index) {
-        Node<T> newNode = new Node<>(element);
-        Node<T> currentNode = node;
-        int contIndex = 1;
-        while (currentNode != null) {
-            if (contIndex == index) {
-               Node<T> nodeAux = currentNode;
-               Node<T> beforeNode = getBeforeNode(currentNode);
-               currentNode = newNode;
-               beforeNode.setNextNode(currentNode);
-               currentNode.setNextNode(nodeAux);
-               break;
-            }
-            contIndex += 1;
-            currentNode = currentNode.getNextNode();
-        }
-        length += 1;
+        Node<T> node = new Node<>(element, index);
+        Node<T>
+//        Node<T> newNode = new Node<>(element, index);
+//        Node<T> currentNode = node;
+//        int contIndex = 1;
+//        while (currentNode != null) {
+//            if (contIndex == index) {
+//               Node<T> nodeAux = currentNode;
+//               Node<T> beforeNode = getBeforeNode(currentNode);
+//               currentNode = newNode;
+//               beforeNode.setNextNode(currentNode);
+//               currentNode.setNextNode(nodeAux);
+//               break;
+//            }
+//            contIndex += 1;
+//            currentNode = currentNode.getNextNode();
+//        }
+//        length += 1;
     }
 
     private Node<T> getBeforeNode(Node<T> node) {
