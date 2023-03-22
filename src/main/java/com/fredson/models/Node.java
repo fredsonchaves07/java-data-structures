@@ -43,4 +43,8 @@ public class Node<T> {
     public T getElement(){
         return this.element;
     }
+
+    public int getIndex() {
+        return index;
+    }
 }

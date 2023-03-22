@@ -1,5 +1,6 @@
 package com.fredson.datastructures.list;
 
+import com.fredson.models.DoublyNode;
 import com.fredson.models.Node;
 
 import java.util.ArrayList;
@@ -7,9 +8,9 @@ import java.util.Objects;
 
 public class LinkedList<T> implements List<T> {
 
-    private Node<T> headNode;
+    private DoublyNode<T> headNode;
 
-    private Node<T> tailNode;
+    private DoublyNode<T> tailNode;
 
     protected int length;
     
@@ -25,25 +26,47 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void push(T element, int index) {
-        if (isEmpty()) {
-            push(element);
-        } else if (index == 0) {
-            addElementFirstNode(element);
-        } else if (index > length()) {
-            addElementLastNode(element);
-        } else {
-            addElementIndexNode(element, index);
-        }
+//        if (isEmpty()) {
+//            push(element);
+//        } else if (index == 0) {
+//            addElementFirstNode(element);
+//        } else if (index > length()) {
+//            addElementLastNode(element);
+//        } else {
+//            addElementIndexNode(element, index);
+//        }
+        if (isEmpty() || index == 0 || headNode.getIndex() < index)
+            addElementFirstNode(element, index);
     }
 
     private void addElementFirstNode(T element) {
-        headNode = new Node<>(element);
-        if (tailNode == null) tailNode = headNode;
+        headNode = new DoublyNode<>(element);
+        if (tailNode == null)
+            tailNode = headNode;
         length += 1;
     }
 
+    private void AddElementFirstNode(T element, int index) {
+        DoublyNode<T> node = new DoublyNode<>(element, index);
+        if (isEmpty()) {
+            headNode = node;
+            length += 1;
+        } else if (index < headNode.getIndex()) {
+            headNode.setPrevNode(node);
+            headNode = node;
+            length += 1;
+        } else if (length() == 1) {
+            headNode = node;
+        } else {
+            headNode.getNextNode().
+        }
+
+        if (tailNode == null)
+            tailNode = headNode;
+    }
+
     private void addElementLastNode(T element) {
-        Node<T> node = new Node<>(element);
+        DoublyNode<T> node = new DoublyNode<>(element);
         if (headNode == tailNode) {
             tailNode = node;
             headNode.setNextNode(node);
