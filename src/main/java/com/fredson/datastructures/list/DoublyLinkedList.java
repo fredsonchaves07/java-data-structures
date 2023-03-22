@@ -34,21 +34,21 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
     }
 
     private void addElementFirstNode(T element) {
-        DoublyNode<T> doublyNode = new DoublyNode<>(element);
+        DoublyNode<T> node = new DoublyNode<>(element);
         if (headNode != null) {
-            headNode.setPrevNode(doublyNode);
-            doublyNode.setNextNode(headNode);
+            headNode.setPrevNode(node);
+            node.setNextNode(headNode);
         }
-        headNode = doublyNode;
+        headNode = node;
         if (tailNode == null) tailNode = headNode;
         length += 1;
     }
 
     private void addElementLastNode(T element) {
-        DoublyNode<T> doublyNode = new DoublyNode<>(element);
-        tailNode.setNextNode(doublyNode);
-        doublyNode.setPrevNode(tailNode);
-        tailNode = doublyNode;
+        DoublyNode<T> node = new DoublyNode<>(element);
+        tailNode.setNextNode(node);
+        node.setPrevNode(tailNode);
+        tailNode = node;
         length += 1;
     }
 
@@ -113,14 +113,14 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
     }
 
     private void removeElementFirstNode() {
-        headNode = (DoublyNode<T>) headNode.getNextNode();
-        headNode.setPrevNode(null);
+        if (tailNode.equals(headNode)) tailNode = null;
+        headNode = null;
         length -= 1;
     }
 
     private void removeElementLastNode() {
-        tailNode = (DoublyNode<T>) tailNode.getPrevNode();
-        tailNode.setNextNode(null);
+        if (headNode.equals(tailNode)) headNode = null;
+        tailNode = null;
         length -= 1;
     }
 
@@ -132,7 +132,6 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
                 DoublyNode<T> nextNode = (DoublyNode<T>) nodeCurrent.getNextNode();
                 addAfterNode(nextNode, prevNode);
                 length -= 1;
-                nodeCurrent = null;
                 break;
             }
             nodeCurrent = (DoublyNode<T>) nodeCurrent.getNextNode();
@@ -148,7 +147,6 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
                 DoublyNode<T> nextNode = (DoublyNode<T>) nodeCurrent.getNextNode();
                 addBeforeNode(prevNode, nextNode);
                 length -= 1;
-                nodeCurrent = null;
                 break;
             }
             cont += 1;
@@ -183,11 +181,14 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     @Override
     public T getElement(T element) {
-        if (headNode.getElement().equals(element)) return headNode.getElement();
-        if (tailNode.getElement().equals(element)) return tailNode.getElement();
+        if (headNode.getElement().equals(element))
+            return headNode.getElement();
+        if (tailNode.getElement().equals(element))
+            return tailNode.getElement();
         Node<T> nodeCurrent = headNode.getNextNode();
         while (nodeCurrent != null) {
-            if (nodeCurrent.getElement().equals(element)) return nodeCurrent.getElement();
+            if (nodeCurrent.getElement().equals(element))
+                return nodeCurrent.getElement();
             nodeCurrent = nodeCurrent.getNextNode();
         }
         return null;
@@ -195,12 +196,15 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     @Override
     public T getElement(int index) {
-        if (index == 0) return headNode.getElement();
-        if (index == length() - 1) return tailNode.getElement();
+        if (index == 0)
+            return headNode.getElement();
+        if (index == length() - 1)
+            return tailNode.getElement();
         Node<T> nodeCurrent = headNode.getNextNode();
         int cont = 1;
         while (nodeCurrent != null) {
-            if (cont == index) return nodeCurrent.getElement();
+            if (cont == index)
+                return nodeCurrent.getElement();
             cont += 1;
             nodeCurrent = nodeCurrent.getNextNode();
         }
