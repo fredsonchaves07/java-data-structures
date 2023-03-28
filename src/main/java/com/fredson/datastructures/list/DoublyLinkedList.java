@@ -15,11 +15,10 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     @Override
     public void push(T element) {
-        if (isEmpty()) {
+        if (isEmpty())
             addElementFirstNode(element);
-        } else {
+        else
             addElementLastNode(element);
-        }
     }
 
     @Override
@@ -40,8 +39,45 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
             node.setNextNode(headNode);
         }
         headNode = node;
-        if (tailNode == null) tailNode = headNode;
+        if (tailNode == null)
+            tailNode = headNode;
         length += 1;
+    }
+
+    private void addElementFirstNode(T element, int index) {
+        DoublyNode<T> node = new DoublyNode<>(element, index);
+        if (isEmpty())
+            addElemenFirstNodeListEmpty(node);
+        else if (index < headNode.getIndex())
+            addElementFirstNodeNotReplacing(node);
+        else if (index == 0 && length() == 1)
+            addElementFirstNodeReplacingListWithOneElement(node);
+        else
+            addElementFirstNodeReplacingListWithoutOneElement(node);
+    }
+
+    private void addElemenFirstNodeListEmpty(DoublyNode<T> node) {
+        headNode = node;
+        tailNode = node;
+        length += 1;
+    }
+
+    private void addElementFirstNodeNotReplacing(DoublyNode<T> node) {
+        node.setNextNode(headNode);
+        headNode.setPrevNode(node);
+        headNode = node;
+        length += 1;
+    }
+
+    private void addElementFirstNodeReplacingListWithOneElement(DoublyNode<T> node) {
+        headNode = node;
+        tailNode = node;
+    }
+
+    private void addElementFirstNodeReplacingListWithoutOneElement(DoublyNode<T> node) {
+        node.setNextNode(headNode.getNextNode());
+        ((DoublyNode<T>) headNode.getNextNode()).setPrevNode(node);
+        headNode = node;
     }
 
     private void addElementLastNode(T element) {
