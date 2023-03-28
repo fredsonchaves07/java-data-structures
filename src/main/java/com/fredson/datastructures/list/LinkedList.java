@@ -29,11 +29,10 @@ public class LinkedList<T> implements List<T> {
     public void push(T element, int index) {
           if (isEmpty() || index == 0 || index < headNode.getIndex())
               addElementFirstNode(element, index);
-          else if (index > tailNode.getIndex() || index == tailNode.getIndex()) {
+          else if (index > tailNode.getIndex() || index == tailNode.getIndex())
               addElementLastNode(element, index);
-          } else {
+          else
               addElementIndexNode(element, index);
-          }
     }
 
     private void addElementFirstNode(T element) {
@@ -91,13 +90,12 @@ public class LinkedList<T> implements List<T> {
 
     private void addElementLastNode(T element, int index) {
         Node<T> node = new Node<>(element, index);
-        if (index > tailNode.getIndex()) {
+        if (index > tailNode.getIndex())
             addElementLastNode(node);
-        } else if (length() == 1 && index == tailNode.getIndex()) {
+        else if (length() == 1 && index == tailNode.getIndex())
             addElementLastNodeReplacingListWithOneElement(node);
-        } else {
+        else
             addElementLastNodeReplacingListWithoutOneElement(node);
-        }
     }
 
     private void addElementLastNode(Node<T> node) {
@@ -159,13 +157,12 @@ public class LinkedList<T> implements List<T> {
     public void remove(int index) {
         if (index < 0 || index > length())
             throw new IndexOutOfBoundsException();
-        if (index == 0 || index == headNode.getIndex()){
+        if (index == 0 || index == headNode.getIndex())
             removeElementFirstNode();
-        } else if (index == length() - 1 || index == tailNode.getIndex()) {
+        else if (index == length() - 1 || index == tailNode.getIndex())
             removeElementLastNode();
-        } else {
+        else
             removeElementIndexNode(index);
-        }
     }
 
     private void removeElementFirstNode() {
