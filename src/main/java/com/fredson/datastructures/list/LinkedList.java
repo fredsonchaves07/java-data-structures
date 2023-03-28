@@ -78,7 +78,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     private void addElementLastNode(T element) {
-        Node<T> node = new Node<>(element, length);
+        Node<T> node = new Node<>(element, tailNode.getIndex() + 1);
         if (headNode == tailNode) {
             tailNode = node;
             headNode.setNextNode(node);
@@ -157,7 +157,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index >= length())
+        if (index < 0 || index > length())
             throw new IndexOutOfBoundsException();
         if (index == 0 || index == headNode.getIndex()){
             removeElementFirstNode();
@@ -199,6 +199,7 @@ public class LinkedList<T> implements List<T> {
         while (currentNode != null) {
             if (currentNode.getIndex() == index) {
                 Objects.requireNonNull(getBeforeNode(currentNode)).setNextNode(currentNode.getNextNode());
+                length -= 1;
                 break;
             }
             currentNode = currentNode.getNextNode();
@@ -268,7 +269,7 @@ public class LinkedList<T> implements List<T> {
                 return currentNode.getElement();
             currentNode = currentNode.getNextNode();
         }
-        throw new IndexOutOfBoundsException();
+        return null;
     }
 
     @Override
