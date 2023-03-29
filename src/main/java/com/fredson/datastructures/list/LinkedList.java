@@ -22,7 +22,7 @@ public class LinkedList<T> implements List<T> {
         if (isEmpty())
             addElementFirstNode(element);
         else
-            addElementLastNode(element);
+            addLastNode(element);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class LinkedList<T> implements List<T> {
           if (isEmpty() || index == 0 || index < headNode.getIndex())
               addElementFirstNode(element, index);
           else if (index > tailNode.getIndex() || index == tailNode.getIndex())
-              addElementLastNode(element, index);
+              addLastNode(element, index);
           else
               addElementIndexNode(element, index);
     }
@@ -76,41 +76,36 @@ public class LinkedList<T> implements List<T> {
         headNode = node;
     }
 
-    private void addElementLastNode(T element) {
+    private void addLastNode(T element) {
         Node<T> node = new Node<>(element, tailNode.getIndex() + 1);
-        if (headNode == tailNode) {
-            tailNode = node;
-            headNode.setNextNode(node);
-        } else {
-            tailNode.setNextNode(node);
-            tailNode = node;
-        }
-        length += 1;
-    }
-
-    private void addElementLastNode(T element, int index) {
-        Node<T> node = new Node<>(element, index);
-        if (index > tailNode.getIndex())
-            addElementLastNode(node);
-        else if (length() == 1 && index == tailNode.getIndex())
-            addElementLastNodeReplacingListWithOneElement(node);
-        else
-            addElementLastNodeReplacingListWithoutOneElement(node);
-    }
-
-    private void addElementLastNode(Node<T> node) {
         tailNode.setNextNode(node);
         tailNode = node;
         length += 1;
     }
 
-    private void addElementLastNodeReplacingListWithOneElement(Node<T> node) {
+    private void addLastNode(T element, int index) {
+        Node<T> node = new Node<>(element, index);
+        if (index > tailNode.getIndex())
+            addLastNode(node);
+        else if (length() == 1 && index == tailNode.getIndex())
+            addLastNodeReplacingListWithOneElement(node);
+        else
+            addLastNodeReplacingListWithoutOneElement(node);
+    }
+
+    private void addLastNode(Node<T> node) {
+        tailNode.setNextNode(node);
+        tailNode = node;
+        length += 1;
+    }
+
+    private void addLastNodeReplacingListWithOneElement(Node<T> node) {
         if (headNode == tailNode)
             headNode = node;
         tailNode = node;
     }
 
-    private void addElementLastNodeReplacingListWithoutOneElement(Node<T> node) {
+    private void addLastNodeReplacingListWithoutOneElement(Node<T> node) {
         Objects.requireNonNull(getBeforeNode(tailNode)).setNextNode(node);
         tailNode = node;
     }

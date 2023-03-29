@@ -23,13 +23,12 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 
     @Override
     public void push(T element, int index) {
-        if (isEmpty() || index == 0) {
-            addElementFirstNode(element);
-        } else if (index <= length() + 1) {
+        if (isEmpty() || index == 0 || index < headNode.getIndex())
+            addElementFirstNode(element, index);
+        else if (index > tailNode.getIndex() || index == tailNode.getIndex())
+            addElementLastNode(element, index);
+        else
             addElementIndexNode(element, index);
-        } else {
-            addElementLastNode(element);
-        }
     }
 
     private void addElementFirstNode(T element) {
@@ -81,30 +80,57 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
     }
 
     private void addElementLastNode(T element) {
-        DoublyNode<T> node = new DoublyNode<>(element);
+        DoublyNode<T> node = new DoublyNode<>(element, tailNode.getIndex() + 1);
         tailNode.setNextNode(node);
         node.setPrevNode(tailNode);
         tailNode = node;
         length += 1;
     }
 
+    private void addElementLastNode(T element, int index) {
+        DoublyNode<T> node = new DoublyNode<>(element, index);
+        if (index > tailNode.getIndex())
+            addLastNode(node);
+        else if (length() == 1 && index == tailNode.getIndex())
+            addLastNodeReplacingListWithOneElement(node);
+        else
+            addLastNodeReplacingListWithoutOneElement(node);
+    }
+
+    private void addLastNode(DoublyNode<T> node) {
+        node.setPrevNode(tailNode);
+        tailNode.setNextNode(node);
+        tailNode = node;
+        length += 1;
+    }
+
+    private void addLastNodeReplacingListWithOneElement(DoublyNode<T> node) {
+        if (headNode == tailNode)
+            headNode = node;
+        tailNode = node;
+    }
+
+    private void addLastNodeReplacingListWithoutOneElement(DoublyNode<T> node) {
+        tailNode.getPrevNode().setNextNode(node);
+        tailNode = node;
+    }
+
     private void addElementIndexNode(T element, int index) {
-        DoublyNode<T> node = headNode;
-        DoublyNode<T> doublyNode = new DoublyNode<>(element);
-        for (int i = 0; i <= index; i ++) {
-            if (i == index && node != tailNode) {
-                doublyNode.setNextNode(node.getNextNode());
-                doublyNode.setPrevNode(node.getPrevNode());
-                node.getPrevNode().setNextNode(doublyNode);
-                node = doublyNode;
-            } else if (node.getNextNode() == null) {
-                addAfterNode(doublyNode, (DoublyNode<T>) node.getPrevNode());
-                addBeforeNode(doublyNode, tailNode);
+        DoublyNode<T> node = new DoublyNode<>(element, index);
+        DoublyNode<T> currentNode = (DoublyNode<T>) headNode.getNextNode();
+        while (currentNode != null) {
+            if (currentNode.getIndex() == index) {
+                node.setNextNode(currentNode.getNextNode());
+                currentNode.getPrevNode().setNextNode(node);
+                break;
+            } else if (index < currentNode.getIndex()) {
+                node.setNextNode(currentNode);
+                currentNode.getPrevNode().setNextNode(node);
+                length += 1;
                 break;
             }
-            node = (DoublyNode<T>) node.getNextNode();
+            currentNode = (DoublyNode<T>) currentNode.getNextNode();
         }
-        length += 1;
     }
 
     private void addBeforeNode(DoublyNode<T> currentNode, DoublyNode<T> beforeNode) {
