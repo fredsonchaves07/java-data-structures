@@ -100,7 +100,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     private void addLastNodeReplacingListWithOneElement(Node<T> node) {
-        if (headNode == tailNode)
+        if (headNode.equals(tailNode))
             headNode = node;
         tailNode = node;
     }
@@ -161,8 +161,6 @@ public class LinkedList<T> implements List<T> {
     }
 
     private void removeElementFirstNode() {
-        if (headNode == tailNode)
-            tailNode = headNode.getNextNode();
         headNode = headNode.getNextNode();
         length -= 1;
     }
