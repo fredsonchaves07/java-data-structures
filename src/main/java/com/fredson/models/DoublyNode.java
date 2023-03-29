@@ -1,8 +1,13 @@
 package com.fredson.models;
 
-public class DoublyNode<T> extends Node<T> {
+public final class DoublyNode<T> extends Node<T> {
 
     private Node<T> prevNode;
+
+    public DoublyNode(T element, Node<T> prevNode, Node<T> nextNode, int index) {
+        super(element, nextNode, index);
+        this.prevNode = prevNode;
+    }
 
     public DoublyNode(T element, Node<T> prevNode, Node<T> nextNode) {
         super(element, nextNode);
@@ -11,6 +16,10 @@ public class DoublyNode<T> extends Node<T> {
 
     public DoublyNode(T element) {
         super(element);
+    }
+
+    public DoublyNode(T element, int index) {
+        super(element, index);
     }
 
     public Node<T> getPrevNode() {
