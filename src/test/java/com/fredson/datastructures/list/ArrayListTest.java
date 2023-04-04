@@ -2,8 +2,7 @@ package com.fredson.datastructures.list;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ArrayListTest {
 
@@ -81,7 +80,9 @@ public class ArrayListTest {
         list.push("Python");
         list.push("Javascript");
         list.remove("Python");
+        assertNull(list.getElement("Python"));
         assertEquals(2, list.length());
+        assertEquals("[Java, Javascript]", list.toString());
     }
 
     @Test
@@ -90,7 +91,24 @@ public class ArrayListTest {
         list.push("Java");
         list.push("Python");
         list.push("Javascript");
-        list.remove(2);
+        list.remove(1);
+        assertEquals(2, list.length());
+        assertEquals("[Java, Javascript]", list.toString());
+    }
+
+    @Test
+    public void shouldRemoveIndexWithAppend() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.push("Delphi", 0);
+        list.push("Java");
+        list.remove(0);
+        list.remove(3);
+        assertNull(list.getElement("Delphi"));
+        assertNull(list.getElement("Java"));
+        assertEquals("[Python, Javascript]", list.toString());
         assertEquals(2, list.length());
     }
 

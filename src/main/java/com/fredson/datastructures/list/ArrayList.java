@@ -9,11 +9,14 @@ public class ArrayList<T> implements List<T> {
 
     private int length;
 
+    private int capacity;
+
     public ArrayList() {
         this(10);
     }
 
     public ArrayList(int capacity) {
+        this.capacity = capacity;
         elements = (T[]) new Object[capacity];
     }
 
@@ -21,8 +24,16 @@ public class ArrayList<T> implements List<T> {
     public void push(T element) {
         if (isFull())
             increaseCapacity();
-        elements[length] = element;
-        length ++;
+        for (int index = capacity - 1; index >= 0; index --) {
+            if (elements[index] != null) {
+                elements[index + 1] = element;
+                break;
+            }
+            if (elements[index] == null && index == 0) {
+                elements[index] = element;
+            }
+        }
+        length += 1;
     }
 
     public void push(T element, int index) {
@@ -46,7 +57,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void addElementFirstIndex(T element,int index) {
-        if (isEmpty()) {
+        if (isEmpty() || elements[index] == null) {
             elements[index] = element;
             length ++;
         } else {
@@ -73,18 +84,22 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-        if (index >= length() || index < 0)
+//        if (index > length() || index < 0)
+//            throw new IndexOutOfBoundsException();
+//        if (elements.length - (index + 1) >= 0)
+//            System.arraycopy(elements, index + 1, elements, index + 1 - 1, elements.length - (index + 1));
+        if (index < 0 || index > length())
             throw new IndexOutOfBoundsException();
-        if (elements.length - (index + 1) >= 0)
-            System.arraycopy(elements, index + 1, elements, index + 1 - 1, elements.length - (index + 1));
+        if (index == 0)
+            removeElementFirstIndex();
         length --;
     }
 
     @Override
     public int indexOf(T element) {
-        for (int i = 0; i < elements.length; i ++)
-            if (elements[i] != null && elements[i].equals(element))
-                return i;
+        for (int index = 0; index < elements.length; index ++)
+            if (elements[index] != null && elements[index].equals(element))
+                return index;
         throw new IndexOutOfBoundsException();
     }
 
