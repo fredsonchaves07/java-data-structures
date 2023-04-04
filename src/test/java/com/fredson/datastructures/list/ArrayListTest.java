@@ -27,11 +27,36 @@ public class ArrayListTest {
 
     @Test
     public void shouldInsertElementInIndex() {
-        ArrayList<String> list = new ArrayList<>();
-        list.push("Java", 1);
+        List<String> list = new ArrayList<>(3);
+        list.push("Java");
+        list.push("Javascript");
         list.push("Python", 0);
-        list.push("Javascript", 11);
+        list.push("C++", 2);
         assertEquals(3, list.length());
+        assertEquals("[Python, Javascript, C++]", list.toString());
+    }
+
+    @Test
+    public void shouldInsertElementFirstLastAndIndex() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Javascript");
+        list.push("Python", 0);
+        list.push("C++", 2);
+        assertEquals(3, list.length());
+        assertEquals("[Python, Javascript, C++]", list.toString());
+    }
+
+    @Test
+    public void shouldInsertElementFirstIndexAndLast() {
+        List<String> list = new ArrayList<>();
+        list.push("C++", 2);
+        list.push("Java");
+        list.push("Javascript");
+        list.push("Python", 0);
+        list.push("Delphi", 1);
+        assertEquals(5, list.length());
+        assertEquals("[Python, Delphi, C++, Java, Javascript]", list.toString());
     }
 
     @Test
