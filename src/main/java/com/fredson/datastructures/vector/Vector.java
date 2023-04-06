@@ -19,13 +19,15 @@ public class Vector<T> {
     }
 
     public void push(T element){
-        if (isFull()) increaseCapacity();
+        if (isFull())
+            increaseCapacity();
         elements[length] = element;
         length ++;
     }
 
     public void push(T element, int position) {
-        if (isFull()) increaseCapacity();
+        if (isFull())
+            increaseCapacity();
         try {
             if (length + 1 - position >= 0)
                 System.arraycopy(elements, position, elements, position + 1, length + 1 - position);
@@ -41,17 +43,16 @@ public class Vector<T> {
     private void increaseCapacity() {
         if (length == elements.length) {
             T[] newElements = (T[]) new Object[elements.length * 2];
-            for (int i = 0; i < length; i ++) {
+            for (int i = 0; i < length; i ++)
                 newElements[i] = elements[i];
-            }
             elements = newElements;
         }
     }
 
     public int lastIndexOf(T element) {
-        for (int i = length - 1; i >= 0; i --) {
-            if (elements[i].equals(element)) return i;
-        }
+        for (int i = length - 1; i >= 0; i --)
+            if (elements[i].equals(element))
+                return i;
         return - 1;
     }
 
@@ -64,11 +65,9 @@ public class Vector<T> {
     }
 
     public void remove(T element) {
-        for (int i = 0; i <= length; i ++) {
-            if (element.equals(getElement(i))) {
+        for (int i = 0; i <= length; i ++)
+            if (element.equals(getElement(i)))
                 remove(i);
-            }
-        }
     }
 
     public void remove(int position) {
@@ -82,9 +81,9 @@ public class Vector<T> {
     }
 
     public boolean contain(T element) {
-        for (Object elementVector : elements) {
-            if (elementVector != null && elementVector.equals(element)) return true;
-        }
+        for (Object elementVector : elements)
+            if (elementVector != null && elementVector.equals(element))
+                return true;
         return false;
     }
 
