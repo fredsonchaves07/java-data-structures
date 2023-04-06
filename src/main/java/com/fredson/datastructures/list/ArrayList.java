@@ -36,6 +36,7 @@ public class ArrayList<T> implements List<T> {
         length += 1;
     }
 
+    @Override
     public void push(T element, int index) {
         if (isFull() || index > elements.length)
             increaseCapacity();
@@ -51,7 +52,8 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void increaseCapacity() {
-        T[] newElements = (T[]) new Object[elements.length * 2];
+        capacity = elements.length * 2;
+        T[] newElements = (T[]) new Object[capacity];
         System.arraycopy(elements, 0, newElements, 0, length);
         elements = newElements;
     }
@@ -74,8 +76,7 @@ public class ArrayList<T> implements List<T> {
     public void remove(T element) {
         for (int i = 0; i < elements.length; i ++) {
             if (elements[i] != null && elements[i].equals(element)) {
-                if (elements.length - (i + 1) >= 0)
-                    System.arraycopy(elements, i + 1, elements, i + 1 - 1, elements.length - (i + 1));
+                elements[i] = null;
                 length --;
             }
 
@@ -84,14 +85,16 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-//        if (index > length() || index < 0)
-//            throw new IndexOutOfBoundsException();
-//        if (elements.length - (index + 1) >= 0)
-//            System.arraycopy(elements, index + 1, elements, index + 1 - 1, elements.length - (index + 1));
         if (index < 0 || index > length())
             throw new IndexOutOfBoundsException();
-        if (index == 0)
-            removeElementFirstIndex();
+        for (int i = 0; i < capacity; i ++) {
+            if (i == index) {
+                if (elements[i] != null) {
+                    elements[i] = null;
+                }
+                break;
+            }
+        }
         length --;
     }
 
@@ -135,7 +138,9 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void clear() {
-        //TODO -> Implementar limpeza do array
+        for (int i = 0; i < capacity; i ++)
+            elements[i] = null;
+        capacity = 0;
+        length = 0;
     }
-
 }

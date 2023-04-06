@@ -122,6 +122,21 @@ public class ArrayListTest {
     }
 
     @Test
+    public void shouldGetIndexElementWithAppendLastAndIndex() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.push("Delphi", 13);
+        list.push("C#", 0);
+        list.push("C++");
+        assertEquals(0, list.indexOf("C#"));
+        assertEquals(1, list.indexOf("Python"));
+        assertEquals(13, list.indexOf("Delphi"));
+        assertEquals(14, list.indexOf("C++"));
+    }
+
+    @Test
     public void shouldGetElementByElement() {
         List<String> list = new ArrayList<>();
         list.push("Java");
@@ -137,5 +152,31 @@ public class ArrayListTest {
         list.push("Python");
         list.push("Javascript");
         assertEquals("Python", list.getElement(1));
+    }
+
+    @Test
+    public void shouldGetElementByIndexAfterInsertWithIndexAndWithoutIndex() {
+        List<String> list = new ArrayList<>();
+        list.push("C++", 2);
+        list.push("Java");
+        list.push("Javascript");
+        list.push("Python", 0);
+        list.push("Delphi", 1);
+        assertEquals("C++", list.getElement(2));
+        assertEquals("Python", list.getElement(0));
+        assertEquals("Delphi", list.getElement(1));
+        assertEquals("Java", list.getElement(3));
+        assertEquals("Javascript", list.getElement(4));
+    }
+
+    @Test
+    public void shouldClearList() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        list.clear();
+        assertTrue(list.isEmpty());
+        assertEquals("[]", list.toString());
     }
 }
