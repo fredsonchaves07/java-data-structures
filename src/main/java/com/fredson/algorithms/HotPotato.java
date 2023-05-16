@@ -8,16 +8,14 @@ import java.util.List;
 
 public class HotPotato {
     
-    public static String hotPotato(List<String> elementsList, int quantity){
+    public static String hotPotato(List<String> elementsList, int quantity) {
         Queue<String> queue = new Queue<>();
         List<String> eliminatedList = new ArrayList<>();
-        for(String element : elementsList){
+        for(String element : elementsList)
             queue.enqueue(element);
-        }
         while(queue.size() > 1){
-            for(int i = 0; i < quantity; i ++){
+            for(int i = 0; i < quantity; i ++)
                 queue.enqueue(queue.dequeue());
-            }
             eliminatedList.add(queue.dequeue());
         }
         return "eliminated: " + eliminatedList + "\nwinner: " + queue.dequeue(); 
