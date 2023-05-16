@@ -10,7 +10,7 @@ public class PalindromeTest {
     @Test
     public void shouldStringIsPalindrome() {
         assertTrue(Palindrome.isPalindrome("Ana"));
-//        assertTrue(Palindrome.isPalindrome("A babá baba"));
+        assertTrue(Palindrome.isPalindrome("A babá baba"));
         assertTrue(Palindrome.isPalindrome("Socorram me subi no onibus em Marrocos"));
     }
 

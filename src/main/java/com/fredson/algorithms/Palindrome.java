@@ -3,16 +3,19 @@ package com.fredson.algorithms;
 import com.fredson.datastructures.stack.ArrayStack;
 import com.fredson.datastructures.stack.Stack;
 
+import java.text.Normalizer;
+
 public class Palindrome {
     
     public static boolean isPalindrome(String string){
-        if (isValidString(string)) return false;
+        String stringWithRemovedAcccent = removeStringAccent(string);
+        if (isValidString(stringWithRemovedAcccent)) return false;
         Stack<String> stack = new ArrayStack<>();
-        String[] charStringVector = convertToCharString(string);
+        String[] charStringVector = convertToCharString(stringWithRemovedAcccent);
         StringBuilder stringReverse = new StringBuilder();
         for (String charString : charStringVector) stack.push(charString);
         while(!stack.isEmpty()) stringReverse.append(stack.pop());
-        return isStringReverseEqualsString(stringReverse, string);
+        return isStringReverseEqualsString(stringReverse, stringWithRemovedAcccent);
     }
 
     private static boolean isValidString(String string) {
@@ -25,5 +28,9 @@ public class Palindrome {
 
     private static boolean isStringReverseEqualsString(StringBuilder stringReverse, String string) {
         return stringReverse.toString().equals(string.replaceAll(" ", "").toLowerCase());
+    }
+
+    private static String removeStringAccent(String string) {
+        return Normalizer.normalize(string, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
     }
 }
