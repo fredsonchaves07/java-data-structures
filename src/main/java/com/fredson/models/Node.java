@@ -1,5 +1,7 @@
 package com.fredson.models;
 
+import java.util.Objects;
+
 public class Node<T> {
     
     private final T element;
@@ -33,18 +35,31 @@ public class Node<T> {
     }
 
     public Node<T> getNextNode(){
-        return this.nextNode;
+        return nextNode;
     }
 
-    public void setNextNode(Node<T> node){
-        this.nextNode = node;
+    public void setNextNode(Node<T> next){
+        nextNode = next;
     }
 
     public T getElement(){
-        return this.element;
+        return element;
     }
 
     public int getIndex() {
         return index;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return getElement().equals(node.getElement());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getElement());
     }
 }
