@@ -10,11 +10,36 @@ public class CircularLinkedList <T> extends LinkedList<T> {
         super();
     }
 
-        @Override
+    @Override
     public void push(T element) {
         super.push(element);
         if (tailNode.getNextNode() != headNode && !tailNode.equals(headNode))
-            tailNode.setNextNode(new Node<>(headNode.getElement()));
+            insertCircularNode();
+    }
+
+    @Override
+    public void push(T element, int index) {
+        super.push(element, index);
+        if (tailNode.getNextNode() != headNode && !tailNode.equals(headNode))
+            insertCircularNode();
+    }
+
+    @Override
+    public void remove(T element) {
+        super.remove(element);
+        if (tailNode.getNextNode() != headNode && !tailNode.equals(headNode))
+            insertCircularNode();
+    }
+
+    @Override
+    public void remove(int index) {
+        super.remove(index);
+        if (tailNode.getNextNode() != headNode && !tailNode.equals(headNode))
+            insertCircularNode();
+    }
+
+    private void insertCircularNode() {
+        tailNode.setNextNode(new Node<>(headNode.getElement()));
     }
 
     @Override
@@ -24,7 +49,7 @@ public class CircularLinkedList <T> extends LinkedList<T> {
         while (currentNode != null) {
             elements.add(currentNode.getElement());
             currentNode = currentNode.getNextNode();
-            if (currentNode!= null && currentNode.equals(headNode)) break;
+            if (currentNode != null && currentNode.equals(headNode)) break;
         }
         return elements.toString();
     }

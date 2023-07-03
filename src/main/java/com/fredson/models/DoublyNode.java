@@ -22,6 +22,6 @@ public final class DoublyNode<T> extends Node<T> {
     }
 
     public void setPrevNode(Node<T> prev) {
-        this.prevNode = prev;
+        prevNode = prev;
     }
 }
