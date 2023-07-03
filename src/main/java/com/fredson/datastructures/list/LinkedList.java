@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class LinkedList<T> implements List<T> {
 
-    private Node<T> headNode;
+    protected Node<T> headNode;
 
-    private Node<T> tailNode;
+    protected Node<T> tailNode;
 
     protected int length;
     
@@ -289,10 +289,10 @@ public class LinkedList<T> implements List<T> {
     @Override
     public String toString() {
         java.util.List<T> elements = new ArrayList<>();
-        Node<T> verifyElement = headNode;
-        while (verifyElement != null) {
-            elements.add(verifyElement.getElement());
-            verifyElement = verifyElement.getNextNode();
+        Node<T> currentNode = this.headNode;
+        while (currentNode != null) {
+            elements.add(currentNode.getElement());
+            currentNode = currentNode.getNextNode();
         }
         return elements.toString();
     }
