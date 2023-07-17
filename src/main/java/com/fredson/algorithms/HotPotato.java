@@ -1,5 +1,6 @@
 package com.fredson.algorithms;
 
+import com.fredson.datastructures.queue.ArrayQueue;
 import com.fredson.datastructures.queue.Queue;
 
 import java.util.ArrayList;
@@ -9,16 +10,16 @@ import java.util.List;
 public class HotPotato {
     
     public static String hotPotato(List<String> elementsList, int quantity) {
-        Queue<String> queue = new Queue<>();
+        Queue<String> arrayQueue = new ArrayQueue<>();
         List<String> eliminatedList = new ArrayList<>();
         for(String element : elementsList)
-            queue.enqueue(element);
-        while(queue.size() > 1){
+            arrayQueue.enqueue(element);
+        while(arrayQueue.length() > 1){
             for(int i = 0; i < quantity; i ++)
-                queue.enqueue(queue.dequeue());
-            eliminatedList.add(queue.dequeue());
+                arrayQueue.enqueue(arrayQueue.dequeue());
+            eliminatedList.add(arrayQueue.dequeue());
         }
-        return "eliminated: " + eliminatedList + "\nwinner: " + queue.dequeue(); 
+        return "eliminated: " + eliminatedList + "\nwinner: " + arrayQueue.dequeue();
     }
 
     public static void main(String[] args) {
