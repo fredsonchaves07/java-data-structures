@@ -1,42 +1,16 @@
 package com.fredson.datastructures.queue;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface Queue<T> {
 
-public class Queue<T> {
-    
-    private List<T> items;
+    void enqueue(T element);
 
-    public Queue(){
-        this.items = new ArrayList<>();
-    }
+    T dequeue();
 
-    public void enqueue(T element){
-        this.items.add(element);
-    }
+    T peek();
 
-    public T dequeue(){
-        return this.items.remove(0);
-    }
+    boolean isEmpty();
 
-    public T peek(){
-        return this.items.get(0);
-    }
+    public int length();
 
-    public boolean isEmpty(){
-        return this.items.size() == 0;
-    }
-
-    public int size(){
-        return this.items.size();
-    }
-
-    public void clear(){
-        this.items.clear();
-    }
-
-    @Override
-    public String toString() {
-        return this.items.toString();
-    }
+    public void clear();
 }
