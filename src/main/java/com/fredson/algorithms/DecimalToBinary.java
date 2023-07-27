@@ -5,7 +5,7 @@ import com.fredson.datastructures.stack.Stack;
 
 public class DecimalToBinary {
 
-    public static String decimalToBinary(int number){
+    public static String decimalToBinary(int number) {
         Stack<Integer> stack = new ArrayStack<>();
         StringBuilder binaryString = new StringBuilder();
         while(number > 0){
@@ -13,9 +13,8 @@ public class DecimalToBinary {
             number = number / 2;
             stack.push(rem);
         }
-        while(!stack.isEmpty()){
+        while(!stack.isEmpty())
             binaryString.append(stack.pop());
-        }
         return binaryString.toString();
     }
 
