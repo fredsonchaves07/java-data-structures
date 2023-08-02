@@ -21,3 +21,10 @@
 
 - Esse exemplo demonstra uma propriedade importante que todo o método recursivo deve respeitar - O método termina.
 - Garante-se essa propriedade escrevendo uma sentença não recursiva para o caso n = 1
+- Em diversas situações, a recursão é uma ferramenta útil para projetar algoritmos que têm definições curtas e elegantes. Mas essa utilidade tem um custo. Quande se usa um algoritmo recursivo para resolver um problema, gasta-se uma certa quanditade de memória para manter o estado de cada chamada recursiva ativa
+- Quando a memória do computador está escasa, em alguns casos é interessante ser capaz de derivar um algoritmo não recursivo a partir de um recursivo
+- Podemos usar a estrutura de dados pilha para converter um algoritmo recursivo em um não recursivo
+
+## Recursão binária
+
+- Quando um algoritmo faz duas chamadas recursivas, diz-se que usa recursão binária. Estas chamadas podem, por exemplo, ser usadas para resolver duas metades do mesmo problema
