@@ -51,4 +51,10 @@ public class RecursiveTest {
         Recursive.reverseList(list);
         assertEquals(expected, list.toString());
     }
+
+    @Test
+    public void shouldReturnFibonacciWithBinaryRecursive() {
+        int expected = 21;
+        assertEquals(expected, Recursive.fibonacciBinaryRecursive(8));
+    }
 }

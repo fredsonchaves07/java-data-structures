@@ -38,4 +38,9 @@ public class Recursive {
             reverseList(list, i + 1, j - 1);
         }
     }
+
+    public static int fibonacciBinaryRecursive(int number) {
+        if (number <= 1) return number;
+        return fibonacciBinaryRecursive(number - 1) + fibonacciBinaryRecursive(number - 2);
+    }
 }

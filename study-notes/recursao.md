@@ -28,3 +28,10 @@
 ## Recursão binária
 
 - Quando um algoritmo faz duas chamadas recursivas, diz-se que usa recursão binária. Estas chamadas podem, por exemplo, ser usadas para resolver duas metades do mesmo problema
+- Quando se usa recursão binária, deve-se primeiro tentar particionar completamente o problema em dois ou é preciso está convencido de que sucessivas chamadas recursivas são realmente necessárias
+
+## Recursão múltipla
+
+- Use-se a recursão multipla quando um método pode fazer várias chamadas recursivas em um número potencialmente maior que dois.
+- Uma das aplicações mais comuns deste tipo de recursão é quando se deseja enumerar várias configurações visando resolver um quebra-cabeça combinatório
+- 
