@@ -19,8 +19,10 @@ public class Recursive {
     }
 
     private static int binarySum(int[] numbers, int i, int size) {
+        if (size == 0) return 0;
         if (size == 1) return numbers[i];
-        return binarySum(numbers, i, size / 2) + binarySum(numbers, (size / 2) + i, size / 2);
+        int middle = size / 2;
+        return binarySum(numbers, i, middle) + binarySum(numbers, i + middle, size - middle);
     }
 
     public static <T> void reverseList(List<T> list) {
