@@ -57,4 +57,10 @@ public class RecursiveTest {
         int expected = 21;
         assertEquals(expected, Recursive.fibonacciBinaryRecursive(8));
     }
+
+    @Test
+    public void shouldReturnFibonnaciWithDynamicProgram() {
+        int expected = 21;
+        assertEquals(expected, Recursive.fibonacciBinaryRecursiveDynamic(8));
+    }
 }

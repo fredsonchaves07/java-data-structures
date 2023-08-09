@@ -43,4 +43,17 @@ public class Recursive {
         if (number <= 1) return number;
         return fibonacciBinaryRecursive(number - 1) + fibonacciBinaryRecursive(number - 2);
     }
+
+    public static int fibonacciBinaryRecursiveDynamic(int number) {
+        int[] fibonacci = new int[number];
+        fibonacci[0] = 1;
+        fibonacci[1] = 1;
+        return fibonacciBinaryRecursiveDynamic(fibonacci, number);
+    }
+
+    private static int fibonacciBinaryRecursiveDynamic(int[] fibonacci, int number) {
+        if (fibonacci[number - 1] > 0) return fibonacci[number - 1];
+        fibonacci[number - 1] = fibonacciBinaryRecursiveDynamic(fibonacci, number - 1) + fibonacciBinaryRecursiveDynamic(fibonacci, number - 2);
+        return fibonacci[number - 1];
+    }
 }
