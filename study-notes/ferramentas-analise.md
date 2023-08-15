@@ -1,48 +1,50 @@
-# Ferramentas de análise
+# Ferramentas de anÃ¡lise
 
-- As sete funções mais importantes usadas em análise de algoritmos
+- As sete funÃ§Ãµes mais importantes usadas em anÃ¡lise de algoritmos
 
-## As funções mais utilizadas em análise de algoritmos
+## As funÃ§Ãµes mais utilizadas em anÃ¡lise de algoritmos
 
-### A função constante
+### A funÃ§Ã£o constante
 
-- A função mais simples que se possa imaginar `f(n) = c`
-- Para qualquer argumento `n`, a função constante atribui um valor `c`. Em outras palavras, não importa o valor de `n` a função sempre atribuirá `c`
-- A função constante é útil na análise de algoritmos porque caracteriza o número de passos necessários para executar uma operação básica em um computador, como adicionar dois valores, atribuir um valor para alguma variável ou comparar dois valores
+- A funÃ§Ã£o mais simples que se possa imaginar `f(n) = c`
+- Para qualquer argumento `n`, a funÃ§Ã£o constante atribui um valor `c`. Em outras palavras, nÃ£o importa o valor de `n` a funÃ§Ã£o sempre atribuirÃ¡ `c`
+- A funÃ§Ã£o constante Ã© Ãºtil na anÃ¡lise de algoritmos porque caracteriza o nÃºmero de passos necessÃ¡rios para executar uma operaÃ§Ã£o bÃ¡sica em um computador, como adicionar dois valores, atribuir um valor para alguma variÃ¡vel ou comparar dois valores
 
-### A função logaritmo
+### A funÃ§Ã£o logaritmo
 
-- Definido pela função `f(n) = logbn` para alguma constante `b > 1`
-- Uma vez que computadores armazenam inteiros em binário, a base mais comum para a função logaritmo em Ciência da Computação é 2. De fato, essa base é tão comum que tipicamente não é indicada se for 2. Então, será considerado `log n = log2n`
+- Definido pela funÃ§Ã£o `f(n) = logbn` para alguma constante `b > 1`
+- Uma vez que computadores armazenam inteiros em binÃ¡rio, a base mais comum para a funÃ§Ã£o logaritmo em CiÃªncia da ComputaÃ§Ã£o Ã© 2. De fato, essa base Ã© tÃ£o comum que tipicamente nÃ£o Ã© indicada se for 2. EntÃ£o, serÃ¡ considerado `log n = log2n`
 
-### A função linear
+### A funÃ§Ã£o linear
 
-- Outra função simples, mas importante, é a função linear `f(n) = n`
-- Esta função aparece na análise de algoritmos sempre que se tem de executar uma operação básica sobre cada um de `n` elementos
-- A função linear também representa o melhor tempo de execução que se pode desejar obter para qualquer algoritmo que processa uma coleção de `n` objetos que estão na memória do computador
+- Outra funÃ§Ã£o simples, mas importante, Ã© a funÃ§Ã£o linear `f(n) = n`
+- Esta funÃ§Ã£o aparece na anÃ¡lise de algoritmos sempre que se tem de executar uma operaÃ§Ã£o bÃ¡sica sobre cada um de `n` elementos
+- A funÃ§Ã£o linear tambÃ©m representa o melhor tempo de execuÃ§Ã£o que se pode desejar obter para qualquer algoritmo que processa uma coleÃ§Ã£o de `n` objetos que estÃ£o na memÃ³ria do computador
 
-### A função n-log-n
+### A funÃ§Ã£o n-log-n
 
 - Definido por `f(n) = nlogn`
-- A função que atribui para uma entrada `n` o valor de `n` multiplicado pelo logaritmo de base 2 de `n`
-- Esta função cresce um pouco mais rápido que a função linear e muito mais devagar que a função quadrática
+- A funÃ§Ã£o que atribui para uma entrada `n` o valor de `n` multiplicado pelo logaritmo de base 2 de `n`
+- Esta funÃ§Ã£o cresce um pouco mais rÃ¡pido que a funÃ§Ã£o linear e muito mais devagar que a funÃ§Ã£o quadrÃ¡tica
 
-### A função quadrática
+### A funÃ§Ã£o quadrÃ¡tica
 
 - Definido por `f(n) = n2`
-- A principal razão de a função quadrática aparecer na análise de algoritmos é que existem vários algoritmos que possuem laços aninhados, em que o laço mais interno executa uma quantidade linear de operações e o laço mais externo é executado um número linear de vezes.
+- A principal razÃ£o de a funÃ§Ã£o quadrÃ¡tica aparecer na anÃ¡lise de algoritmos Ã© que existem vÃ¡rios algoritmos que possuem laÃ§os aninhados, em que o laÃ§o mais interno executa uma quantidade linear de operaÃ§Ãµes e o laÃ§o mais externo Ã© executado um nÃºmero linear de vezes.
 
-### A função cúbica e ouras polinomiais
+### A funÃ§Ã£o cÃºbica e ouras polinomiais
 
 - Definido por `f(n) = n3`
-- Esta função aparece com menos frequência no contexto da análise de algoritmos do que as funções constante, linear ou quadrática
+- Esta funÃ§Ã£o aparece com menos frequÃªncia no contexto da anÃ¡lise de algoritmos do que as funÃ§Ãµes constante, linear ou quadrÃ¡tica
 
-### A função exponencial
+### A funÃ§Ã£o exponencial
 
 - Definido por `f(n) = bn`
-- Na análise de algorimos, a base mais comum para função exponencial é `b = 2`. 
-- Por exemplo, se existe um laço que começa executando uma operação e dobra o número de operações executadas a cada iteração, então o número de operações executadas pela n-esima iteração é `2n`
+- Na anÃ¡lise de algorimos, a base mais comum para funÃ§Ã£o exponencial Ã© `b = 2`. 
+- Por exemplo, se existe um laÃ§o que comeÃ§a executando uma operaÃ§Ã£o e dobra o nÃºmero de operaÃ§Ãµes executadas a cada iteraÃ§Ã£o, entÃ£o o nÃºmero de operaÃ§Ãµes executadas pela n-esima iteraÃ§Ã£o Ã© `2n`
 
-### Comparando as funções
+### Comparando as funÃ§Ãµes
 
-- Seria desejável que os algortmos executassem em tempo linear ou n-log-n. Algortimos com tempos de execução quadráticos ou cúbicos são poucos práticos, mas algoritmos comtempos de execução exponenciais são impraticáveis a não ser para pequenas entradas
+- Seria desejÃ¡vel que os algortmos executassem em tempo linear ou n-log-n. Algortimos com tempos de execuÃ§Ã£o quadrÃ¡ticos ou cÃºbicos sÃ£o poucos prÃ¡ticos, mas algoritmos comtempos de execuÃ§Ã£o exponenciais sÃ£o impraticÃ¡veis a nÃ£o ser para pequenas entradas
+
+  ![BigOGraph](https://github.com/fredsonchaves07/java-datastructures/assets/43495376/06453efd-79d7-40d9-90aa-594523bf5307)
