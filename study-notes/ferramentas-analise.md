@@ -48,3 +48,36 @@
 - Seria desejável que os algortmos executassem em tempo linear ou n-log-n. Algortimos com tempos de execução quadráticos ou cúbicos são poucos práticos, mas algoritmos comtempos de execução exponenciais são impraticáveis a não ser para pequenas entradas
 
   ![BigOGraph](https://github.com/fredsonchaves07/java-datastructures/assets/43495376/06453efd-79d7-40d9-90aa-594523bf5307)
+
+## Análise de algoritmos
+
+- A principal ferramenta de análise envolve a caracterização dos tempos de execução dos algoritmos e das operações sobre as estruturas de dados, sendo que o espaço utilizado também é importante. Tempo de execução é uma medida natural de qualidade, uma vez que o tempo é um recurso precioso
+
+### Estudos experimentais
+
+- Se um algotitmo foi implementado, pode-se estudar seu tempo de execução executando-o sobre diferentes conjuntos de entradas e armazenando o tempo real gasto em cada execução.
+- Para determianar esta dependencia, devem ser executados vários experimentos sobre diferentes conjuntos de entrada, com diferentes tamanhos.
+- Então é possível visualizar os resultados destes experimentos plotando a performance de cada execução do algoritmo como um ponto com coordenada x igual ao tamanho da entra n
+- Apesar dos estudos experimentais sobre os tempos de execução serem úteis, eles tem três grandes limitações:
+  - Experimentos só podem ser feitos sobre um conjunto limitado de entradas de teste; consequentemente, são deixados de fora os tempos de execução das entradas não incluídas nos experimentos (e essas entradas podem ser importantes)
+  - É difcil comparar os tempos de execução de dois algoritmos, a mesnos que os experimentos sejam executados nos mesmos ambientes de hardware e software
+  - É necessário implementar e executar o algoritmo de maneira a estudar seu tempo de execução experimentalmente
+
+### Operações primitivas
+
+- A análise experimental é importante, porém tem suas limitações. Pode-se fazer uma análise diretamente sobre o pseudocódigo de alto nível.
+- Define se um conjunto de operações primitivas como as que seguem:
+  - Atribuição de valores a variáveis;
+  - Chamadas de métodos;
+  - Operações aritméticas (por exemplo, adição de dois números);
+  - Comparação de dois números;
+  - Acesso a um arranjo;
+  - Seguimento de uma referência para um objeto;
+  - Retorno de um método;
+
+### Notação assintótica
+
+- Em geral, cada passo em uma descrição em pseudocódigo ou implementação em linguagem de alto nível corresponde a um pequeno número de operações primitivas (exceto para chamadas de métodos, naturalmente)
+- Na análise de algoritmos é importante cncentra-se na taxa de crescimento do tempo de execução como uma função do tamanho da entrada `n`, obtendo-se um quadro geral do comportamento
+- É definido pela anotação O
+- As sete funções listadas são as mais comumente usadas em cojunto com a notação O
