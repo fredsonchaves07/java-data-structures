@@ -81,3 +81,28 @@
 - Na análise de algoritmos é importante cncentra-se na taxa de crescimento do tempo de execução como uma função do tamanho da entrada `n`, obtendo-se um quadro geral do comportamento
 - É definido pela anotação O
 - As sete funções listadas são as mais comumente usadas em cojunto com a notação O
+
+## Técnicas simples de justificativa
+
+- Algumas vezes, deseja-se fazer afirmações sobre um algoritmo, como mostrar que ele é corretp ou executa mais rápido. Para fazer tais afirmações de forma rigorosa, deve-se usar uma argumentação matemática, justificando ou provando nossas afirmações
+- Existem algumas formas de fazer isso
+
+### Por meio de exemplos
+
+- Algumas afirmações tem uma forma genérica: "Existe um elemento `x` no conjunto `S` que tem a propriedade `P`". Para justificar tal afirmação, precisa-se apenas encontrar um `x` em `S` que tenha propriedade `P`
+
+### O ataque "contra"
+
+- Outro conjunto de técnicas que envolve o uso de negações. Os dois métodos básicos são o uso de contrapositivos e da contradição.
+- O uso do contrapositivo é como olhar em um espelho negativo parra justificar a contraposição de uma verdade
+- Outra técnica de justificativa por negação envolve o uso da contradição, que frequentemente também envolve o uso da Lei de Morgan
+
+### Indução e invariantes em laços
+
+- A maior forma das afirmações que foram feitas sobre o tempo de execução ou consumo de memória de um algoritmo dizem respeito a um parâmetro interio `n`(em geral, representando uma noção intuitiva "tamanho" do problema)
+- É possível justificar as aplicações como verdadeiras, se for feito o uso da técnica da indução
+- Esta técnica se resume em mostrar que para qualquer `n >= 1` existe uma sequência finita de implicações que inicia com um fato verdadeiro e leva à confimação de que `q(n)` é verdadeiro
+- Outra técnica que podemos utilizar e o laço invariante. Para provar que uma afirmação `S` sobre um laço é correta, define `S` como uma sequência de afirmações menores `S0, S1, ... Sk` onde>
+  - A afirmação inicial `S0` seja verdfadeira antes que o laço se inicie;
+  - Se `Si-1` é verdadeira da iteração `i`, então é possível mostrar que `Si` será verdadeira depois que a iteração `i` terminar
+  - A afirmação final `Sk` implica que a afirmação `S` que deseja provar é verdadiera
