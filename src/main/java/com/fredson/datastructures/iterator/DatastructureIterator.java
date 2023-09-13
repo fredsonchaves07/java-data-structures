@@ -1,6 +1,6 @@
 package com.fredson.datastructures.iterator;
 
-public abstract class DatastructureIterator<T> implements Iterator {
+public abstract class DatastructureIterator implements Iterator {
 
     protected int size;
 

@@ -179,4 +179,42 @@ public class ArrayListTest {
         assertTrue(list.isEmpty());
         assertEquals("[]", list.toString());
     }
+
+    @Test
+    public void shouldIteratorList() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertEquals("Python", list.iterator().next());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+    }
+
+    @Test
+    public void shouldIteratorListWithAppendNewElements() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertEquals("Python", list.iterator().next());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+        list.push("Javascript");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+        list.push("Java");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+    }
 }

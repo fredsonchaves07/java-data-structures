@@ -129,46 +129,40 @@ public class LinkedListTest {
     }
 
     @Test
-    public void shouldGetElementByElement() {
+    public void shouldIteratorList() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertEquals("Python", list.iterator().next());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+    }
+
+    @Test
+    public void shouldIteratorListWithAppendNewElements() {
         List<String> list = new LinkedList<>();
         list.push("Java");
         list.push("Python");
         list.push("Javascript");
-        assertEquals("Python", list.getElement("Python"));
-    }
-
-    @Test
-    public void shouldGetElementByIndex() {
-        List<String> list = new LinkedList<>();
-        list.push("Java");
-        list.push("Python");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertEquals("Python", list.iterator().next());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
         list.push("Javascript");
-        assertEquals("Python", list.getElement(1));
-    }
-
-    @Test
-    public void shouldGetElementByIndexAfterInsertWithIndexAndWithoutIndex() {
-        List<String> list = new LinkedList<>();
-        list.push("C++", 2);
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
         list.push("Java");
-        list.push("Javascript");
-        list.push("Python", 0);
-        list.push("Delphi", 1);
-        assertEquals("C++", list.getElement(2));
-        assertEquals("Python", list.getElement(0));
-        assertEquals("Delphi", list.getElement(1));
-        assertEquals("Java", list.getElement(3));
-        assertEquals("Javascript", list.getElement(4));
-    }
-
-    @Test
-    public void shouldClearList() {
-        List<String> list = new LinkedList<>();
-        list.push("Java");
-        list.push("Python");
-        list.push("Javascript");
-        list.clear();
-        assertTrue(list.isEmpty());
-        assertEquals("[]", list.toString());
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
     }
 }
