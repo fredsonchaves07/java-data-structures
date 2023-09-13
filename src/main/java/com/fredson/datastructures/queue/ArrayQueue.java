@@ -11,6 +11,8 @@ public class ArrayQueue<T> implements Queue<T> {
 
     private int length;
 
+    private int head;
+
     public ArrayQueue() {
         this(MAX_LENGTH_ELEMENTS);
     }
@@ -38,9 +40,10 @@ public class ArrayQueue<T> implements Queue<T> {
 
     @Override
     public T dequeue() {
-        T element = elements[0];
-        elements[0] = null;
-        length--;
+        if (isEmpty()) return null;
+        T element = elements[head];
+        head ++;
+        length --;
         return element;
     }
 
