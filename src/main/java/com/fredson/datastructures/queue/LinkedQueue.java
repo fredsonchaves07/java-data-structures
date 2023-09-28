@@ -20,9 +20,14 @@ public class LinkedQueue<T> implements Queue<T> {
     @Override
     public void enqueue(T element) {
         Node<T> newNode = new Node<>(element);
-        newNode.setNextNode(node);
-        node = newNode;
-        if (isEmpty()) headNode = node;
+        if (isEmpty()) {
+            headNode = newNode;
+            node = headNode;
+        } else {
+            Node<T> nodeAux = node;
+            nodeAux.setNextNode(newNode);
+            node = newNode;
+        }
         length += 1;
     }
 
