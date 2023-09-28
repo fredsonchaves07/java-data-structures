@@ -1,9 +1,7 @@
 package com.fredson.datastructures.list;
 
-import com.fredson.datastructures.iterator.DatastructureIterator;
 import com.fredson.datastructures.iterator.Iterator;
-import com.fredson.datastructures.queue.ArrayQueue;
-import com.fredson.datastructures.queue.Queue;
+import com.fredson.datastructures.iterator.ListIterator;
 import com.fredson.models.Node;
 
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ public class LinkedList<T> implements List<T> {
     
     public LinkedList() {
         clear();
-        this.iterator = new LinkedListIterator();
+//        this.iterator = new ListIterator();
     }
 
     @Override
@@ -286,11 +284,12 @@ public class LinkedList<T> implements List<T> {
         length = 0;
     }
 
+
     @Override
     public Iterator<T> iterator() {
         if (iterator != null)
             return iterator;
-        iterator = new LinkedListIterator();
+        iterator = new ListIterator(this);
         return iterator;
     }
 
@@ -312,46 +311,46 @@ public class LinkedList<T> implements List<T> {
         return elements.toString();
     }
 
-    private class LinkedListIterator extends DatastructureIterator {
-
-        private Queue<T> queue = new ArrayQueue<>();
-
-        private T element;
-
-        public LinkedListIterator() {
-            for (int i = 0; i < length(); i ++)
-                queue.enqueue(getElement(i));
-            this.element = queue.dequeue();
-            super.size = length();
-        }
-
-        @Override
-        protected boolean hasLastElement() {
-            return super.size != length();
-        }
-
-        @Override
-        protected void setLastDatastructureElement() {
-            if (hasNext() && element == null) {
-                element = getElement(size);
-                size += 1;
-            }
-        }
-
-        @Override
-        public boolean hasNext() {
-            return element != null || hasLastElement();
-        }
-
-        @Override
-        public T next() {
-            setLastDatastructureElement();
-            if (hasNext()) {
-                T prevElement = element;
-                element = queue.dequeue();
-                return prevElement;
-            }
-            return null;
-        }
-    }
+//    private class LinkedListIterator extends DatastructureIterator {
+//
+//        private Queue<T> queue = new ArrayQueue<>();
+//
+//        private T element;
+//
+//        public LinkedListIterator() {
+//            for (int i = 0; i < length(); i ++)
+//                queue.enqueue(getElement(i));
+//            this.element = queue.dequeue();
+//            super.size = length();
+//        }
+//
+//        @Override
+//        protected boolean hasLastElement() {
+//            return super.size != length();
+//        }
+//
+//        @Override
+//        protected void setLastDatastructureElement() {
+//            if (hasNext() && element == null) {
+//                element = getElement(size);
+//                size += 1;
+//            }
+//        }
+//
+//        @Override
+//        public boolean hasNext() {
+//            return element != null || hasLastElement();
+//        }
+//
+//        @Override
+//        public T next() {
+//            setLastDatastructureElement();
+//            if (hasNext()) {
+//                T prevElement = element;
+//                element = queue.dequeue();
+//                return prevElement;
+//            }
+//            return null;
+//        }
+//    }
 }

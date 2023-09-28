@@ -217,4 +217,54 @@ public class ArrayListTest {
         assertFalse(list.iterator().hasNext());
         assertNull(list.iterator().next());
     }
+
+    @Test
+    public void shouldNotIteratorIfListIsEmpty() {
+        List<String> list = new ArrayList<>();
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+    }
+
+    @Test
+    public void shouldNotIteratorIfRemoveElementsInList() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Python", list.iterator().next());
+        assertTrue(list.iterator().hasNext());
+        list.remove("Javascript");
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+    }
+
+    @Test
+    public void shouldIteratorIfRemoveAndPushElementIndex() {
+        List<String> list = new ArrayList<>();
+        list.push("Java");
+        list.push("Python");
+        list.push("Javascript");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Java", list.iterator().next());
+        assertTrue(list.iterator().hasNext());
+        list.remove(1);
+        assertFalse(list.iterator().hasNext());
+        assertEquals("Javascript", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+        list.push("Python", 1);
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+        list.push("Delphi");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("Delphi", list.iterator().next());
+        assertFalse(list.iterator().hasNext());
+        assertNull(list.iterator().next());
+        list.push("C++");
+        assertTrue(list.iterator().hasNext());
+        assertEquals("C++", list.iterator().next());
+    }
 }

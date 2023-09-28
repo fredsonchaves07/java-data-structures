@@ -130,7 +130,7 @@ public class LinkedListTest {
 
     @Test
     public void shouldIteratorList() {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         list.push("Java");
         list.push("Python");
         list.push("Javascript");
@@ -154,9 +154,9 @@ public class LinkedListTest {
         assertEquals("Javascript", list.iterator().next());
         assertFalse(list.iterator().hasNext());
         assertNull(list.iterator().next());
-        list.push("Javascript");
+        list.push("C++");
         assertTrue(list.iterator().hasNext());
-        assertEquals("Javascript", list.iterator().next());
+        assertEquals("C++", list.iterator().next());
         assertFalse(list.iterator().hasNext());
         assertNull(list.iterator().next());
         list.push("Java");
