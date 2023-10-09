@@ -2,8 +2,7 @@ package com.fredson.datastructures.stack;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ArrayStackTest {
 
@@ -55,5 +54,66 @@ public class ArrayStackTest {
         stack.push("Javascript");
         assertEquals("Javascript", stack.pop());
         assertEquals(2, stack.length());
+    }
+
+    @Test
+    public void shouldIteratorStack() {
+        Stack<String> stack = new ArrayStack<>();
+        stack.push("Java");
+        stack.push("Python");
+        stack.push("Javascript");
+        assertTrue(stack.iterator().hasNext());
+        assertEquals("Java", stack.iterator().next());
+        assertEquals("Python", stack.iterator().next());
+        assertEquals("Javascript", stack.iterator().next());
+        assertFalse(stack.iterator().hasNext());
+        assertNull(stack.iterator().next());
+    }
+
+    @Test
+    public void shouldIteratorStackWithAppendNewElements() {
+        Stack<String> stack = new ArrayStack<>();
+        stack.push("Java");
+        stack.push("Python");
+        stack.push("Javascript");
+        assertTrue(stack.iterator().hasNext());
+        assertEquals("Java", stack.iterator().next());
+        assertEquals("Python", stack.iterator().next());
+        assertEquals("Javascript", stack.iterator().next());
+        assertFalse(stack.iterator().hasNext());
+        assertNull(stack.iterator().next());
+        stack.push("Javascript");
+        assertTrue(stack.iterator().hasNext());
+        assertEquals("Javascript", stack.iterator().next());
+        assertFalse(stack.iterator().hasNext());
+        assertNull(stack.iterator().next());
+        stack.push("Java");
+        assertTrue(stack.iterator().hasNext());
+        assertEquals("Java", stack.iterator().next());
+        assertFalse(stack.iterator().hasNext());
+        assertNull(stack.iterator().next());
+    }
+
+    @Test
+    public void shouldNotIteratorIfStackIsEmpty() {
+        Stack<String> stack = new ArrayStack<>();
+        assertFalse(stack.iterator().hasNext());
+        assertNull(stack.iterator().next());
+    }
+
+    @Test
+    public void shouldNotIteratorIfRemoveElementsInStack() {
+        Stack<String> stack = new ArrayStack<>();
+        stack.push("Java");
+        stack.push("Python");
+        stack.push("Javascript");
+        assertTrue(stack.iterator().hasNext());
+        assertEquals("Java", stack.iterator().next());
+        assertTrue(stack.iterator().hasNext());
+        assertEquals("Python", stack.iterator().next());
+        assertTrue(stack.iterator().hasNext());
+        stack.pop();
+        assertFalse(stack.iterator().hasNext());
+        assertNull(stack.iterator().next());
     }
 }

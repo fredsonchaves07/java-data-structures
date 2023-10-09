@@ -1,6 +1,8 @@
 package com.fredson.datastructures.stack;
 
-public interface Stack<T> {
+import com.fredson.datastructures.iterator.Iterator;
+
+public interface Stack<T> extends Cloneable {
 
     void push(T element);
 
@@ -11,4 +13,8 @@ public interface Stack<T> {
     int length();
 
     boolean isEmpty();
+
+    Iterator<T> iterator();
+
+    Stack<T> clone();
 }

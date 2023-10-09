@@ -14,7 +14,7 @@ public class ArrayList<T> implements List<T> {
 
     private int capacity;
 
-    private Iterator iterator;
+    private Iterator<T> iterator;
 
     public ArrayList() {
         this(10);
