@@ -10,7 +10,7 @@ public interface Queue<T> {
 
     boolean isEmpty();
 
-    public int length();
+    int length();
 
-    public void clear();
+    void clear();
 }
