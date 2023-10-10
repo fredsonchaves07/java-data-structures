@@ -19,7 +19,6 @@ public class LinkedList<T> implements List<T> {
     
     public LinkedList() {
         clear();
-//        this.iterator = new ListIterator();
     }
 
     @Override
@@ -226,7 +225,7 @@ public class LinkedList<T> implements List<T> {
                 return currentNode.getIndex();
             currentNode = currentNode.getNextNode();
         }
-        throw new NullPointerException("Elemento não encontrado");
+        throw new NullPointerException("Elemento nï¿½o encontrado");
     }
 
     @Override
@@ -310,47 +309,4 @@ public class LinkedList<T> implements List<T> {
         }
         return elements.toString();
     }
-
-//    private class LinkedListIterator extends DatastructureIterator {
-//
-//        private Queue<T> queue = new ArrayQueue<>();
-//
-//        private T element;
-//
-//        public LinkedListIterator() {
-//            for (int i = 0; i < length(); i ++)
-//                queue.enqueue(getElement(i));
-//            this.element = queue.dequeue();
-//            super.size = length();
-//        }
-//
-//        @Override
-//        protected boolean hasLastElement() {
-//            return super.size != length();
-//        }
-//
-//        @Override
-//        protected void setLastDatastructureElement() {
-//            if (hasNext() && element == null) {
-//                element = getElement(size);
-//                size += 1;
-//            }
-//        }
-//
-//        @Override
-//        public boolean hasNext() {
-//            return element != null || hasLastElement();
-//        }
-//
-//        @Override
-//        public T next() {
-//            setLastDatastructureElement();
-//            if (hasNext()) {
-//                T prevElement = element;
-//                element = queue.dequeue();
-//                return prevElement;
-//            }
-//            return null;
-//        }
-//    }
 }
