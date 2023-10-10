@@ -1,5 +1,7 @@
 package com.fredson.datastructures.list;
 
+import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.iterator.ListIterator;
 import com.fredson.models.Node;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class LinkedList<T> implements List<T> {
     protected Node<T> tailNode;
 
     protected int length;
+
+    private Iterator iterator;
     
     public LinkedList() {
         clear();
@@ -221,7 +225,7 @@ public class LinkedList<T> implements List<T> {
                 return currentNode.getIndex();
             currentNode = currentNode.getNextNode();
         }
-        throw new NullPointerException("Elemento não encontrado");
+        throw new NullPointerException("Elemento nï¿½o encontrado");
     }
 
     @Override
@@ -277,6 +281,15 @@ public class LinkedList<T> implements List<T> {
         if (headNode != null) clear(headNode);
         headNode = null;
         length = 0;
+    }
+
+
+    @Override
+    public Iterator<T> iterator() {
+        if (iterator != null)
+            return iterator;
+        iterator = new ListIterator(this);
+        return iterator;
     }
 
     private void clear(Node<T> node) {

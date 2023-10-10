@@ -1,5 +1,8 @@
 package com.fredson.datastructures.list;
 
+import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.iterator.ListIterator;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -11,13 +14,21 @@ public class ArrayList<T> implements List<T> {
 
     private int capacity;
 
+    private Iterator<T> iterator;
+
     public ArrayList() {
         this(10);
     }
 
     public ArrayList(int capacity) {
         this.capacity = capacity;
-        elements = (T[]) new Object[capacity];
+        this.elements = (T[]) new Object[capacity];
+    }
+
+    private ArrayList(T[] elements) {
+        this.elements = elements;
+        this.capacity = elements.length;
+        this.length = elements.length;
     }
 
     @Override
@@ -108,7 +119,7 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T getElement(int index) {
-        if (index >= length() || index < 0)
+        if (index > length() || index < 0)
             throw new IndexOutOfBoundsException();
         return elements[index];
     }
@@ -142,5 +153,13 @@ public class ArrayList<T> implements List<T> {
             elements[i] = null;
         capacity = 0;
         length = 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        if (iterator != null)
+            return iterator;
+        iterator = new ListIterator(this);
+        return iterator;
     }
 }

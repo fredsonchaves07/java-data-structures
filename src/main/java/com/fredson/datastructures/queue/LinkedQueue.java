@@ -1,5 +1,7 @@
 package com.fredson.datastructures.queue;
 
+import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.iterator.QueueIterator;
 import com.fredson.models.Node;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ public class LinkedQueue<T> implements Queue<T> {
 
     private Node<T> headNode;
 
+    private Iterator<T> iterator;
+
     private int length;
 
     public LinkedQueue() {
@@ -20,9 +24,14 @@ public class LinkedQueue<T> implements Queue<T> {
     @Override
     public void enqueue(T element) {
         Node<T> newNode = new Node<>(element);
-        newNode.setNextNode(node);
-        node = newNode;
-        if (isEmpty()) headNode = node;
+        if (isEmpty()) {
+            headNode = newNode;
+            node = headNode;
+        } else {
+            Node<T> nodeAux = node;
+            nodeAux.setNextNode(newNode);
+            node = newNode;
+        }
         length += 1;
     }
 
@@ -56,6 +65,25 @@ public class LinkedQueue<T> implements Queue<T> {
         headNode = null;
         node = null;
         length = 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        if (iterator != null)
+            return iterator;
+        iterator = new QueueIterator<>(this);
+        return iterator;
+    }
+
+    @Override
+    public Queue<T> clone() {
+        Queue<T> queue;
+        try {
+            queue = (Queue<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            queue = new ArrayQueue<>();
+        }
+        return queue;
     }
 
     @Override

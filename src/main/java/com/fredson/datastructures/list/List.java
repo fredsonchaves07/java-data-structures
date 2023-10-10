@@ -1,5 +1,7 @@
 package com.fredson.datastructures.list;
 
+import com.fredson.datastructures.iterator.Iterator;
+
 public interface List<T> {
 
     void push(T element);
@@ -21,4 +23,6 @@ public interface List<T> {
     boolean isEmpty();
 
     void clear();
+
+    Iterator<T> iterator();
 }

@@ -2,8 +2,7 @@ package com.fredson.datastructures.queue;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class LinkedQueueTest {
 
@@ -50,5 +49,66 @@ public class LinkedQueueTest {
         queue.clear();;
         assertEquals(0, queue.length());
         assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void shouldIteratorQueue() {
+        Queue<String> queue = new LinkedQueue<>();
+        queue.enqueue("Java");
+        queue.enqueue("Python");
+        queue.enqueue("Javascript");
+        assertTrue(queue.iterator().hasNext());
+        assertEquals("Java", queue.iterator().next());
+        assertEquals("Python", queue.iterator().next());
+        assertEquals("Javascript", queue.iterator().next());
+        assertFalse(queue.iterator().hasNext());
+        assertNull(queue.iterator().next());
+    }
+
+    @Test
+    public void shouldIteratorQueueWithAppendNewElements() {
+        Queue<String> queue = new LinkedQueue<>();
+        queue.enqueue("Java");
+        queue.enqueue("Python");
+        queue.enqueue("Javascript");
+        assertTrue(queue.iterator().hasNext());
+        assertEquals("Java", queue.iterator().next());
+        assertEquals("Python", queue.iterator().next());
+        assertEquals("Javascript", queue.iterator().next());
+        assertFalse(queue.iterator().hasNext());
+        assertNull(queue.iterator().next());
+        queue.enqueue("Javascript");
+        assertTrue(queue.iterator().hasNext());
+        assertEquals("Javascript", queue.iterator().next());
+        assertFalse(queue.iterator().hasNext());
+        assertNull(queue.iterator().next());
+        queue.enqueue("Java");
+        assertTrue(queue.iterator().hasNext());
+        assertEquals("Java", queue.iterator().next());
+        assertFalse(queue.iterator().hasNext());
+        assertNull(queue.iterator().next());
+    }
+
+    @Test
+    public void shouldNotIteratorIfQueueIsEmpty() {
+        Queue<String> queue = new LinkedQueue<>();
+        assertFalse(queue.iterator().hasNext());
+        assertNull(queue.iterator().next());
+    }
+
+    @Test
+    public void shouldNotIteratorIfRemoveElementsInQueue() {
+        Queue<String> queue = new ArrayQueue<>();
+        queue.enqueue("Java");
+        queue.enqueue("Python");
+        queue.enqueue("Javascript");
+        assertTrue(queue.iterator().hasNext());
+        assertEquals("Java", queue.iterator().next());
+        assertTrue(queue.iterator().hasNext());
+        assertEquals("Python", queue.iterator().next());
+        assertTrue(queue.iterator().hasNext());
+        queue.dequeue();
+        assertFalse(queue.iterator().hasNext());
+        assertNull(queue.iterator().next());
     }
 }

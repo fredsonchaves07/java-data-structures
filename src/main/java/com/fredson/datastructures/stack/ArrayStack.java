@@ -1,14 +1,19 @@
 package com.fredson.datastructures.stack;
 
 
+import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.iterator.StackIterator;
+
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ArrayStack<T> implements Stack<T>{
+public class ArrayStack<T> implements Stack<T> {
 
     private T[] elements;
 
     private int length;
+
+    private Iterator<T> iterator;
 
     public ArrayStack() {
         this(10);
@@ -16,6 +21,13 @@ public class ArrayStack<T> implements Stack<T>{
 
     public ArrayStack(int capacity) {
         elements = (T[]) new Object[capacity];
+    }
+
+    public ArrayStack(Stack<T> stack) {
+        this(stack.length());
+        while (!stack.isEmpty()) {
+            this.push(stack.pop());
+        }
     }
 
     @Override
@@ -58,7 +70,26 @@ public class ArrayStack<T> implements Stack<T>{
     }
 
     @Override
+    public Iterator<T> iterator() {
+        if (iterator != null)
+            return iterator;
+        iterator = new StackIterator<>(this);
+        return iterator;
+    }
+
+    @Override
     public String toString() {
         return Arrays.stream(elements).filter(Objects::nonNull).toList().toString();
+    }
+
+    @Override
+    public Stack<T> clone() {
+        Stack<T> stack;
+        try {
+            stack = (Stack<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            stack = new ArrayStack<>();
+        }
+        return stack;
     }
 }

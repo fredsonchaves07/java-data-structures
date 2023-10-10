@@ -1,5 +1,8 @@
 package com.fredson.datastructures.queue;
 
+import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.iterator.QueueIterator;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -11,6 +14,10 @@ public class ArrayQueue<T> implements Queue<T> {
 
     private int length;
 
+    private int head;
+
+    private Iterator<T> iterator;
+
     public ArrayQueue() {
         this(MAX_LENGTH_ELEMENTS);
     }
@@ -19,11 +26,19 @@ public class ArrayQueue<T> implements Queue<T> {
         elements = (T[]) new Object[capacity];
     }
 
+    public ArrayQueue(Queue<T> queue) {
+        this(queue.length());
+        while (!queue.isEmpty()) {
+            this.enqueue(queue.dequeue());
+        }
+    }
+
     @Override
     public void enqueue(T element) {
         if (isFull()) increaseCapacity();
         elements[length] = element;
         length ++;
+        if (length() == 1) head = 0;
     }
 
     private boolean isFull() { return length >= elements.length; }
@@ -38,15 +53,17 @@ public class ArrayQueue<T> implements Queue<T> {
 
     @Override
     public T dequeue() {
-        T element = elements[0];
-        elements[0] = null;
-        length--;
+        if (isEmpty()) return null;
+        T element = elements[head];
+        head ++;
+        length --;
         return element;
     }
 
     @Override
     public T peek() {
-        return this.elements[0];
+        if (isEmpty()) return null;
+        return this.elements[head];
     }
 
     @Override
@@ -65,6 +82,25 @@ public class ArrayQueue<T> implements Queue<T> {
             elements[i] = null;
         }
         length = 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        if (iterator != null)
+            return iterator;
+        iterator = new QueueIterator<>(this);
+        return iterator;
+    }
+
+    @Override
+    public Queue<T> clone() {
+        Queue<T> queue;
+        try {
+            queue = (Queue<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            queue = new ArrayQueue<>();
+        }
+        return queue;
     }
 
     @Override
