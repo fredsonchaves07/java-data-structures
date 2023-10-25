@@ -45,15 +45,28 @@ public interface Tree<T> {
 
     default List<T> preOrder(Node<T> node) {
         List<T> elements = new ArrayList<>();
-        getElementNode(node, elements);
+        getElementNodePreOrder(node, elements);
         return elements;
     }
 
-    private T getElementNode(Node<T> node, List<T> elements) {
+    private T getElementNodePreOrder(Node<T> node, List<T> elements) {
         T element = node.getElement();
         while (this.children(node).iterator().hasNext()) {
-            elements.push(getElementNode(this.children(node).iterator().next(), elements));
+            elements.push(getElementNodePreOrder(this.children(node).iterator().next(), elements));
         }
         return element;
+    }
+
+    private List<T> posOrder(Node<T> node) {
+        List<T> elements = new ArrayList<>();
+        getElementNodePosOrder(node, elements);
+        return elements;
+    }
+
+    private T getElementNodePosOrder(Node<T> node, List<T> elements) {
+        while (this.children(node).iterator().hasNext()) {
+            elements.push(getElementNodePreOrder(this.children(node).iterator().next(), elements));
+        }
+        return node.getElement();
     }
 }

@@ -20,4 +20,8 @@
 - Se a árvore está ordenada, então as subarvores são pecorridas de acordo com a ordem dos filhos
 - O caminhamento prefixado é útil para produzir uma ordenação linear dos nodos de uma árvore, na qual os pais devem aparecer antes dos filhos na ordenação
 - Tais ordenações tem diferentes aplicações e é uma forma eficiente de se pecorrer todos os nodos de uma árvote
-- 
+
+## Caminhamento pós fixado
+
+- Esse algoritmo pode ser entendido como o oposto do caminhamento prefixado, porque primeiro pecorre recursivamente as subárvores enraizadas nos filhos da raiz e depois visita a raiz
+- Similar ao caminho prefixado, entretanto, pois usando-o para resolver um determinado problema, especializa-se a ação associada com a "visitiação" de um nodo v
