@@ -1,21 +1,26 @@
 package com.fredson.datastructures.tree;
 
+import com.fredson.datastructures.DataStructure;
 import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
 import com.fredson.models.Node;
 
-public interface Tree<T> {
+public interface Tree<T> extends DataStructure<T> {
+
+    void insert(T element);
+
+    void insert(T nodeElement, T element);
 
     T replace(Node<T> node, T element);
 
-    Node<T> root();
+    T root();
 
     Node<T> parent(Node<T> node);
 
-    List<Node<T>> nodes();
+    List<T> nodes();
 
-    List<Node<T>> children(Node<T> node);
+    List<T> children(T node);
 
     boolean isInternal(Node<T> node);
 
@@ -29,44 +34,70 @@ public interface Tree<T> {
 
     Iterator<T> iterator();
 
+    T min();
+
+    T max();
+
+    boolean search(T element);
+
     default int depth(Node<T> node) {
         if (this.isEmpty()) return 0;
         return 1 + depth(this.parent(node));
     }
 
-    default int height(Node<T> node) {
-        if (this.isExternal(node)) return 0;
-        int heigh = 0;
-        while (this.children(node).iterator().hasNext()) {
-            heigh = Math.max(heigh, height(this.children(node).iterator().next()));
-        }
-        return 1 + heigh;
-    }
+    //TODO -> Alterar implementação
+//    default int height(Node<T> node) {
+//        if (this.isExternal(node)) return 0;
+//        int heigh = 0;
+//        while (this.children(node).iterator().hasNext()) {
+//            heigh = Math.max(heigh, height(this.children(node).iterator().next()));
+//        }
+//        return 1 + heigh;
+//    }
 
-    default List<T> preOrder(Node<T> node) {
+    default List<T> preOrder() {
         List<T> elements = new ArrayList<>();
-        getElementNodePreOrder(node, elements);
+        T root = root();
+        if (root != null) {
+            elements.push(root);
+            getElementNodePreOrder(root, elements);
+        }
         return elements;
     }
 
-    private T getElementNodePreOrder(Node<T> node, List<T> elements) {
-        T element = node.getElement();
-        while (this.children(node).iterator().hasNext()) {
-            elements.push(getElementNodePreOrder(this.children(node).iterator().next(), elements));
-        }
-        return element;
+    default List<T> toList() {
+        return nodes();
     }
 
-    private List<T> posOrder(Node<T> node) {
+    private void getElementNodePreOrder(T elementNode, List<T> elements) {
+        List<T> children = this.children(elementNode);
+        while (children.iterator().hasNext()) {
+            T next = children.iterator().next();
+            elements.push(next);
+            getElementNodePreOrder(next, elements);
+        }
+    }
+
+    default List<T> posOrder() {
         List<T> elements = new ArrayList<>();
-        getElementNodePosOrder(node, elements);
+        T root = root();
+        if (root != null) {
+            getElementNodePosOrder(root, elements);
+            elements.push(root);
+        }
         return elements;
     }
 
-    private T getElementNodePosOrder(Node<T> node, List<T> elements) {
-        while (this.children(node).iterator().hasNext()) {
-            elements.push(getElementNodePreOrder(this.children(node).iterator().next(), elements));
+    private T getElementNodePosOrder(T elementNode, List<T> elements) {
+        List<T> children = this.children(elementNode);
+        while (children.iterator().hasNext()) {
+            T next = children.iterator().next();
+            elements.push(getElementNodePosOrder(next, elements));
         }
-        return node.getElement();
+        return elementNode;
+    }
+
+    default List<T> inOrder() {
+        return nodes();
     }
 }
