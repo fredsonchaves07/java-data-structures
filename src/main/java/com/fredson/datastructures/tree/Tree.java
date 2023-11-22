@@ -16,7 +16,9 @@ public interface Tree<T> extends DataStructure<T> {
 
     T root();
 
-    Node<T> parent(Node<T> node);
+    List<T> parent(T node);
+
+    T getFirstParent(T node);
 
     List<T> nodes();
 
@@ -26,7 +28,8 @@ public interface Tree<T> extends DataStructure<T> {
 
     boolean isExternal(Node<T> node);
 
-    boolean isRoot(Node<T> node);
+    //TODO -> Implementar cenários de teste
+    boolean isRoot(T nodeElement);
 
     int size();
 
@@ -38,12 +41,15 @@ public interface Tree<T> extends DataStructure<T> {
 
     T max();
 
+    void remove(T element);
+
     boolean search(T element);
 
-    default int depth(Node<T> node) {
-        if (this.isEmpty()) return 0;
-        return 1 + depth(this.parent(node));
-    }
+    //TODO -> Alterar a implementação
+//    default int depth(Node<T> node) {
+//        if (this.isEmpty()) return 0;
+//        return 1 + depth(this.parent(node));
+//    }
 
     //TODO -> Alterar implementação
 //    default int height(Node<T> node) {

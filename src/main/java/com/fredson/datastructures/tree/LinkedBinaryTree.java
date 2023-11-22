@@ -32,7 +32,28 @@ public class LinkedBinaryTree<T> implements Tree<T> {
     }
 
     @Override
-    public Node<T> parent(Node<T> node) {
+    public List<T> parent(T node) {
+        return null;
+    }
+
+    @Override
+    public T getFirstParent(T node) {
+        if (isEmpty()) {
+            return null;
+        }
+        if (isRoot(node)) {
+            return null;
+        }
+        for (Map.Entry<T, DoublyNode<T>> tDoublyNodeEntry : nodes.entrySet()) {
+            DoublyNode<T> leftNode = (DoublyNode<T>) tDoublyNodeEntry.getValue().getPrevNode();
+            DoublyNode<T> rightNode = (DoublyNode<T>) tDoublyNodeEntry.getValue().getNextNode();
+            if (leftNode != null && leftNode.getElement().equals(node)) {
+                return tDoublyNodeEntry.getValue().getElement();
+            }
+            if (rightNode != null && rightNode.getElement().equals(node)) {
+                return tDoublyNodeEntry.getValue().getElement();
+            }
+        }
         return null;
     }
 
@@ -70,8 +91,8 @@ public class LinkedBinaryTree<T> implements Tree<T> {
     }
 
     @Override
-    public boolean isRoot(Node<T> node) {
-        return false;
+    public boolean isRoot(T nodeElement) {
+        return root.getElement().equals(nodeElement);
     }
 
     @Override
@@ -152,6 +173,14 @@ public class LinkedBinaryTree<T> implements Tree<T> {
         return maxNode(root);
     }
 
+    private T maxNode(DoublyNode<T> node) {
+        DoublyNode<T> currentNode = node;
+        while (currentNode != null && currentNode.getNextNode() != null) {
+            currentNode = (DoublyNode<T>) currentNode.getNextNode();
+        }
+        return currentNode.getElement();
+    }
+
     @Override
     public boolean search(T element) {
         if (isEmpty()) {
@@ -160,13 +189,55 @@ public class LinkedBinaryTree<T> implements Tree<T> {
         return nodes.containsKey(element);
     }
 
-    private T maxNode(DoublyNode<T> node) {
-        DoublyNode<T> currentNode = node;
-        while (currentNode != null && currentNode.getNextNode() != null) {
-            currentNode = (DoublyNode<T>) currentNode.getNextNode();
+
+    @Override
+    //TODO -> Realizar testes de remoção de um elemento root
+    public void remove(T element) {
+        if (nodes.containsKey(element)) {
+            removeNode(element);
         }
-        return currentNode.getElement();
     }
+
+    //TODO -> Refatorar método
+    private void removeNode(T element) {
+        List<T> children = children(element);
+        T parent = getFirstParent(element);
+        if (children.length() == 1) {
+            DoublyNode<T> nodeAux = nodes.get(children.getElement(0));
+            DoublyNode<T> nodeParent = nodes.get(parent);
+            if (nodeParent.getPrevNode().getElement().equals(element)) {
+                nodeParent.setPrevNode(nodeAux);
+            } else {
+                nodeParent.setNextNode(nodeAux);
+            }
+
+        } else if (children.length() == 2) {
+            DoublyNode<T> nextRoot = nodes.get(children.getElement(0));
+            List<T> nextRootChildren = children(nextRoot.getElement());
+            if (!nextRootChildren.isEmpty()) {
+                DoublyNode<T> nextRootChildLeft = nodes.get(nextRootChildren.getElement(0));
+                DoublyNode<T> nextRootChildRight = nodes.get(nextRootChildren.getElement(1));
+                setPrevAndNextNode(nextRootChildLeft, nextRootChildRight);
+                nextRoot.setPrevNode(nextRootChildLeft);
+                nextRoot.setNextNode(nodes.get(children.getElement(1)));
+                root = nextRoot;
+            }
+        }
+        nodes.remove(element);
+        size --;
+    }
+
+
+    private void setPrevAndNextNode(DoublyNode<T> prevNode, DoublyNode<T> nextNode) {
+        if (prevNode.getPrevNode() == null) {
+            prevNode.setPrevNode(nextNode);
+        } else if (prevNode.getNextNode() == null) {
+            prevNode.setNextNode(nextNode);
+        } else {
+            setPrevAndNextNode((DoublyNode<T>) prevNode.getPrevNode(), nextNode);
+        }
+    }
+
 
     @Override
     public String toString() {

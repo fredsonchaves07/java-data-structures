@@ -124,7 +124,6 @@ public class LinkedBinaryTreeTest {
     @Test
     public void shouldSearchElementInTree() {
         Tree<String> tree = new LinkedBinaryTree<>();
-        String expected = "Tesouraria";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -132,13 +131,182 @@ public class LinkedBinaryTreeTest {
         tree.insert("Contas a receber");
         tree.insert("Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
-        assertTrue(expected, tree.search("Tesouraria"));
-        assertTrue(expected, tree.search("Secretaria"));
-        assertTrue(expected, tree.search("Contas a pagar"));
-        assertTrue(expected, tree.search("Empresa A"));
-        assertTrue(expected, tree.search("Financeiro"));
-        assertTrue(expected, tree.search("Academico"));
-        assertTrue(expected, tree.search("Contas a receber"));
-        assertFalse(expected, tree.search("Administrativo"));
+        assertTrue(tree.search("Tesouraria"));
+        assertTrue(tree.search("Secretaria"));
+        assertTrue(tree.search("Contas a pagar"));
+        assertTrue(tree.search("Empresa A"));
+        assertTrue(tree.search("Financeiro"));
+        assertTrue(tree.search("Academico"));
+        assertTrue(tree.search("Contas a receber"));
+        assertFalse(tree.search("Administrativo"));
+    }
+
+    @Test
+    public void notShouldRemoveElementInTree() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected =
+                "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
+        String treeStringExpected =
+                "Empresa A -> (Financeiro -> (Contas a pagar, Contas a receber -> (Tesouraria)), Academico -> (Secretaria))";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Contas a pagar");
+        tree.insert("Contas a receber");
+        tree.insert("Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        tree.remove("Administrativo");
+        assertTrue(tree.search("Tesouraria"));
+        assertTrue(tree.search("Secretaria"));
+        assertTrue(tree.search("Contas a pagar"));
+        assertTrue(tree.search("Empresa A"));
+        assertTrue(tree.search("Financeiro"));
+        assertTrue(tree.search("Academico"));
+        assertTrue(tree.search("Contas a receber"));
+        assertFalse(tree.search("Administrativo"));
+        assertEquals(7, tree.size());
+        assertFalse(tree.nodes().isEmpty());
+        assertEquals(7, tree.nodes().length());
+        assertEquals(listStringExpected, tree.nodes().toString());
+        assertEquals(listStringExpected, tree.toList().toString());
+        assertEquals(treeStringExpected, tree.toString());
+    }
+
+    @Test
+    public void shouldRemoveElementInTree() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected =
+                "[Empresa A, Financeiro, Academico, Contas a pagar, Secretaria, Tesouraria]";
+        String treeStringExpected =
+                "Empresa A -> (Financeiro -> (Contas a pagar, Tesouraria), Academico -> (Secretaria))";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Contas a pagar");
+        tree.insert("Contas a receber");
+        tree.insert("Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        tree.remove("Contas a receber");
+        assertFalse(tree.search("Contas a receber"));
+        assertTrue(tree.search("Secretaria"));
+        assertTrue(tree.search("Contas a pagar"));
+        assertTrue(tree.search("Empresa A"));
+        assertTrue(tree.search("Financeiro"));
+        assertTrue(tree.search("Academico"));
+        assertTrue(tree.search("Tesouraria"));
+        assertEquals(6, tree.size());
+        assertFalse(tree.nodes().isEmpty());
+        assertEquals(6, tree.nodes().length());
+        assertEquals(listStringExpected, tree.nodes().toString());
+        assertEquals(listStringExpected, tree.toList().toString());
+        assertEquals(treeStringExpected, tree.toString());
+    }
+
+    @Test
+    public void shouldRemoveRootElementInTree() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected =
+                "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
+        String treeStringExpected =
+                "Financeiro -> (Contas a pagar -> (Contas a receber -> (Tesouraria)), Academico -> (Secretaria))";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Contas a pagar");
+        tree.insert("Contas a receber");
+        tree.insert("Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        tree.remove("Empresa A");
+        assertTrue(tree.search("Contas a receber"));
+        assertTrue(tree.search("Secretaria"));
+        assertTrue(tree.search("Contas a pagar"));
+        assertFalse(tree.search("Empresa A"));
+        assertTrue(tree.search("Financeiro"));
+        assertTrue(tree.search("Academico"));
+        assertTrue(tree.search("Tesouraria"));
+        assertEquals(6, tree.size());
+        assertFalse(tree.nodes().isEmpty());
+        assertEquals(6, tree.nodes().length());
+        assertEquals(listStringExpected, tree.nodes().toString());
+        assertEquals(listStringExpected, tree.toList().toString());
+        assertEquals(treeStringExpected, tree.toString());
+    }
+
+    @Test
+    public void shouldRemoveNodeWithTwoElements() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected =
+                "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Teste 2]";
+        String treeStringExpected =
+                "Empresa A -> (Financeiro -> (Contas a pagar, Contas a receber -> (Teste 2)), Academico -> (Secretaria))";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Contas a pagar");
+        tree.insert("Contas a receber");
+        tree.insert("Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        tree.insert("Tesouraria", "Teste 2");
+        tree.remove("Tesouraria");
+        assertTrue(tree.search("Contas a receber"));
+        assertTrue(tree.search("Secretaria"));
+        assertTrue(tree.search("Contas a pagar"));
+        assertTrue(tree.search("Empresa A"));
+        assertTrue(tree.search("Teste 2"));
+        assertTrue(tree.search("Financeiro"));
+        assertTrue(tree.search("Academico"));
+        assertFalse(tree.search("Tesouraria"));
+        assertEquals(7, tree.size());
+        assertFalse(tree.nodes().isEmpty());
+        assertEquals(7, tree.nodes().length());
+        assertEquals(listStringExpected, tree.nodes().toString());
+        assertEquals(listStringExpected, tree.toList().toString());
+        assertEquals(treeStringExpected, tree.toString());
+    }
+
+    @Test
+    public void shouldRemoveRootBalanced() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected = "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria, Conta 1, Conta 2, Conta receber 2, Arquivo, Arquivo 1, Arquivo 2, Secretaria 1, Secretaria 2]";
+        String treeStringExpected = "" +
+                "Financeiro -> (Contas a pagar -> (Conta 1 -> (Contas a receber -> (Tesouraria, Conta receber 2)), Conta 2), Academico -> (Secretaria -> (Secretaria 1, Secretaria 2), Arquivo -> (Arquivo 1, Arquivo 2)))";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Contas a pagar");
+        tree.insert("Contas a receber");
+        tree.insert("Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        tree.insert("Contas a pagar", "Conta 1");
+        tree.insert("Contas a pagar", "Conta 2");
+        tree.insert("Contas a receber", "Conta receber 2");
+        tree.insert("Arquivo");
+        tree.insert("Arquivo", "Arquivo 1");
+        tree.insert("Arquivo", "Arquivo 2");
+        tree.insert("Secretaria", "Secretaria 1");
+        tree.insert("Secretaria", "Secretaria 2");
+        tree.remove("Empresa A");
+        assertTrue(tree.search("Financeiro"));
+        assertTrue(tree.search("Academico"));
+        assertTrue(tree.search("Contas a pagar"));
+        assertTrue(tree.search("Contas a receber"));
+        assertTrue(tree.search("Secretaria"));
+        assertTrue(tree.search("Financeiro"));
+        assertFalse(tree.search("Empresa A"));
+        assertTrue(tree.search("Tesouraria"));
+        assertTrue(tree.search("Conta 1"));
+        assertTrue(tree.search("Conta 2"));
+        assertTrue(tree.search("Conta receber 2"));
+        assertTrue(tree.search("Arquivo"));
+        assertTrue(tree.search("Arquivo 1"));
+        assertTrue(tree.search("Arquivo 2"));
+        assertTrue(tree.search("Secretaria 1"));
+        assertTrue(tree.search("Secretaria 2"));
+        assertEquals(14, tree.size());
+        assertFalse(tree.nodes().isEmpty());
+        assertEquals(14, tree.nodes().length());
+        assertEquals(listStringExpected, tree.nodes().toString());
+        assertEquals(listStringExpected, tree.toList().toString());
+        assertEquals(treeStringExpected, tree.toString());
     }
 }
