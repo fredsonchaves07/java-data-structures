@@ -81,16 +81,6 @@ public class LinkedBinaryTree<T> implements Tree<T> {
     }
 
     @Override
-    public boolean isInternal(Node<T> node) {
-        return false;
-    }
-
-    @Override
-    public boolean isExternal(Node<T> node) {
-        return false;
-    }
-
-    @Override
     public boolean isRoot(T nodeElement) {
         return root.getElement().equals(nodeElement);
     }

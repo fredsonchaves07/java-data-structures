@@ -309,4 +309,82 @@ public class LinkedBinaryTreeTest {
         assertEquals(listStringExpected, tree.toList().toString());
         assertEquals(treeStringExpected, tree.toString());
     }
+
+    @Test
+    public void shouldGetDepthRootElement() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertEquals(0, tree.depth(tree.root()));
+    }
+
+    @Test
+    public void shouldGetDepthElementInTree() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertEquals(2, tree.depth("Contas a pagar"));
+    }
+
+    @Test
+    public void shouldGetDepthTree() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertEquals(3, tree.depth());
+    }
+
+    @Test
+    public void shouldGetHeightRootElement() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertEquals(3, tree.height(tree.root()));
+    }
+
+    @Test
+    public void shouldGetHeightElementInTree() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertEquals(2, tree.height("Financeiro"));
+    }
+
+    @Test
+    public void shouldGetHeightTree(){
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertEquals(3, tree.height());
+    }
 }

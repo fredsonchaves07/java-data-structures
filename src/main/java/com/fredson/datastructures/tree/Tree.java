@@ -24,10 +24,6 @@ public interface Tree<T> extends DataStructure<T> {
 
     List<T> children(T node);
 
-    boolean isInternal(Node<T> node);
-
-    boolean isExternal(Node<T> node);
-
     //TODO -> Implementar cenários de teste
     boolean isRoot(T nodeElement);
 
@@ -45,21 +41,39 @@ public interface Tree<T> extends DataStructure<T> {
 
     boolean search(T element);
 
-    //TODO -> Alterar a implementação
-//    default int depth(Node<T> node) {
-//        if (this.isEmpty()) return 0;
-//        return 1 + depth(this.parent(node));
-//    }
+    default int depth(T nodeElement) {
+        if (isEmpty()) {
+            return 0;
+        }
+        if (isRoot(nodeElement)) {
+            return 0;
+        }
+        if (nodeElement == null) {
+            return 0;
+        }
+        return 1 + depth(getFirstParent(nodeElement));
+    }
 
-    //TODO -> Alterar implementação
-//    default int height(Node<T> node) {
-//        if (this.isExternal(node)) return 0;
-//        int heigh = 0;
-//        while (this.children(node).iterator().hasNext()) {
-//            heigh = Math.max(heigh, height(this.children(node).iterator().next()));
-//        }
-//        return 1 + heigh;
-//    }
+    default int depth() {
+        return depth(nodes().getElement(size() - 1));
+    }
+
+    default int height(T nodeElement) {
+        if (isEmpty()) return 0;
+        if (nodeElement == null);
+        int heigh = 0;
+        List<T> children = children(nodeElement);
+        if (children.isEmpty()) return 0;
+        while (children.iterator().hasNext()) {
+            T next = children.iterator().next();
+            heigh = Math.max(heigh, height(next));
+        }
+        return 1 + heigh;
+    }
+
+    default int height() {
+        return height(root());
+    }
 
     default List<T> preOrder() {
         List<T> elements = new ArrayList<>();
