@@ -4,7 +4,6 @@ import com.fredson.datastructures.DataStructure;
 import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
-import com.fredson.models.Node;
 
 public interface Tree<T> extends DataStructure<T> {
 
@@ -12,7 +11,7 @@ public interface Tree<T> extends DataStructure<T> {
 
     void insert(T nodeElement, T element);
 
-    T replace(Node<T> node, T element);
+//    T replace(T nodeElement, T element);
 
     T root();
 

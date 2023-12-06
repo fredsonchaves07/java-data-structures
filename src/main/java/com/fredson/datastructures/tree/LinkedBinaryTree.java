@@ -4,7 +4,6 @@ import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
 import com.fredson.models.DoublyNode;
-import com.fredson.models.Node;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,11 +16,6 @@ public class LinkedBinaryTree<T> implements Tree<T> {
     private final Map<T, DoublyNode<T>> nodes = new LinkedHashMap<>();
 
     private int size;
-
-    @Override
-    public T replace(Node<T> node, T element) {
-        return null;
-    }
 
     @Override
     public T root() {
@@ -191,7 +185,6 @@ public class LinkedBinaryTree<T> implements Tree<T> {
 
 
     @Override
-    //TODO -> Realizar testes de remoção de um elemento root
     public void remove(T element) {
         if (nodes.containsKey(element)) {
             removeNode(element);
