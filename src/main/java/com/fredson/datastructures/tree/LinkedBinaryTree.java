@@ -33,7 +33,17 @@ public class LinkedBinaryTree<T> implements Tree<T> {
 
     @Override
     public List<T> parent(T node) {
-        return null;
+        List<T> list = new ArrayList<>();
+        if (nodes.containsKey(node)) parentNode(node, list);
+        return list;
+    }
+
+    private void parentNode(T node, List<T> listNode) {
+        T firstParent = getFirstParent(node);
+        if (firstParent != null) {
+            listNode.push(firstParent);
+            parentNode(firstParent, listNode);
+        }
     }
 
     @Override

@@ -387,4 +387,48 @@ public class LinkedBinaryTreeTest {
         tree.insert("Contas a receber", "Tesouraria");
         assertEquals(3, tree.height());
     }
+
+    @Test
+    public void shouldGetRootElement() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertTrue(tree.isRoot("Empresa A"));
+        assertFalse(tree.isRoot("Academico"));
+    }
+
+    @Test
+    public void shouldGetParentsElement() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected = "[Contas a receber, Financeiro, Empresa A]";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertFalse(tree.parent("Tesouraria").isEmpty());
+        assertEquals(listStringExpected, tree.parent("Tesouraria").toString());
+    }
+
+    @Test
+    public void notShouldGetParentsRootElement() {
+        Tree<String> tree = new LinkedBinaryTree<>();
+        String listStringExpected = "[]";
+        tree.insert("Empresa A");
+        tree.insert("Financeiro");
+        tree.insert("Academico");
+        tree.insert("Financeiro", "Contas a pagar");
+        tree.insert("Financeiro", "Contas a receber");
+        tree.insert("Academico", "Secretaria");
+        tree.insert("Contas a receber", "Tesouraria");
+        assertTrue(tree.parent("Empresa A").isEmpty());
+        assertEquals(listStringExpected, tree.parent("Empresa A").toString());
+    }
 }

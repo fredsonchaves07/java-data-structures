@@ -24,7 +24,6 @@ public interface Tree<T> extends DataStructure<T> {
 
     List<T> children(T node);
 
-    //TODO -> Implementar cenários de teste
     boolean isRoot(T nodeElement);
 
     int size();
