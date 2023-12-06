@@ -42,15 +42,9 @@ public interface Tree<T> extends DataStructure<T> {
     boolean search(T element);
 
     default int depth(T nodeElement) {
-        if (isEmpty()) {
-            return 0;
-        }
-        if (isRoot(nodeElement)) {
-            return 0;
-        }
-        if (nodeElement == null) {
-            return 0;
-        }
+        if (isEmpty()) return 0;
+        if (isRoot(nodeElement)) return 0;
+        if (nodeElement == null) return 0;
         return 1 + depth(getFirstParent(nodeElement));
     }
 
