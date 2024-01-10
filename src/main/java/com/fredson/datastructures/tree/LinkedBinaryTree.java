@@ -10,12 +10,12 @@ import java.util.Map;
 
 public class LinkedBinaryTree<T> implements Tree<T> {
 
-    private DoublyNode<T> root;
+    protected DoublyNode<T> root;
 
     //TODO -> Alterar a implementação do HashMap para estrutura de dados própria
-    private final Map<T, DoublyNode<T>> nodes = new LinkedHashMap<>();
+    protected final Map<T, DoublyNode<T>> nodes = new LinkedHashMap<>();
 
-    private int size;
+    protected int size;
 
     @Override
     public T root() {

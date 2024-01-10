@@ -4,14 +4,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LinkedBinaryTreeTest {
+public class BinarySearchTreeTest {
 
     @Test
-    public void shouldCreateBinaryTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+    public void shouldCreateBinarySearchTree() {
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected = "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria]";
         String treeStringExpected = "" +
-                "Empresa A -> (Financeiro -> (Contas a pagar, Contas a receber), Academico -> (Secretaria))";
+                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Contas a receber)))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -27,12 +27,12 @@ public class LinkedBinaryTreeTest {
     }
 
     @Test
-    public void shouldInsertNodesInBinaryTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+    public void shouldInsertNodesInBinarySearchTree() {
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Contas a pagar, Contas a receber -> (Tesouraria)), Academico -> (Secretaria))";
+                "Empresa A -> (Financeiro -> (Contas a pagar -> (Contas a receber -> (Tesouraria))), Academico -> (Secretaria))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -50,7 +50,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldPrintNodesInOrderInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected
                 = "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         tree.insert("Empresa A");
@@ -65,9 +65,9 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldPrintNodesPreOrderInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
-                "[Empresa A, Financeiro, Contas a pagar, Contas a receber, Tesouraria, Academico, Secretaria]";
+                "[Empresa A, Financeiro, Secretaria, Academico, Contas a pagar, Contas a receber, Tesouraria]";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -80,9 +80,9 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldPrintNodesPosOrderInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
-                "[Contas a pagar, Tesouraria, Contas a receber, Financeiro, Secretaria, Academico, Empresa A]";
+                "[Secretaria, Financeiro, Tesouraria, Contas a receber, Contas a pagar, Academico, Empresa A]";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -95,8 +95,8 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldReturnMinValueInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
-        String expected = "Contas a pagar";
+        Tree<String> tree = new BinarySearchTree<>();
+        String expected = "Secretaria";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -109,7 +109,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldReturnMaxValueInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String expected = "Academico";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
@@ -123,7 +123,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldSearchElementInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -143,11 +143,11 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void notShouldRemoveElementInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Contas a pagar, Contas a receber -> (Tesouraria)), Academico -> (Secretaria))";
+                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria))))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -174,11 +174,11 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldRemoveElementInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Contas a pagar, Tesouraria), Academico -> (Secretaria))";
+                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Tesouraria)))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -204,11 +204,11 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldRemoveRootElementInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
                 "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Financeiro -> (Contas a pagar -> (Contas a receber -> (Tesouraria)), Academico -> (Secretaria))";
+                "Financeiro -> (Secretaria, Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria))))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -234,11 +234,11 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldRemoveNodeWithTwoElements() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Teste 2]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Contas a pagar, Contas a receber -> (Teste 2)), Academico -> (Secretaria))";
+                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Contas a receber -> (Teste 2))))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -266,10 +266,10 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldRemoveRootBalanced() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected = "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria, Conta 1, Conta 2, Conta receber 2, Arquivo, Arquivo 1, Arquivo 2, Secretaria 1, Secretaria 2]";
         String treeStringExpected = "" +
-                "Financeiro -> (Contas a pagar -> (Conta 1 -> (Contas a receber -> (Tesouraria, Conta receber 2)), Conta 2), Academico -> (Secretaria -> (Secretaria 1, Secretaria 2), Arquivo -> (Arquivo 1, Arquivo 2)))";
+                "Financeiro -> (Secretaria -> (Secretaria 1 -> (Secretaria 2)), Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria, Conta receber 2), Conta 1 -> (Conta 2, Arquivo -> (Arquivo 1 -> (Arquivo 2))))))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -312,7 +312,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldGetDepthRootElement() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -325,7 +325,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldGetDepthElementInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -338,7 +338,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldGetDepthTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -346,12 +346,12 @@ public class LinkedBinaryTreeTest {
         tree.insert("Financeiro", "Contas a receber");
         tree.insert("Academico", "Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
-        assertEquals(3, tree.depth());
+        assertEquals(4, tree.depth());
     }
 
     @Test
     public void shouldGetHeightRootElement() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -359,12 +359,12 @@ public class LinkedBinaryTreeTest {
         tree.insert("Financeiro", "Contas a receber");
         tree.insert("Academico", "Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
-        assertEquals(3, tree.height(tree.root()));
+        assertEquals(4, tree.height(tree.root()));
     }
 
     @Test
     public void shouldGetHeightElementInTree() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -372,12 +372,12 @@ public class LinkedBinaryTreeTest {
         tree.insert("Financeiro", "Contas a receber");
         tree.insert("Academico", "Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
-        assertEquals(2, tree.height("Financeiro"));
+        assertEquals(3, tree.height("Financeiro"));
     }
 
     @Test
     public void shouldGetHeightTree(){
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -385,12 +385,12 @@ public class LinkedBinaryTreeTest {
         tree.insert("Financeiro", "Contas a receber");
         tree.insert("Academico", "Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
-        assertEquals(3, tree.height());
+        assertEquals(4, tree.height());
     }
 
     @Test
     public void shouldGetRootElement() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -404,8 +404,8 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void shouldGetParentsElement() {
-        Tree<String> tree = new LinkedBinaryTree<>();
-        String listStringExpected = "[Contas a receber, Financeiro, Empresa A]";
+        Tree<String> tree = new BinarySearchTree<>();
+        String listStringExpected = "[Contas a receber, Contas a pagar, Financeiro, Empresa A]";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -419,7 +419,7 @@ public class LinkedBinaryTreeTest {
 
     @Test
     public void notShouldGetParentsRootElement() {
-        Tree<String> tree = new LinkedBinaryTree<>();
+        Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected = "[]";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
