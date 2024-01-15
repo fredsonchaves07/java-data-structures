@@ -13,6 +13,7 @@
 - É um tipo especial de árvore binária, também conhecida como heap binário
 - Comumente aplicada em filas de prioridades por causa de sua eficiência para extrair rapidamente os valores mínimo e máximo
 - Também é usado no algoritmo de heap sort
+- Embora o heap binário seja uma árvore binária, ele não é necessariamente uma árvore binária de busca
 
 ### Propriedades
 
