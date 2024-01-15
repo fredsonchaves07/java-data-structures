@@ -18,3 +18,5 @@
 
 - Uma árvore binária completa, o que significa que todos os níveis da árvore têm filhos à esquerda e à direita (com exceção dos filhos no último nível) e o último nível tem todos os filhos o máximo possível à esquerda. Conhecido como pripriedade de forma
 - Um heap binário é um heap mínimo ou um heap máximo. O Heap mínimo permite extrair rapidamente o valor mínimo de uma árvore, enquanto o heap máximo permite extrair rapidamente o valor máximo dela
+
+![image HO0WH2](https://github.com/fredsonchaves07/java-datastructures/assets/43495376/5cae018b-2739-4202-97aa-bbc2225d80cd)
