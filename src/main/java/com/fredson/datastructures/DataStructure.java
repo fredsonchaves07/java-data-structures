@@ -4,7 +4,9 @@ import com.fredson.datastructures.iterator.Iterator;
 
 public interface DataStructure<T> {
 
-    int size();
+    int length();
+
+    boolean isEmpty();
 
     Iterator<T> iterator();
 }

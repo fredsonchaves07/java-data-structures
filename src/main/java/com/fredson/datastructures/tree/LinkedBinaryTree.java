@@ -74,7 +74,7 @@ public class LinkedBinaryTree<T> implements Tree<T> {
     }
 
     @Override
-    public int size() {
+    public int length() {
         return size;
     }
 

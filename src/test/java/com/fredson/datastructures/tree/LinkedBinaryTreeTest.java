@@ -18,7 +18,7 @@ public class LinkedBinaryTreeTest {
         tree.insert("Contas a pagar");
         tree.insert("Contas a receber");
         tree.insert("Secretaria");
-        assertEquals(6, tree.size());
+        assertEquals(6, tree.length());
         assertFalse(tree.isEmpty());
         assertEquals(6, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
@@ -40,7 +40,7 @@ public class LinkedBinaryTreeTest {
         tree.insert("Financeiro", "Contas a receber");
         tree.insert("Academico", "Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
-        assertEquals(7, tree.size());
+        assertEquals(7, tree.length());
         assertFalse(tree.isEmpty());
         assertEquals(7, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
@@ -164,7 +164,7 @@ public class LinkedBinaryTreeTest {
         assertTrue(tree.search("Academico"));
         assertTrue(tree.search("Contas a receber"));
         assertFalse(tree.search("Administrativo"));
-        assertEquals(7, tree.size());
+        assertEquals(7, tree.length());
         assertFalse(tree.nodes().isEmpty());
         assertEquals(7, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
@@ -194,7 +194,7 @@ public class LinkedBinaryTreeTest {
         assertTrue(tree.search("Financeiro"));
         assertTrue(tree.search("Academico"));
         assertTrue(tree.search("Tesouraria"));
-        assertEquals(6, tree.size());
+        assertEquals(6, tree.length());
         assertFalse(tree.nodes().isEmpty());
         assertEquals(6, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
@@ -224,7 +224,7 @@ public class LinkedBinaryTreeTest {
         assertTrue(tree.search("Financeiro"));
         assertTrue(tree.search("Academico"));
         assertTrue(tree.search("Tesouraria"));
-        assertEquals(6, tree.size());
+        assertEquals(6, tree.length());
         assertFalse(tree.nodes().isEmpty());
         assertEquals(6, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
@@ -256,7 +256,7 @@ public class LinkedBinaryTreeTest {
         assertTrue(tree.search("Financeiro"));
         assertTrue(tree.search("Academico"));
         assertFalse(tree.search("Tesouraria"));
-        assertEquals(7, tree.size());
+        assertEquals(7, tree.length());
         assertFalse(tree.nodes().isEmpty());
         assertEquals(7, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
@@ -302,7 +302,7 @@ public class LinkedBinaryTreeTest {
         assertTrue(tree.search("Arquivo 2"));
         assertTrue(tree.search("Secretaria 1"));
         assertTrue(tree.search("Secretaria 2"));
-        assertEquals(14, tree.size());
+        assertEquals(14, tree.length());
         assertFalse(tree.nodes().isEmpty());
         assertEquals(14, tree.nodes().length());
         assertEquals(listStringExpected, tree.nodes().toString());
