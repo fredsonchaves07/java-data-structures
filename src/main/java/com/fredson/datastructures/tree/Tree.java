@@ -25,10 +25,6 @@ public interface Tree<T> extends DataStructure<T> {
 
     boolean isRoot(T nodeElement);
 
-    int size();
-
-    boolean isEmpty();
-
     Iterator<T> iterator();
 
     T min();
@@ -47,7 +43,7 @@ public interface Tree<T> extends DataStructure<T> {
     }
 
     default int depth() {
-        return depth(nodes().getElement(size() - 1));
+        return depth(nodes().getElement(length() - 1));
     }
 
     default int height(T nodeElement) {
