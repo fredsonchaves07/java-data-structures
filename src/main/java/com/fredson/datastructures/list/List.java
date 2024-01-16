@@ -1,8 +1,9 @@
 package com.fredson.datastructures.list;
 
+import com.fredson.datastructures.DataStructure;
 import com.fredson.datastructures.iterator.Iterator;
 
-public interface List<T> {
+public interface List<T> extends DataStructure<T> {
 
     void push(T element);
 
@@ -17,10 +18,6 @@ public interface List<T> {
     T getElement(int index);
 
     T getElement(T element);
-
-    int length();
-
-    boolean isEmpty();
 
     void clear();
 

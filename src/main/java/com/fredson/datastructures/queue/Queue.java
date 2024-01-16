@@ -1,8 +1,8 @@
 package com.fredson.datastructures.queue;
 
-import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.DataStructure;
 
-public interface Queue<T> extends Cloneable {
+public interface Queue<T> extends Cloneable, DataStructure<T> {
 
     void enqueue(T element);
 
@@ -10,13 +10,7 @@ public interface Queue<T> extends Cloneable {
 
     T peek();
 
-    boolean isEmpty();
-
-    int length();
-
     void clear();
-
-    Iterator<T> iterator();
 
     Queue<T> clone();
 }
