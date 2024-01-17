@@ -22,4 +22,6 @@ public interface List<T> extends DataStructure<T> {
     void clear();
 
     Iterator<T> iterator();
+
+    List<T> clone();
 }

@@ -162,4 +162,15 @@ public class ArrayList<T> implements List<T> {
         iterator = new ListIterator(this);
         return iterator;
     }
+
+    @Override
+    public List<T> clone() {
+        List<T> list;
+        try {
+            list = (List<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            list = new ArrayList<>();
+        }
+        return list;
+    }
 }
