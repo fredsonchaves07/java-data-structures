@@ -79,6 +79,9 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void addElementIndex(T element, int index) {
+        if (elements[index] == null) {
+            length ++;
+        }
         elements[index] = element;
         length ++;
     }
