@@ -83,7 +83,6 @@ public class ArrayList<T> implements List<T> {
             length ++;
         }
         elements[index] = element;
-        length ++;
     }
 
     @Override
