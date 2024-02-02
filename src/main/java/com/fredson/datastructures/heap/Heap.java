@@ -2,6 +2,7 @@ package com.fredson.datastructures.heap;
 
 import com.fredson.datastructures.DataStructure;
 import com.fredson.datastructures.list.List;
+import com.fredson.datastructures.tree.Tree;
 
 public interface Heap<T> extends DataStructure<T> {
 
@@ -12,6 +13,8 @@ public interface Heap<T> extends DataStructure<T> {
     T find();
 
     List<T> toList();
+
+    Tree<T> toTree();
 
     default int getLeftIndex(int index) {
         return 2 * index + 1;

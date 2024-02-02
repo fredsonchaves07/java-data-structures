@@ -1,8 +1,20 @@
 package com.fredson.datastructures.tree;
 
+import com.fredson.datastructures.heap.Heap;
+import com.fredson.datastructures.list.List;
 import com.fredson.models.DoublyNode;
 
 public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<T> {
+
+    public BinarySearchTree() {}
+
+    public BinarySearchTree(Heap<T> heap) {
+        List<T> heapList = heap.toList().clone();
+        while (heapList.iterator().hasNext()) {
+            T element = heapList.iterator().next();
+            insert(element);
+        }
+    }
 
     @Override
     public void insert(T nodeElement, T element) {
