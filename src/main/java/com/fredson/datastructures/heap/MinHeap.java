@@ -7,7 +7,7 @@ import com.fredson.datastructures.tree.BinarySearchTree;
 import com.fredson.datastructures.tree.Tree;
 
 
-public class MinHeap<T extends Comparable<T>> implements Heap<T>{
+public class MinHeap<T extends Comparable<T>> implements Heap<T> {
 
     private final List<T> heap = new ArrayList<>();
 
