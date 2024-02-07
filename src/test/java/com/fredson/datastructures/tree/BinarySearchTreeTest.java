@@ -11,7 +11,7 @@ public class BinarySearchTreeTest {
         Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected = "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria]";
         String treeStringExpected = "" +
-                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Contas a receber)))";
+                "Empresa A -> (Academico -> (Contas a pagar -> (Contas a receber)), Financeiro -> (Secretaria))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -32,7 +32,7 @@ public class BinarySearchTreeTest {
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Contas a pagar -> (Contas a receber -> (Tesouraria))), Academico -> (Secretaria))";
+                "Empresa A -> (Academico -> (Secretaria), Financeiro -> (Contas a pagar -> (Contas a receber -> (Tesouraria))))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -67,7 +67,7 @@ public class BinarySearchTreeTest {
     public void shouldPrintNodesPreOrderInTree() {
         Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
-                "[Empresa A, Financeiro, Secretaria, Academico, Contas a pagar, Contas a receber, Tesouraria]";
+                "[Empresa A, Academico, Contas a pagar, Contas a receber, Tesouraria, Financeiro, Secretaria]";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -82,7 +82,7 @@ public class BinarySearchTreeTest {
     public void shouldPrintNodesPosOrderInTree() {
         Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
-                "[Secretaria, Financeiro, Tesouraria, Contas a receber, Contas a pagar, Academico, Empresa A]";
+                "[Tesouraria, Contas a receber, Contas a pagar, Academico, Secretaria, Financeiro, Empresa A]";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -96,7 +96,7 @@ public class BinarySearchTreeTest {
     @Test
     public void shouldReturnMinValueInTree() {
         Tree<String> tree = new BinarySearchTree<>();
-        String expected = "Secretaria";
+        String expected = "Academico";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -110,7 +110,7 @@ public class BinarySearchTreeTest {
     @Test
     public void shouldReturnMaxValueInTree() {
         Tree<String> tree = new BinarySearchTree<>();
-        String expected = "Academico";
+        String expected = "Secretaria";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -147,7 +147,7 @@ public class BinarySearchTreeTest {
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria))))";
+                "Empresa A -> (Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria))), Financeiro -> (Secretaria))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -178,7 +178,7 @@ public class BinarySearchTreeTest {
         String listStringExpected =
                 "[Empresa A, Financeiro, Academico, Contas a pagar, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Tesouraria)))";
+                "Empresa A -> (Academico -> (Contas a pagar -> (Tesouraria)), Financeiro -> (Secretaria))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -208,7 +208,7 @@ public class BinarySearchTreeTest {
         String listStringExpected =
                 "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria]";
         String treeStringExpected =
-                "Financeiro -> (Secretaria, Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria))))";
+                "Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria)), Financeiro -> (Secretaria))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -236,9 +236,9 @@ public class BinarySearchTreeTest {
     public void shouldRemoveNodeWithTwoElements() {
         Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected =
-                "[Empresa A, Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Teste 2]";
+                "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria, Teste 2]";
         String treeStringExpected =
-                "Empresa A -> (Financeiro -> (Secretaria), Academico -> (Contas a pagar -> (Contas a receber -> (Teste 2))))";
+                "Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria -> (Teste 2))), Financeiro -> (Secretaria))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
@@ -247,15 +247,15 @@ public class BinarySearchTreeTest {
         tree.insert("Secretaria");
         tree.insert("Contas a receber", "Tesouraria");
         tree.insert("Tesouraria", "Teste 2");
-        tree.remove("Tesouraria");
+        tree.remove("Empresa A");
         assertTrue(tree.search("Contas a receber"));
         assertTrue(tree.search("Secretaria"));
         assertTrue(tree.search("Contas a pagar"));
-        assertTrue(tree.search("Empresa A"));
+        assertFalse(tree.search("Empresa A"));
         assertTrue(tree.search("Teste 2"));
         assertTrue(tree.search("Financeiro"));
         assertTrue(tree.search("Academico"));
-        assertFalse(tree.search("Tesouraria"));
+        assertTrue(tree.search("Tesouraria"));
         assertEquals(7, tree.length());
         assertFalse(tree.nodes().isEmpty());
         assertEquals(7, tree.nodes().length());
@@ -269,7 +269,7 @@ public class BinarySearchTreeTest {
         Tree<String> tree = new BinarySearchTree<>();
         String listStringExpected = "[Financeiro, Academico, Contas a pagar, Contas a receber, Secretaria, Tesouraria, Conta 1, Conta 2, Conta receber 2, Arquivo, Arquivo 1, Arquivo 2, Secretaria 1, Secretaria 2]";
         String treeStringExpected = "" +
-                "Financeiro -> (Secretaria -> (Secretaria 1 -> (Secretaria 2)), Academico -> (Contas a pagar -> (Contas a receber -> (Tesouraria, Conta receber 2), Conta 1 -> (Conta 2, Arquivo -> (Arquivo 1 -> (Arquivo 2))))))";
+                "Academico -> (Contas a pagar -> (Conta 1 -> (Arquivo -> (Arquivo 1 -> (Arquivo 2)), Conta 2), Contas a receber -> (Conta receber 2, Tesouraria)), Financeiro -> (Secretaria -> (Secretaria 1 -> (Secretaria 2))))";
         tree.insert("Empresa A");
         tree.insert("Financeiro");
         tree.insert("Academico");
