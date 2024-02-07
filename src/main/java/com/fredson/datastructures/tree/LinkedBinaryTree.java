@@ -173,7 +173,7 @@ public class LinkedBinaryTree<T> implements Tree<T> {
     private void removeNodeIfTreeHas1Element(T element, T parent, List<T> children) {
         DoublyNode<T> nodeAux = nodes.get(children.getElement(0));
         DoublyNode<T> nodeParent = nodes.get(parent);
-        if (nodeParent.getPrevNode().getElement().equals(element)) nodeParent.setPrevNode(nodeAux);
+        if (nodeParent.getPrevNode() != null && nodeParent.getPrevNode().getElement().equals(element)) nodeParent.setPrevNode(nodeAux);
         else nodeParent.setNextNode(nodeAux);
     }
 
