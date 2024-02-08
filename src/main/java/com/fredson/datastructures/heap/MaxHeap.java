@@ -175,4 +175,15 @@ public class MaxHeap<T extends Comparable<T>> implements Heap<T> {
         }
         return treeString;
     }
+
+    @Override
+    public Heap<T> clone() {
+        Heap<T> queue;
+        try {
+            queue = (Heap<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            queue = new MaxHeap<>();
+        }
+        return queue;
+    }
 }
