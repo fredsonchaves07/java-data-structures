@@ -1,6 +1,5 @@
 package com.fredson.datastructures.iterator;
 
-import com.fredson.datastructures.queue.ArrayQueue;
 import com.fredson.datastructures.queue.Queue;
 
 public class QueueIterator<T> implements Iterator<T> {
@@ -14,7 +13,7 @@ public class QueueIterator<T> implements Iterator<T> {
     private int lengthStack;
 
     public QueueIterator(Queue<T> queue) {
-        this.queue = new ArrayQueue<>((Queue<T>) queue.clone()) ;
+        this.queue = queue.clone() ;
         this.originalQueue = queue;
         this.lengthStack = queue.length();
         if (!this.queue.isEmpty()) {
@@ -25,7 +24,7 @@ public class QueueIterator<T> implements Iterator<T> {
     @Override
     public boolean hasNext() {
         if (originalQueue.length() > lengthStack) return true;
-        if (originalQueue.length() < lengthStack && !element.equals(originalQueue.peek())) return false;
+        if (originalQueue.length() < lengthStack && element != null && !element.equals(originalQueue.peek())) return false;
         return element != null;
     }
 
@@ -35,12 +34,16 @@ public class QueueIterator<T> implements Iterator<T> {
             lengthStack = originalQueue.length();
             increaseElementInQueue(originalQueue);
             element = queue.dequeue();
-        } else if (originalQueue.length() < lengthStack && !originalQueue.peek().equals(element)) {
+        } else if (originalQueue.length() < lengthStack & element == null) {
+            lengthStack = originalQueue.length();
+            element = null;
+        } else if (originalQueue.length() < lengthStack  && (originalQueue.peek() == null || !originalQueue.peek().equals(element))) {
             lengthStack = originalQueue.length();
             element = null;
         }
         T actualElement = element;
         element = queue.dequeue();
+        originalQueue.dequeue();
         return actualElement;
     }
 
@@ -49,7 +52,6 @@ public class QueueIterator<T> implements Iterator<T> {
         while (!queueAux.isEmpty()) {
             if (queueAux.length() == 1) {
                 queue.enqueue(queueAux.dequeue());
-
             }
             queueAux.dequeue();
         }
