@@ -292,6 +292,17 @@ public class LinkedList<T> implements List<T> {
         return iterator;
     }
 
+    @Override
+    public List<T> clone() {
+        List<T> list;
+        try {
+            list = (List<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            list = new com.fredson.datastructures.list.ArrayList<>();
+        }
+        return list;
+    }
+
     private void clear(Node<T> node) {
         if (node.getNextNode() != null) {
             clear(node.getNextNode());

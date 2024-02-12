@@ -4,7 +4,7 @@ import com.fredson.datastructures.list.List;
 import com.fredson.datastructures.queue.LinkedQueue;
 import com.fredson.datastructures.queue.Queue;
 
-public class ListIterator<T> implements Iterator<T> {
+public class ListIterator<T extends Comparable<T>> implements Iterator<T> {
 
     private T element;
 

@@ -79,8 +79,10 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void addElementIndex(T element, int index) {
+        if (elements[index] == null) {
+            length ++;
+        }
         elements[index] = element;
-        length ++;
     }
 
     @Override
@@ -161,5 +163,16 @@ public class ArrayList<T> implements List<T> {
             return iterator;
         iterator = new ListIterator(this);
         return iterator;
+    }
+
+    @Override
+    public List<T> clone() {
+        List<T> list;
+        try {
+            list = (List<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            list = new ArrayList<>();
+        }
+        return list;
     }
 }
