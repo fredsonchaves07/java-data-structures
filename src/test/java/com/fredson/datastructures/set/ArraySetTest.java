@@ -62,14 +62,70 @@ public class ArraySetTest {
         set.add("Kotlin");
         set.add("C++");
         assertEquals(5, set.length());
-        set.delete("Py");
+        set.delete("Python");
         set.delete("Java");
         assertFalse(set.hasElement("Java"));
-        assertFalse(set.hasElement("Javascript"));
+        assertFalse(set.hasElement("Python"));
         assertEquals(3, set.length());
         set.add("Java");
         assertTrue(set.hasElement("Java"));
         set.delete("C");
         assertFalse(set.hasElement("C"));
+    }
+
+    @Test
+    public void shouldClearSet() {
+        Set<String> set = new ArraySet<>();
+        set.add("Java");
+        set.add("Python");
+        set.add("Javascript");
+        set.add("C");
+        set.clear();
+        assertTrue(set.isEmpty());
+    }
+
+    @Test
+    public void shouldAddElementAfterClearSet() {
+        Set<String> set = new ArraySet<>();
+        set.add("Java");
+        set.add("Python");
+        set.add("Javascript");
+        set.add("C");
+        set.clear();
+        assertTrue(set.isEmpty());
+        set.add("Python");
+        set.add("Javascript");
+        assertFalse(set.isEmpty());
+        assertEquals(2, set.length());
+    }
+
+    @Test
+    public void shouldGetElements() {
+        Set<String> set = new ArraySet<>();
+        String expected = "[Java, Python, Javascript, C]";
+        set.add("Java");
+        set.add("Python");
+        set.add("Javascript");
+        set.add("C");
+        assertEquals(expected, set.values().toString());
+    }
+
+    @Test
+    public void unionSet() {
+        Set<String> set1 = new ArraySet<>();
+        Set<String> set2 = new ArraySet<>();
+        String expected = "[Java, Python, C]";
+        set1.add("Java");
+        set1.add("Python");
+        set2.add("Java");
+        set2.add("Python");
+        set2.add("C");
+        Set<String> unionSet = set2.union(set1);
+        assertEquals(3, unionSet.length());
+        assertFalse(unionSet.isEmpty());
+        assertTrue(unionSet.hasElement("Java"));
+        assertTrue(unionSet.hasElement("Python"));
+        assertTrue(unionSet.hasElement("C"));
+        assertEquals(expected, unionSet.toString());
     }
 }
