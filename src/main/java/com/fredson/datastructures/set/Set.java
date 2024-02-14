@@ -1,6 +1,7 @@
 package com.fredson.datastructures.set;
 
 import com.fredson.datastructures.DataStructure;
+import com.fredson.datastructures.list.List;
 
 public interface Set<T> extends DataStructure<T> {
 
@@ -12,5 +13,7 @@ public interface Set<T> extends DataStructure<T> {
 
     void clear();
 
-    T[] values();
+    List<T> values();
+
+    Set<T> union(Set<T> set);
 }
