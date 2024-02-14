@@ -93,12 +93,24 @@ public class ArraySet<T> implements Set<T> {
 
     @Override
     public void clear() {
-
+        elements = (T[]) new Object[10];
+        length = 0;
     }
 
     @Override
-    public T[] values() {
-        return null;
+    public List<T> values() {
+        return new ArrayList<>(elements);
+    }
+
+    @Override
+    public Set<T> union(Set<T> set) {
+        Set<T> unionSet = new ArraySet<>(set);
+        List<T> elements = values().clone();
+        while (elements.iterator().hasNext()) {
+            T element = elements.iterator().next();
+            unionSet.add(element);
+        }
+        return unionSet;
     }
 
     @Override
