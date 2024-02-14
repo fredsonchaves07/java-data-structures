@@ -1,6 +1,8 @@
 package com.fredson.datastructures.set;
 
 import com.fredson.datastructures.iterator.Iterator;
+import com.fredson.datastructures.list.ArrayList;
+import com.fredson.datastructures.list.List;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -19,6 +21,15 @@ public class ArraySet<T> implements Set<T> {
 
     public ArraySet(int capacity) {
         elements = (T[]) new Object[capacity];
+    }
+
+    public ArraySet(Set<T> set) {
+        this(10);
+        List<T> elements = set.values().clone();
+        while (elements.iterator().hasNext()) {
+            T element = elements.iterator().next();
+            add(element);
+        }
     }
 
     @Override
@@ -49,7 +60,6 @@ public class ArraySet<T> implements Set<T> {
                     elements[index] = element;
                 }
             }
-            elements[length] = element;
             length++;
         }
     }
