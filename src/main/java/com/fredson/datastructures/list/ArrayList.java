@@ -25,7 +25,7 @@ public class ArrayList<T> implements List<T> {
         this.elements = (T[]) new Object[capacity];
     }
 
-    private ArrayList(T[] elements) {
+    public ArrayList(T[] elements) {
         this.elements = elements;
         this.capacity = elements.length;
         this.length = elements.length;
