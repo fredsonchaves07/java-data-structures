@@ -128,4 +128,63 @@ public class ArraySetTest {
         assertTrue(unionSet.hasElement("C"));
         assertEquals(expected, unionSet.toString());
     }
+
+    @Test
+    public void intersectionSet() {
+        Set<String> set1 = new ArraySet<>();
+        Set<String> set2 = new ArraySet<>();
+        String expected = "[Java, Python]";
+        set1.add("Java");
+        set1.add("Python");
+        set2.add("Java");
+        set2.add("Python");
+        set2.add("C");
+        Set<String> intersectionSet = set2.intersection(set1);
+        assertEquals(2, intersectionSet.length());
+        assertFalse(intersectionSet.isEmpty());
+        assertTrue(intersectionSet.hasElement("Java"));
+        assertTrue(intersectionSet.hasElement("Python"));
+        assertEquals(expected, intersectionSet.toString());
+    }
+
+    @Test
+    public void differenceSet() {
+        Set<String> set1 = new ArraySet<>();
+        Set<String> set2 = new ArraySet<>();
+        String expected = "[C]";
+        set1.add("Java");
+        set1.add("Python");
+        set1.add("C");
+        set2.add("Java");
+        set2.add("Python");
+        Set<String> intersectionSet = set1.difference(set2);
+        assertEquals(1, intersectionSet.length());
+        assertFalse(intersectionSet.isEmpty());
+        assertTrue(intersectionSet.hasElement("C"));
+        assertEquals(expected, intersectionSet.toString());
+    }
+
+    @Test
+    public void isSubSetOf() {
+        Set<String> set1 = new ArraySet<>();
+        Set<String> set2 = new ArraySet<>();
+        set1.add("Java");
+        set1.add("Python");
+        set2.add("Java");
+        set2.add("Python");
+        set2.add("C");
+        assertTrue(set1.isSubSetOf(set2));
+    }
+
+    @Test
+    public void isNotSubSetOf() {
+        Set<String> set1 = new ArraySet<>();
+        Set<String> set2 = new ArraySet<>();
+        set1.add("C++");
+        set1.add("Javascript");
+        set2.add("Java");
+        set2.add("Python");
+        set2.add("C");
+        assertFalse(set1.isSubSetOf(set2));
+    }
 }

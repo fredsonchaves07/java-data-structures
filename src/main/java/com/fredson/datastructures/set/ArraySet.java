@@ -105,12 +105,56 @@ public class ArraySet<T> implements Set<T> {
     @Override
     public Set<T> union(Set<T> set) {
         Set<T> unionSet = new ArraySet<>(set);
-        List<T> elements = values().clone();
+        List<T> elements = values();
         while (elements.iterator().hasNext()) {
             T element = elements.iterator().next();
             unionSet.add(element);
         }
         return unionSet;
+    }
+
+    @Override
+    public Set<T> intersection(Set<T> set) {
+        Set<T> intersectionSet = new ArraySet<>();
+        List<T> elements = getListElementsOfSmallerSet(set);
+        Set<T> setHasElement = getBigSet(set);
+        while (elements.iterator().hasNext()) {
+            T element = elements.iterator().next();
+            if (setHasElement.hasElement(element)) intersectionSet.add(element);
+        }
+        return intersectionSet;
+    }
+
+    private List<T> getListElementsOfSmallerSet(Set<T> otherSet) {
+        if (otherSet.length() < length) return otherSet.values();
+        return values();
+    }
+
+    private Set<T> getBigSet(Set<T> otherSet) {
+        if (otherSet.length() < length) return otherSet;
+        return this;
+    }
+
+    @Override
+    public Set<T> difference(Set<T> set) {
+        Set<T> differenceSet = new ArraySet<>();
+        List<T> elements = values();
+        while (elements.iterator().hasNext()) {
+            T element = elements.iterator().next();
+            if (!set.hasElement(element)) differenceSet.add(element);
+        }
+        return differenceSet;
+    }
+
+    @Override
+    public boolean isSubSetOf(Set<T> set) {
+        if (length() > set.length()) return false;
+        List<T> elements = values();
+        while (elements.iterator().hasNext()) {
+            T element = elements.iterator().next();
+            if (!set.hasElement(element)) return false;
+        }
+        return true;
     }
 
     @Override

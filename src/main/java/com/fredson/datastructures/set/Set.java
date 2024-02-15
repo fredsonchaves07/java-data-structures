@@ -16,4 +16,10 @@ public interface Set<T> extends DataStructure<T> {
     List<T> values();
 
     Set<T> union(Set<T> set);
+
+    Set<T> intersection(Set<T> set);
+
+    Set<T> difference(Set<T> set);
+
+    boolean isSubSetOf(Set<T> set);
 }
