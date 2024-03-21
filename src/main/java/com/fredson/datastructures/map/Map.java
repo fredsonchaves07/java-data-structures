@@ -3,6 +3,7 @@ package com.fredson.datastructures.map;
 import com.fredson.datastructures.DataStructure;
 import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.List;
+import com.fredson.models.KeyValue;
 
 public interface Map<E, T> extends DataStructure<E>, Iterator<E> {
 
@@ -20,5 +21,7 @@ public interface Map<E, T> extends DataStructure<E>, Iterator<E> {
 
     List<E> keys();
 
-    Iterator<T> forEach();
+    List<KeyValue<E, T>> keysValues();
+
+    Iterator<KeyValue<E, T>> forEach();
 }

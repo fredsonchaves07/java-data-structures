@@ -3,11 +3,11 @@ package com.fredson.datastructures.map;
 import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
-import com.fredson.models.Table;
+import com.fredson.models.KeyValue;
 
 public class DefaultMap<E, T> implements Map<E, T> {
 
-    private final List<Table<E, T>> tables = new ArrayList<>();
+    private final List<KeyValue<E, T>> keysValues = new ArrayList<>();
 
     public DefaultMap() {
 
@@ -15,12 +15,12 @@ public class DefaultMap<E, T> implements Map<E, T> {
 
     @Override
     public int length() {
-        return tables.length();
+        return keysValues.length();
     }
 
     @Override
     public boolean isEmpty() {
-        return tables.isEmpty();
+        return keysValues.isEmpty();
     }
 
     @Override
@@ -40,9 +40,10 @@ public class DefaultMap<E, T> implements Map<E, T> {
 
     @Override
     public void set(E key, T value) {
-        if (isEmpty() || (!hasKey(key) && key != null && value != null)) {
-            Table<E, T> table = new Table<>(key, value);
-            tables.push(table);
+        if (key == null || value == null) return;
+        if (isEmpty() || !hasKey(key)) {
+            KeyValue<E, T> keyValue = new KeyValue<>(key, value);
+            keysValues.push(keyValue);
         }
         else if (hasKey(key) && value != null) {
             setInExistingKey(key, value);
@@ -50,28 +51,36 @@ public class DefaultMap<E, T> implements Map<E, T> {
     }
 
     private void setInExistingKey(E key, T value) {
-        List<Table<E, T>> tables = this.tables.clone();
-        if (tables.iterator().hasNext()) {
-            Table<E, T> table = tables.iterator().next();
-            E nextKey = table.key();
+        List<KeyValue<E, T>> keysValues = this.keysValues.clone();
+        if (keysValues.iterator().hasNext()) {
+            KeyValue<E, T> keyValue = keysValues.iterator().next();
+            E nextKey = keyValue.key();
             if (nextKey.equals(key)) {
-                tables.push(new Table<>(key, value), tables.indexOf(table));
+                keysValues.push(new KeyValue<>(key, value), keysValues.indexOf(keyValue));
             }
         }
     }
 
     @Override
     public void remove(E key) {
-
+        if (hasKey(key)) {
+            while (keysValues.iterator().hasNext()) {
+                KeyValue<E, T> keyValue = keysValues.iterator().next();
+                E nextKey = keyValue.key();
+                if(nextKey.equals(key)) {
+                    keysValues.remove(keyValue);
+                }
+            }
+        }
     }
 
     @Override
     public boolean hasKey(E key) {
         if (key == null) return false;
         if (isEmpty()) return false;
-        List<Table<E, T>> tables = this.tables.clone();
-        while (tables.iterator().hasNext()) {
-            E nextKey = tables.iterator().next().key();
+        List<KeyValue<E, T>> keysValues = this.keysValues.clone();
+        while (keysValues.iterator().hasNext()) {
+            E nextKey = keysValues.iterator().next().key();
             if(nextKey.equals(key)) {
                 return true;
             };
@@ -82,11 +91,11 @@ public class DefaultMap<E, T> implements Map<E, T> {
     @Override
     public T get(E key) {
         if (hasKey(key)) {
-            List<Table<E, T>> tables = this.tables.clone();
-            while (tables.iterator().hasNext()) {
-                Table<E, T> table = tables.iterator().next();
-                if(table.key().equals(key)) {
-                    return table.value();
+            List<KeyValue<E, T>> keyValues = this.keysValues.clone();
+            while (keyValues.iterator().hasNext()) {
+                KeyValue<E, T> keyValue = keyValues.iterator().next();
+                if(keyValue.key().equals(key)) {
+                    return keyValue.value();
                 }
             }
         }
@@ -95,26 +104,49 @@ public class DefaultMap<E, T> implements Map<E, T> {
 
     @Override
     public void clear() {
-
+        keysValues.clear();
     }
 
     @Override
     public List<T> values() {
-        return null;
+        List<T> list = new ArrayList<>();
+        List<KeyValue<E, T>> keyValues = this.keysValues.clone();
+        while (keyValues.iterator().hasNext()) {
+            KeyValue<E, T> keyValue = keyValues.iterator().next();
+            list.push(keyValue.value());
+        }
+        return list;
     }
 
     @Override
     public List<E> keys() {
-        return null;
+        List<E> list = new ArrayList<>();
+        List<KeyValue<E, T>> keyValues = this.keysValues.clone();
+        while (keyValues.iterator().hasNext()) {
+            KeyValue<E, T> keyValue = keyValues.iterator().next();
+            list.push(keyValue.key());
+        }
+        return list;
     }
 
     @Override
-    public Iterator<T> forEach() {
-        return null;
+    public List<KeyValue<E, T>> keysValues() {
+        List<KeyValue<E, T>> list = new ArrayList<>();
+        List<KeyValue<E, T>> keyValues = this.keysValues.clone();
+        while (keyValues.iterator().hasNext()) {
+            KeyValue<E, T> keyValue = keyValues.iterator().next();
+            list.push(keyValue);
+        }
+        return list;
+    }
+
+    @Override
+    public Iterator<KeyValue<E, T>> forEach() {
+        return this.keysValues.clone().iterator();
     }
 
     @Override
     public String toString() {
-        return tables.toString();
+        return keysValues.toString();
     }
 }
