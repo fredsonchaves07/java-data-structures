@@ -29,16 +29,6 @@ public class DefaultMap<E, T> implements Map<E, T> {
     }
 
     @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public E next() {
-        return null;
-    }
-
-    @Override
     public void set(E key, T value) {
         if (key == null || value == null) return;
         if (isEmpty() || !hasKey(key)) {
@@ -131,13 +121,7 @@ public class DefaultMap<E, T> implements Map<E, T> {
 
     @Override
     public List<KeyValue<E, T>> keysValues() {
-        List<KeyValue<E, T>> list = new ArrayList<>();
-        List<KeyValue<E, T>> keyValues = this.keysValues.clone();
-        while (keyValues.iterator().hasNext()) {
-            KeyValue<E, T> keyValue = keyValues.iterator().next();
-            list.push(keyValue);
-        }
-        return list;
+        return keysValues.clone();
     }
 
     @Override
