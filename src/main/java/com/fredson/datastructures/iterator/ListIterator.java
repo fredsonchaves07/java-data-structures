@@ -15,11 +15,15 @@ public class ListIterator<T extends Comparable<T>> implements Iterator<T> {
     private int lengthList;
 
     public ListIterator(List<T> list) {
-        for (int i = 0; i < list.length(); i++) {
-            queue.enqueue(list.getElement(i));
+        int listSize = list.length();
+        int index = 0;
+        while (queue.length() != listSize) {
+            T element = list.getElement(index);
+            if (element != null) queue.enqueue(element);
+            index++;
         }
         this.list = list;
-        this.lengthList = list.length();
+        this.lengthList = listSize;
     }
 
     @Override
