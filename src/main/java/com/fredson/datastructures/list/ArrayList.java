@@ -28,7 +28,11 @@ public class ArrayList<T> implements List<T> {
     public ArrayList(T[] elements) {
         this.elements = elements;
         this.capacity = elements.length;
-        this.length = elements.length;
+        for (T element : elements) {
+            if (element != null) {
+                this.length++;
+            }
+        }
     }
 
     @Override
