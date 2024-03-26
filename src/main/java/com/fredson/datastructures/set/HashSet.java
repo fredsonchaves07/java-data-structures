@@ -1,17 +1,18 @@
 package com.fredson.datastructures.set;
 
 import com.fredson.datastructures.iterator.Iterator;
-import com.fredson.datastructures.list.LinkedList;
+import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
 
+public class HashSet <T> implements Set<T> {
 
-public class ListSet<T> implements Set<T> {
+    private List<T> elements = new ArrayList<>();
 
-    private List<T> elements = new LinkedList<>();
+    private int hashCode = 0;
 
-    public ListSet() {}
+    public HashSet() {}
 
-    public ListSet(Set<T> set) {
+    public HashSet(Set<T> set) {
         List<T> elements = set.values().clone();
         while (elements.iterator().hasNext()) {
             T element = elements.iterator().next();
@@ -34,26 +35,39 @@ public class ListSet<T> implements Set<T> {
         return null;
     }
 
+    private int hashCode(T element) {
+        if (element instanceof Number) return ((Number) element).shortValue();
+        int hash = 0;
+        String keyString = element.toString();
+        for (int i = 0; i < keyString.length(); i ++) {
+            hash += keyString.charAt(i);
+        }
+        return hash % 37;
+    }
+
+
     @Override
     public void add(T element) {
-        if (!hasElement(element))
-            elements.push(element);
+        if (element == null) return;
+        if(!hasElement(element)) elements.push(element, hashCode(element));
     }
 
     @Override
     public void delete(T element) {
-        if (hasElement(element))
-            elements.remove(element);
+        if (element == null) return;
+        if (hasElement(element)) elements.remove(hashCode(element));
     }
 
     @Override
     public boolean hasElement(T element) {
-        return elements.getElement(element) != null;
+        if (isEmpty()) return false;
+        if (element == null) return false;
+        return elements.getElement(hashCode(element)) != null;
     }
 
     @Override
     public void clear() {
-        elements = new LinkedList<>();
+        elements = new ArrayList<>();
     }
 
     @Override

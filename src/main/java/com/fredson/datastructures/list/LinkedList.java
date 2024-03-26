@@ -154,7 +154,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index > length())
+        if (index < 0)
             throw new IndexOutOfBoundsException();
         if (index == 0 || index == headNode.getIndex())
             removeElementFirstNode();
