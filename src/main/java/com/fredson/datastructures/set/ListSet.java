@@ -4,6 +4,7 @@ import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.LinkedList;
 import com.fredson.datastructures.list.List;
 
+
 public class ListSet<T> implements Set<T> {
 
     private List<T> elements = new LinkedList<>();
