@@ -69,7 +69,9 @@ public class ArrayList<T> implements List<T> {
     private void increaseCapacity() {
         capacity = elements.length * 2;
         T[] newElements = (T[]) new Object[capacity];
-        System.arraycopy(elements, 0, newElements, 0, length);
+        if (!isEmpty())
+            for (T element : elements)
+                if (element != null) newElements[indexOf(element)] = element;
         elements = newElements;
     }
 
@@ -102,8 +104,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index > length())
-            throw new IndexOutOfBoundsException();
+        if (index < 0 || index > capacity)
+            return;
         for (int i = 0; i < capacity; i ++) {
             if (i == index) {
                 if (elements[i] != null) {
@@ -125,8 +127,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T getElement(int index) {
-        if (index > length() || index < 0)
-            throw new IndexOutOfBoundsException();
+        if (index > capacity || index < 0)
+            return null;
         return elements[index];
     }
 
