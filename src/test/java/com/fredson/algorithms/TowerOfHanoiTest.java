@@ -1,9 +1,9 @@
 package com.fredson.algorithms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.fredson.algorithms.TowerOfHanoi.towerOfHanoi;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TowerOfHanoiTest {
 

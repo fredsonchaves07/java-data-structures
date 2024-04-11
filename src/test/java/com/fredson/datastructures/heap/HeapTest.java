@@ -2,9 +2,9 @@ package com.fredson.datastructures.heap;
 
 import com.fredson.datastructures.tree.LinkedBinaryTree;
 import com.fredson.datastructures.tree.Tree;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HeapTest {
 
