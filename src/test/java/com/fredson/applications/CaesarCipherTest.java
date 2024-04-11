@@ -1,13 +1,13 @@
 package com.fredson.applications;
 
 import com.fredson.applications.caesarCipher.CaesarCipher;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CaesarCipherTest {
 
     @Test
     public void shouldGetEncryptMessage() {
-        String message = "Java é uma linguagem de programação";
+        String message = "Java Ã© uma linguagem de programaÃ§Ã£o";
         String messageEncrypted = CaesarCipher.encrypt(message);
         System.out.println(messageEncrypted);
     }

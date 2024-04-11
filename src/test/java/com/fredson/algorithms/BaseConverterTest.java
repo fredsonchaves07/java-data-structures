@@ -1,9 +1,9 @@
 package com.fredson.algorithms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.fredson.algorithms.BaseConverter.baseConverter;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BaseConverterTest {
 
