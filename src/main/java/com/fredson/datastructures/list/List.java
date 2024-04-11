@@ -24,4 +24,9 @@ public interface List<T> extends Cloneable, DataStructure<T> {
     Iterator<T> iterator();
 
     List<T> clone();
+
+    @SafeVarargs
+    static <E> List<E> of(E... elements) {
+        return new ArrayList<>(elements);
+    }
 }
