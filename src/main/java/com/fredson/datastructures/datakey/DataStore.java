@@ -13,7 +13,7 @@ public class DataStore implements DataKey {
 
     private final String databaseName;
 
-    private final HashMap<String, Map<Identifier, Entity>> dataKey = new HashMap<>();
+    private final Map<String, Map<Identifier, Entity>> dataKey = new HashMap<>();
 
     public DataStore(String name) {
         this.databaseName = name;

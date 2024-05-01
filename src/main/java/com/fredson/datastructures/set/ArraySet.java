@@ -7,7 +7,7 @@ import com.fredson.datastructures.list.List;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ArraySet<T> implements Set<T> {
+public class ArraySet<T extends Comparable<T>> implements Set<T> {
 
     private T[] elements;
 
@@ -20,7 +20,7 @@ public class ArraySet<T> implements Set<T> {
     }
 
     public ArraySet(int capacity) {
-        elements = (T[]) new Object[capacity];
+        elements = (T[]) new Comparable[capacity];
     }
 
     public ArraySet(Set<T> set) {
@@ -68,7 +68,7 @@ public class ArraySet<T> implements Set<T> {
 
     private void increaseCapacity() {
         if (length == elements.length) {
-            T[] newElements = (T[]) new Object[elements.length * 2];
+            T[] newElements = (T[]) new Comparable[elements.length * 2];
             System.arraycopy(elements, 0, newElements, 0, length);
             elements = newElements;
         }
@@ -93,7 +93,7 @@ public class ArraySet<T> implements Set<T> {
 
     @Override
     public void clear() {
-        elements = (T[]) new Object[10];
+        elements = (T[]) new Comparable[10];
         length = 0;
     }
 

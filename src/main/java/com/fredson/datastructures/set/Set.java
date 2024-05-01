@@ -3,7 +3,7 @@ package com.fredson.datastructures.set;
 import com.fredson.datastructures.DataStructure;
 import com.fredson.datastructures.list.List;
 
-public interface Set<T> extends DataStructure<T> {
+public interface Set<T extends Comparable<T>> extends DataStructure<T> {
 
     void add(T element);
 

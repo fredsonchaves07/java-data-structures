@@ -5,7 +5,7 @@ import com.fredson.datastructures.list.LinkedList;
 import com.fredson.datastructures.list.List;
 
 
-public class ListSet<T> implements Set<T> {
+public class ListSet<T extends Comparable<T>> implements Set<T> {
 
     private List<T> elements = new LinkedList<>();
 

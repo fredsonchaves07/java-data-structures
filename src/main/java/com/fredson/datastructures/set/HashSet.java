@@ -4,7 +4,7 @@ import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
 
-public class HashSet <T> implements Set<T> {
+public class HashSet <T extends Comparable<T>> implements Set<T> {
 
     private List<T> elements = new ArrayList<>();
 

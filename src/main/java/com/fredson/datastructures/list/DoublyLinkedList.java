@@ -3,7 +3,7 @@ package com.fredson.datastructures.list;
 import com.fredson.models.DoublyNode;
 import com.fredson.models.Node;
 
-public class DoublyLinkedList<T> extends LinkedList<T> {
+public class DoublyLinkedList<T extends Comparable<T>> extends LinkedList<T> {
 
     protected DoublyNode<T> headNode;
 
@@ -230,7 +230,7 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
                 return currentNode.getIndex();
             currentNode = (DoublyNode<T>) currentNode.getNextNode();
         }
-        throw new NullPointerException("Elemento não encontrado");
+        throw new NullPointerException("Elemento nï¿½o encontrado");
     }
 
     @Override

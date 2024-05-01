@@ -5,7 +5,7 @@ import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
 
-public interface Tree<T> extends DataStructure<T> {
+public interface Tree<T extends Comparable<T>> extends DataStructure<T> {
 
     void insert(T element);
 

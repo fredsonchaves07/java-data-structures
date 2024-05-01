@@ -15,5 +15,4 @@ public abstract class Entity implements Comparable<Entity> {
     public String key() {
         return this.getClass().getSimpleName();
     }
-
 }
