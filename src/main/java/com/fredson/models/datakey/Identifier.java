@@ -2,7 +2,7 @@ package com.fredson.models.datakey;
 
 import java.util.UUID;
 
-public final class Identifier {
+public final class Identifier implements Comparable<Identifier> {
 
     private final String value;
 
@@ -17,5 +17,10 @@ public final class Identifier {
     @Override
     public String toString() {
         return value;
+    }
+
+    @Override
+    public int compareTo(Identifier o) {
+        return 0;
     }
 }

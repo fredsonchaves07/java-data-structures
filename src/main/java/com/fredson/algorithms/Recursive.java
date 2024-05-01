@@ -25,11 +25,11 @@ public class Recursive {
         return binarySum(numbers, i, middle) + binarySum(numbers, i + middle, size - middle);
     }
 
-    public static <T> void reverseList(List<T> list) {
+    public static <T extends Comparable<T>> void reverseList(List<T> list) {
         reverseList(list, 0, list.length() - 1);
     }
 
-    private static <T> void reverseList(List<T> list, int i, int j) {
+    private static <T extends Comparable<T>> void reverseList(List<T> list, int i, int j) {
         if (i < j) {
             T firstElement = list.getElement(i);
             T secondElement = list.getElement(j);

@@ -4,7 +4,7 @@ import com.fredson.models.Node;
 
 import java.util.ArrayList;
 
-public class CircularLinkedList <T> extends LinkedList<T> {
+public class CircularLinkedList <T extends Comparable<T>> extends LinkedList<T> {
 
     public CircularLinkedList() {
         super();

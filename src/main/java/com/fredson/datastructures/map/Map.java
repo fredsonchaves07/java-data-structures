@@ -5,7 +5,7 @@ import com.fredson.datastructures.iterator.Iterator;
 import com.fredson.datastructures.list.List;
 import com.fredson.models.KeyValue;
 
-public interface Map<E, T> extends DataStructure<E> {
+public interface Map<E extends Comparable<E>, T extends Comparable<T>> extends DataStructure<E>, Comparable<Map<E, T>> {
 
     void set(E key, T value);
 

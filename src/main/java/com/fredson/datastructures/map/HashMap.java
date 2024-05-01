@@ -6,7 +6,7 @@ import com.fredson.datastructures.list.LinkedList;
 import com.fredson.datastructures.list.List;
 import com.fredson.models.KeyValue;
 
-public class HashMap<E, T> implements Map<E, T>{
+public class HashMap<E extends Comparable<E>, T extends Comparable<T>> implements Map<E, T>{
 
     private final List<KeyValue<E, T>> keysValues = new LinkedList<>();
 
@@ -106,5 +106,10 @@ public class HashMap<E, T> implements Map<E, T>{
     @Override
     public String toString() {
         return keysValues.toString();
+    }
+
+    @Override
+    public int compareTo(Map<E, T> o) {
+        return 0;
     }
 }

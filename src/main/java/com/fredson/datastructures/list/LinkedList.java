@@ -7,7 +7,7 @@ import com.fredson.models.Node;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     protected Node<T> headNode;
 

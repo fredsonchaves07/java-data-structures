@@ -5,7 +5,7 @@ import com.fredson.datastructures.list.ArrayList;
 import com.fredson.datastructures.list.List;
 import com.fredson.models.Node;
 
-public class LinkedSet<T> implements Set<T> {
+public class LinkedSet<T extends Comparable<T>> implements Set<T> {
 
     protected Node<T> headNode;
 

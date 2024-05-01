@@ -8,7 +8,7 @@ import com.fredson.models.DoublyNode;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LinkedBinaryTree<T> implements Tree<T> {
+public class LinkedBinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     protected DoublyNode<T> root;
 

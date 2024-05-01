@@ -6,7 +6,7 @@ import com.fredson.datastructures.iterator.ListIterator;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ArrayList<T> implements List<T> {
+public class ArrayList<T extends Comparable<T>> implements List<T> {
 
     private T[] elements;
 
@@ -22,7 +22,7 @@ public class ArrayList<T> implements List<T> {
 
     public ArrayList(int capacity) {
         this.capacity = capacity;
-        this.elements = (T[]) new Object[capacity];
+        this.elements = (T[]) new Comparable[capacity];
     }
 
     public ArrayList(T[] elements) {
@@ -68,7 +68,7 @@ public class ArrayList<T> implements List<T> {
 
     private void increaseCapacity() {
         capacity = elements.length * 2;
-        T[] newElements = (T[]) new Object[capacity];
+        T[] newElements = (T[]) new Comparable[capacity];
         if (!isEmpty())
             for (T element : elements)
                 if (element != null) newElements[indexOf(element)] = element;
